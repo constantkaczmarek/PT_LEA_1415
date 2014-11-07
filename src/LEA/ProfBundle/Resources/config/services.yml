@@ -1,0 +1,4 @@
+services:
+#    lea_prof.example:
+#        class: LEA\ProfBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

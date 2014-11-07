@@ -1,0 +1,3 @@
+lea_prof_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: LEAProfBundle:Default:index }

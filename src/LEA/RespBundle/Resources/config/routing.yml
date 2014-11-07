@@ -1,0 +1,3 @@
+lea_resp_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: LEARespBundle:Default:index }

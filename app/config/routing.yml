@@ -1,0 +1,12 @@
+lea_prof:
+    resource: "@LEAProfBundle/Resources/config/routing.yml"
+    prefix:   /
+
+lea_resp:
+    resource: "@LEARespBundle/Resources/config/routing.yml"
+    prefix:   /
+
+lea_etu:
+    resource: "@LEAEtuBundle/Resources/config/routing.yml"
+    prefix:   /
+

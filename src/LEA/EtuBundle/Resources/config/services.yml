@@ -1,0 +1,4 @@
+services:
+#    lea_etu.example:
+#        class: LEA\EtuBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

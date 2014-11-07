@@ -1,0 +1,3 @@
+lea_etu_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: LEAEtuBundle:Default:index }
