@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid">
+        <form action="{{ path("lea_etu_infosMission",{ 'name': 'm1infofi1AA72'}) }}" method="post">
+            {{ form_widget(form) }}
+            <input type="submit" name="Enregistrer" value="Enregistrer"/>
+        </form>
+        <div>
+            C'est ca : {{ altref }} et {{ infosMissions.service }}
+        </div>
+    </div>
+
+{% endblock %}
