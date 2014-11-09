@@ -1,0 +1,48 @@
+Formation:
+    type: entity
+    table: formation
+    id:
+        anneereference:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            id: true
+            column: anneeReference
+        formationcle:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            id: true
+            column: formationCle
+    fields:
+        obsolete:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+        nom:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        responsableref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            column: responsableRef
+        responsableref2:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            column: responsableRef2
+    lifecycleCallbacks: {  }

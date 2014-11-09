@@ -1,0 +1,136 @@
+Contrat:
+    type: entity
+    table: contrat
+    id:
+        alternancecle:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: alternanceCle
+            generator:
+                strategy: IDENTITY
+    fields:
+        anneecle:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: anneeCle
+        nbheures:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: nbHeures
+        regiebureauref:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+            column: regieBureauRef
+        etudref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            column: etudRef
+        tuteurref:
+            type: string
+            nullable: true
+            length: 80
+            fixed: false
+            comment: ''
+            column: tuteurRef
+        referentref:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+            column: referentRef
+        referentref2:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+            default: ''
+            column: referentRef2
+        opcaref:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+            default: '__sans opca__'
+            column: opcaRef
+        typecontrat:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+            comment: ''
+            column: typeContrat
+        debutcontrat:
+            type: date
+            nullable: true
+            comment: ''
+            column: debutContrat
+        fincontrat:
+            type: date
+            nullable: true
+            comment: ''
+            column: finContrat
+        accordopca:
+            type: date
+            nullable: true
+            comment: ''
+            column: accordOPCA
+        signaturecontrat:
+            type: date
+            nullable: true
+            comment: ''
+            column: signatureContrat
+        sudesref:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+            column: sudesRef
+        notifattribtuteur:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: notifAttribTuteur
+        bureauref:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+            default: ''
+            column: bureauRef
+        regiereferentref:
+            type: string
+            nullable: true
+            length: 80
+            fixed: false
+            comment: ''
+            column: regieReferentRef
+        regiereferentref2:
+            type: string
+            nullable: true
+            length: 80
+            fixed: false
+            comment: ''
+            column: regieReferentRef2
+    lifecycleCallbacks: {  }

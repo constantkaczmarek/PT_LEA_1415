@@ -1,0 +1,56 @@
+TempTuteurs:
+    type: entity
+    table: temp_tuteurs
+    id:
+        etat:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        tuteurref:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: tuteurRef
+        alternanceref:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: alternanceRef
+        nomTuteur:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: nom_tuteur
+        prenomTuteur:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: prenom_tuteur
+        mailTuteur:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+            column: mail_tuteur
+        formationref:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            column: formationRef
+    lifecycleCallbacks: {  }

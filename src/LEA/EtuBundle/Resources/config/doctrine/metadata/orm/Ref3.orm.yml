@@ -1,0 +1,21 @@
+Ref3:
+    type: entity
+    table: ref3
+    id:
+        bref:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        rcle:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

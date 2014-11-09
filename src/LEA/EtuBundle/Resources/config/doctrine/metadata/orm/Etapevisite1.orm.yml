@@ -1,0 +1,78 @@
+Etapevisite1:
+    type: entity
+    table: etapevisite1
+    id:
+        alternanceref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: alternanceRef
+            generator:
+                strategy: IDENTITY
+    fields:
+        daterencontre:
+            type: date
+            nullable: true
+            comment: ''
+            column: dateRencontre
+        signatureetud:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: signatureEtud
+        remarquesetud:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesEtud
+        signaturetuteur:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: signatureTuteur
+        remarquestuteur:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesTuteur
+        signaturereferent:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: signatureReferent
+        remarquesreferent:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesReferent
+        adequationmission:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: adequationMission
+        integrationetudiant:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: integrationEtudiant
+        typerencontre:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: typeRencontre
+    lifecycleCallbacks: {  }

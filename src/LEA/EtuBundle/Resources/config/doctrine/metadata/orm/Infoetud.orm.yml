@@ -1,0 +1,52 @@
+Infoetud:
+    type: entity
+    table: infoetud
+    id:
+        alternanceref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: alternanceRef
+            generator:
+                strategy: IDENTITY
+    fields:
+        datesaisie:
+            type: date
+            nullable: true
+            comment: ''
+            column: dateSaisie
+        service:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        client:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+        missions:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        environnementtechnique:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: environnementTechnique
+        motscles:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

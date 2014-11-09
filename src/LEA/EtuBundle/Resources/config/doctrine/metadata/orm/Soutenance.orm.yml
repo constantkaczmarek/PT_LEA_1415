@@ -1,0 +1,77 @@
+Soutenance:
+    type: entity
+    table: soutenance
+    id:
+        anneereference:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            id: true
+            column: anneeReference
+        formationref:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            id: true
+            column: formationRef
+    fields:
+        obsolete:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+        dateremise:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: dateRemise
+        datessoutenances:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: datesSoutenances
+        longueurrapport:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: longueurRapport
+        dur„©esoutenance:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: dur√©eSoutenance
+        observationstous:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: observationsTous
+        observationstuteurs:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: observationsTuteurs
+        lienexterne:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: lienExterne
+    lifecycleCallbacks: {  }

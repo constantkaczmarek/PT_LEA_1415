@@ -1,0 +1,88 @@
+Etapemissionsout:
+    type: entity
+    table: etapemissionsout
+    id:
+        alternanceref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: alternanceRef
+            generator:
+                strategy: IDENTITY
+    fields:
+        daterencontre:
+            type: date
+            nullable: false
+            comment: ''
+            column: dateRencontre
+        signatureetud:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: signatureEtud
+        remarquesetud:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesEtud
+        signaturetuteur:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: signatureTuteur
+        remarquestuteur:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesTuteur
+        signaturereferent:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: signatureReferent
+        remarquesreferent:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesReferent
+        typerencontre:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: typeRencontre
+        datevalidation:
+            type: date
+            nullable: false
+            comment: ''
+            column: dateValidation
+        missions:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        environnementtechnique:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: environnementTechnique
+        enjeux:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

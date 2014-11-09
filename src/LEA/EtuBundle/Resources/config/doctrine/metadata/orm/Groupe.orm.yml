@@ -1,0 +1,42 @@
+Groupe:
+    type: entity
+    table: groupe
+    id:
+        anneereference:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            id: true
+            column: anneeReference
+        groupecle:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            id: true
+            column: groupeCle
+    fields:
+        obsolete:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+        formationref:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            column: formationRef
+        responsableref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            column: responsableRef
+    lifecycleCallbacks: {  }

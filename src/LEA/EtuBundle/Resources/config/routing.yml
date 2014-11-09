@@ -1,3 +1,8 @@
 lea_etu_homepage:
-    path:     /hello/{name}
+    path:     /etudiant/{name}
     defaults: { _controller: LEAEtuBundle:Default:index }
+
+lea_etu_infosMission:
+    path:    /etudiant/{name}/infosMission
+    defaults: { _controller: LEAEtuBundle:Mission:index }
+

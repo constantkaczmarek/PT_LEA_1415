@@ -1,0 +1,36 @@
+RolesMembres:
+    type: entity
+    table: roles_membres
+    id:
+        obsolete:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            id: true
+        anneereference:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            id: true
+            column: anneeReference
+        userref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: userRef
+        roleref:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            id: true
+            column: roleRef
+    lifecycleCallbacks: {  }

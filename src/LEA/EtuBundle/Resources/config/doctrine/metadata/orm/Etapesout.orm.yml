@@ -1,0 +1,58 @@
+Etapesout:
+    type: entity
+    table: etapesout
+    id:
+        alternanceref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: alternanceRef
+            generator:
+                strategy: IDENTITY
+    fields:
+        pourcentageobjectifs:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            column: pourcentageObjectifs
+        difficultemission:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: difficulteMission
+        notetravail:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            column: noteTravail
+        noterapport:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            column: noteRapport
+        notesoutenance:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            column: noteSoutenance
+        avisjury:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: avisJury
+    lifecycleCallbacks: {  }

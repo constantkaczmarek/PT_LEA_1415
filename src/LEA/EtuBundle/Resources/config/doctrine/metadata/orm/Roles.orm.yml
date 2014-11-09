@@ -1,0 +1,35 @@
+Roles:
+    type: entity
+    table: roles
+    id:
+        anneereference:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            id: true
+            column: anneeReference
+        rolecle:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            id: true
+            column: roleCle
+    fields:
+        obsolete:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+        roledesc:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: roleDesc
+    lifecycleCallbacks: {  }

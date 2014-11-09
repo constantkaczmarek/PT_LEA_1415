@@ -1,0 +1,44 @@
+Etapeechanges:
+    type: entity
+    table: etapeechanges
+    id:
+        alternanceref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: alternanceRef
+            generator:
+                strategy: IDENTITY
+    fields:
+        participants:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        typerencontre:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: typeRencontre
+        daterencontre:
+            type: date
+            nullable: false
+            comment: ''
+            column: dateRencontre
+        resume:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        sujet:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+    lifecycleCallbacks: {  }

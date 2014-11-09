@@ -1,0 +1,71 @@
+Membre:
+    type: entity
+    table: membre
+    id:
+        profcle:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: profCle
+            generator:
+                strategy: IDENTITY
+    fields:
+        anneereference:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: anneeReference
+        obsolete:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+        nom:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        prenom:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            comment: ''
+        tel:
+            type: string
+            nullable: true
+            length: 80
+            fixed: false
+            comment: ''
+        mail:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+        bureau:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        inscription:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            comment: ''
+        valide:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+    lifecycleCallbacks: {  }

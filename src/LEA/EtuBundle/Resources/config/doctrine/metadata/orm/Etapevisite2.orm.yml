@@ -1,0 +1,85 @@
+Etapevisite2:
+    type: entity
+    table: etapevisite2
+    id:
+        alternanceref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: alternanceRef
+            generator:
+                strategy: IDENTITY
+    fields:
+        daterencontre:
+            type: date
+            nullable: false
+            comment: ''
+            column: dateRencontre
+        signatureetud:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: signatureEtud
+        remarquesetud:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesEtud
+        signaturetuteur:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: signatureTuteur
+        remarquestuteur:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesTuteur
+        signaturereferent:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: signatureReferent
+        remarquesreferent:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesReferent
+        dateprobablesoutenance:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: dateProbableSoutenance
+        avancementprojet:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: avancementProjet
+        pointspositifs:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: pointsPositifs
+        pointsprogres:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: pointsProgres
+    lifecycleCallbacks: {  }

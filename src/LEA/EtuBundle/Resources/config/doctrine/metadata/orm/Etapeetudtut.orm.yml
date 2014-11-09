@@ -1,0 +1,84 @@
+Etapeetudtut:
+    type: entity
+    table: etapeetudtut
+    id:
+        alternanceref:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: alternanceRef
+            generator:
+                strategy: IDENTITY
+    fields:
+        daterencontre:
+            type: date
+            nullable: true
+            comment: ''
+            column: dateRencontre
+        service:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        client:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+        missions:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        environnementtechnique:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: environnementTechnique
+        integrationentreprise:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: integrationEntreprise
+        signatureetud:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: signatureEtud
+        signaturetuteur:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: signatureTuteur
+        remarquesetud:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesEtud
+        remarquestuteur:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: remarquesTuteur
+        motscles:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: motsCles
+    lifecycleCallbacks: {  }

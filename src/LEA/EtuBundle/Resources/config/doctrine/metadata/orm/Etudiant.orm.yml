@@ -1,0 +1,59 @@
+Etudiant:
+    type: entity
+    table: etudiant
+    id:
+        etudcle:
+            type: string
+            nullable: false
+            length: 80
+            fixed: false
+            comment: ''
+            id: true
+            column: etudCle
+        anneereference:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            id: true
+            column: anneeReference
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        prenom:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            comment: ''
+        tel:
+            type: string
+            nullable: false
+            length: 20
+            fixed: true
+            comment: ''
+        mail:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            comment: ''
+        maillille1:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+            column: mailLille1
+        obsolete:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+    lifecycleCallbacks: {  }
