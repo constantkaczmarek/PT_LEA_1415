@@ -3,7 +3,9 @@
 namespace LEA\EtuBundle\Controller;
 
 use LEA\EtuBundle\Entity\infosMission;
+use LEA\EtuBundle\Entity\infosStage;
 use LEA\EtuBundle\Form\infosMissionsType;
+use LEA\EtuBundle\Form\infosStageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\DBAL\Connection;
@@ -11,7 +13,7 @@ use LEA\EtuBundle\Dbmngt\queriesEtapes;
 use LEA\EtuBundle\Dbmngt\queriesEtu;
 use LEA\EtuBundle\Dbmngt\UpdateQueries;
 
-class MissionController extends Controller
+class StageController extends Controller
 {
 
     public function indexAction($name)
@@ -26,16 +28,13 @@ class MissionController extends Controller
         $altRef = $queryEtu->doGetAltRefForStudent($conn,$name);
 
         $query = new queriesEtapes();
-        $infos = $query->getInfosMissions($conn,$altRef);
+        $infos = $query->getInfosStage($conn,$altRef);
 
-        $infosMissions = new infosMission();
-        $infosMissions->setClient($infos[6]);
-        $infosMissions->setService($infos[5]);
-        $infosMissions->setMissions($infos[7]);
-        $infosMissions->setTechnos($infos[8]);
-        $infosMissions->setMotscles($infos[14]);
+        $infosStage = new infosStage();
+        $infosStage->setMail($infos["5"]);
 
-        $form = $this->createForm(new infosMissionsType(),$infosMissions);
+
+        $form = $this->createForm(new infosStageType(),$infosStage);
 
         $request = $this->getRequest();
 
@@ -47,7 +46,7 @@ class MissionController extends Controller
 
                 $infosMissions = $form->getData();
                 $updateInfos = new UpdateQueries();
-                $updateInfos->updateInfosMissions($conn,$infosMissions,$altRef);
+                //$updateInfos->updateInfosMissions($conn,$infosMissions,$altRef);
 
                 return $this->redirect(
                     $this->generateUrl('lea_etu_homepage',array(
@@ -57,9 +56,9 @@ class MissionController extends Controller
             }
         }
 
-        return $this->render('LEAEtuBundle:Default:infosMissionEtu.html.twig',array(
+        return $this->render('LEAEtuBundle:Default:infosStage.html.twig',array(
             'form'=> $form->createView(),
-            'infosMissions' => $infosMissions,
+            'infosStage' => $infosStage,
             'altref' => $altRef,
             'name' => $name
         ));

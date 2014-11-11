@@ -2,12 +2,12 @@
 
 {% block body %}
     <div class="container-fluid">
-        <form action="{{ path("lea_etu_infosMission",{ 'name': name}) }}" method="post">
+        <form action="{{ path("lea_etu_infosStage",{ 'name': name}) }}" method="post">
             {{ form_widget(form) }}
             <input type="submit" name="Enregistrer" value="Enregistrer"/>
         </form>
         <div>
-            C'est ca : {{ altref }} et {{ infosMissions.service }}
+            C'est ca : {{ altref }} et {{ infosStage.bureau }}
         </div>
     </div>
 
