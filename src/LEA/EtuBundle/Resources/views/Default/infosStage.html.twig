@@ -2,10 +2,63 @@
 
 {% block body %}
     <div class="container-fluid">
-        <form action="{{ path("lea_etu_infosStage",{ 'name': name}) }}" method="post">
-            {{ form_widget(form) }}
+
+        {{ form_start(form) }}
+
+            <div>
+                {{ form_errors(form) }}
+            </div>
+
+            <div>
+                {{ form_row(form.tel) }}
+            </div>
+            <div>
+                {{ form_row(form.mail) }}
+            </div>
+            <div>
+                {{ form_row(form.mailLille1) }}
+            </div>
+            <div>
+                {{ form_row(form.tuteur) }}
+            </div>
+            <div>
+                {{ form_row(form.entreprise) }}
+            </div>
+            <div>
+                {{ form_row(form.bureau) }}
+            </div>
+            <div>
+                {{ form_row(form.referent) }}
+            </div>
+            <div>
+                {{ form_row(form.referent1) }}
+            </div>
+            <div>
+                {{ form_row(form.datecontrat) }}
+            </div>
+            <div>
+                {{ form_row(form.dateDebutcontrat) }}
+            </div>
+            <div>
+                {{ form_row(form.dateFincontrat) }}
+            </div>
+            <div>
+                {{ form_row(form.entrepriseAlt) }}
+            </div>
+            <div>
+                {{ form_row(form.bureauAlt) }}
+            </div>
+            <div>
+                {{ form_row(form.referentAlt) }}
+            </div>
+            <div>
+                {{ form_row(form.referent1Alt) }}
+            </div>
+
             <input type="submit" name="Enregistrer" value="Enregistrer"/>
-        </form>
+
+        {{ form_end(form) }}
+
         <div>
             C'est ca : {{ altref }} et {{ infosStage.bureau }}
         </div>

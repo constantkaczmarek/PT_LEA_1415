@@ -11,15 +11,35 @@ namespace LEA\EtuBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use LEA\EtuBundle\Dbmngt\queriesEtapes;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceListInterface;
+
 
 class infosStageType extends AbstractType
 {
+
+
+    private $infos;
+    private $listEntr;
+    private $listBureau;
+    private $listRef;
+
+    public function __construct($infos,$listEntr,$listBureau,$listRef)
+    {
+        $this->infos = $infos;
+        $this->listEntr = $listEntr;
+        $this->listBureau = $listBureau;
+        $this->listRef = $listRef;
+
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('tel','number',array(
                 'label' => 'Téléphone personnel :'
@@ -41,27 +61,28 @@ class infosStageType extends AbstractType
             ->add('entreprise','choice',array(
                 'required' => false,
                 'label' => ' L\'entreprise ',
+                'choices' => $this->listEntr,
+                //'attr' => array('class' => 'select'),
             ))
 
             ->add('bureau','choice',array(
                 'required' => false,
-                'label' => 'Bureau '
+                'label' => 'Bureau ',
+                'choices' => $this->listBureau
             ))
 
             ->add('referent','choice',array(
                 'required' => false,
-                'label' => 'Référent 1  '
+                'label' => 'Référent 1  ',
+                'choices' => $this->listRef
             ))
 
             ->add('referent1','choice',array(
                 'required' => false,
-                'label' => 'Référent 2 '
+                'label' => 'Référent 2 ',
+                'choices' => $this->listRef
             ))
 
-            ->add('referent1','choice',array(
-                'required' => false,
-                'label' => 'Référent 2 '
-            ))
 
             ->add('datecontrat','date',array(
                 'required' => false,
@@ -80,23 +101,29 @@ class infosStageType extends AbstractType
 
             ->add('entrepriseAlt','choice',array(
                 'required' => false,
-                'label' => 'REGIE : '
+                'label' => 'REGIE : ',
+                'choices' => $this->listEntr
             ))
 
             ->add('bureauAlt','choice',array(
                 'required' => false,
-                'label' => 'Bureau '
+                'label' => 'Bureau ',
+                'choices' => $this->listBureau
+
             ))
 
             ->add('referentAlt','choice',array(
                 'required' => false,
-                'label' => 'Référent 1  '
+                'label' => 'Référent 1  ',
+                'choices' => $this->listRef
             ))
 
             ->add('referent1Alt','choice',array(
                 'required' => false,
-                'label' => 'Référent 2 '
+                'label' => 'Référent 2 ',
+                'choices' => $this->listRef
             ))
+
 
         ;
     }
