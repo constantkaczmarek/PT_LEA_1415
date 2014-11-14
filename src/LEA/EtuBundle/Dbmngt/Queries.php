@@ -8,17 +8,10 @@
 
 namespace LEA\EtuBundle\Dbmngt;
 
-
 class Queries {
 
     function getListeEntreprise($conn) {
-        $query = $conn ->fetchArray("(select '__sans entreprise__','SANS ENTREPRISE')
-      union (select entrepriseCle, concat(nom,' - ',b.ville) from entreprise inner join bureau b on entrepriseRef=entrepriseCle where entrepriseCle not like '__sans%' and b.bureauCle  like '%_siege' order by nom)
-    ");
-
-        /*foreach($query as $value){
-            echo $value;
-        }*/
+        $query = $conn ->fetchAll("select '__sans entreprise__','SANS ENTREPRISE' union (select entrepriseCle, concat(nom,' - ',b.ville) from entreprise inner join bureau b on entrepriseRef=entrepriseCle where entrepriseCle not like '__sans%' and b.bureauCle like '%_siege' order by nom)");
         return $query;
     }
 

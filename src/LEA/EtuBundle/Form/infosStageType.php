@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use LEA\EtuBundle\Dbmngt\queriesEtapes;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceListInterface;
-
+use LEA\EtuBundle\Dbmngt\DbUtils;
 
 class infosStageType extends AbstractType
 {
@@ -39,7 +39,7 @@ class infosStageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        $dbUtils = new DbUtils();
         $builder
             ->add('tel','number',array(
                 'label' => 'Téléphone personnel :'
@@ -61,7 +61,7 @@ class infosStageType extends AbstractType
             ->add('entreprise','choice',array(
                 'required' => false,
                 'label' => ' L\'entreprise ',
-                'choices' => $this->listEntr,
+                'choices' => $dbUtils->convertArrayToChoices($this->listEntr, "__sans entreprise__","SANS ENTREPRISE"),
                 //'attr' => array('class' => 'select'),
             ))
 
