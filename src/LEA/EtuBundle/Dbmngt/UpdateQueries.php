@@ -19,10 +19,12 @@ class UpdateQueries {
         $transf = new DateTimeToStringTransformer();
 
         $queryString="update contrat set ";
-            if ($infosStage->getTuteur()!=="NULL")
-                $queryString.="tuteurRef='".$infosStage->getTuteur()."', ";
-            else
-                $queryString.="tuteurRef=NULL, ";
+            if ($infosStage->getTuteur()!=="NULL") {
+                $queryString .= "tuteurRef='" . $infosStage->getTuteur() . "', ";
+            }
+            else {
+                $queryString .= "tuteurRef=NULL, ";
+            }
 
           /*  if ($infosStage["15"]) {
                 $queryString.="opcaRef='".$infosStage["20"]."',";

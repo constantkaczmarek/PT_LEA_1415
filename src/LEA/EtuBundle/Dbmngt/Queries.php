@@ -22,18 +22,18 @@ class Queries {
         return $query;
     }
 
-    function getBureauEntreprise($conn, $entreprise_cle) {
-        $query = $conn ->fetchArray("(select bureauCle,concat('SIEGE : ',adresse,' - ',ville) from bureau where entrepriseRef='$entreprise_cle' and bureauCle like '%_siege')
+    function getBureauEntreprise($conn, $entrepriseCle) {
+        $query = $conn ->fetchArray("(select bureauCle,concat('SIEGE : ',adresse,' - ',ville) from bureau where entrepriseRef='$entrepriseCle' and bureauCle like '%_siege')
     union (select bureauCle,concat(adresse,' - ',ville)
-                from bureau where entrepriseRef = '$entreprise_cle' and bureauCle not like '%_siege' order by bureauCle)");
+                from bureau where entrepriseRef = '$entrepriseCle' and bureauCle not like '%_siege' order by bureauCle)");
 
         return $query;
     }
 
-    function getListeReferent($conn, $entreprise_cle) {
-        $query = $conn ->fetchArray("(select '__sans referent___".strtoupper($entreprise_cle)."','sans referent') union ".
+    function getListeReferent($conn, $entrepriseCle) {
+        $query = $conn ->fetchArray("(select '__sans referent___".strtoupper($entrepriseCle)."','sans referent') union ".
             "(select referentCle,concat(prenom,' ',nom,' - ',mail) from referent ".
-            "where entrepriseRef = '$entreprise_cle' and referentCle not like '%sans referent%' order by referentCle)");
+            "where entrepriseRef = '$entrepriseCle' and referentCle not like '%sans referent%' order by referentCle)");
 
         return $query;
     }
