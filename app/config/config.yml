@@ -123,3 +123,16 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+services:
+    queries:
+        class: LEA\EtuBundle\Dbmngt\Queries
+    dbutils:
+        class: LEA\EtuBundle\Dbmngt\DbUtils
+    queries_etapes:
+        class: LEA\EtuBundle\Dbmngt\queriesEtapes
+    queriesEtu:
+        class: LEA\EtuBundle\Dbmngt\queriesEtu
+    update_queries:
+        class: LEA\EtuBundle\Dbmngt\UpdateQueries

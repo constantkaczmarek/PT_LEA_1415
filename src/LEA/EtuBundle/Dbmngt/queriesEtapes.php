@@ -13,49 +13,49 @@ class queriesEtapes {
 
 
     public function getInfosStage($conn,$altRef){
-        $query = $conn->fetchArray("select
-        contrat.alternanceCle,
+        $query = $conn->fetchAll("select
+        contrat.alternanceCle as contratAlternanceCle,
         etudiant.prenom as prenom_etud,
         etudiant.nom as nom_etud,
-        entreprise.nom,
-        etudiant.tel,
-        etudiant.mail,
+        entreprise.nom as entrepriseNom,
+        etudiant.tel as etuTel,
+        etudiant.mail etuMail,
 
         membre.prenom, membre.nom as prof,
         membre.tel, membre.mail,
 
-        referent.prenom, referent.nom ,
-        referent.fonction,
-        referent.tel,
-        referent.mail,
-        contrat.opcaRef,
+        referent.prenom as refPre, referent.nom as refNom,
+        referent.fonction as refFonc,
+        referent.tel as refTel,
+        referent.mail as refMail,
+        contrat.opcaRef as contratOpcaRef,
 
-        contrat.signatureContrat,
-        contrat.accordOPCA,
-        contrat.debutContrat,
-        contrat.finContrat,
+        contrat.signatureContrat as contratSignContrat,
+        contrat.accordOPCA as contratAccOpca,
+        contrat.debutContrat as contratDeb,
+        contrat.finContrat as contratFin,
 
-        membre.profCle,
-        entreprise.entrepriseCle,
-        contrat.bureauRef,
-        etudiant.etudCle,
-        etudiant.mailLille1,
+        membre.profCle as profCle,
+        entreprise.entrepriseCle as entrCle,
+        contrat.bureauRef as bureauRef,
+        etudiant.etudCle as etuCle,
+        etudiant.mailLille1 as etuMailLille1,
 
-        opca.nom,
-        referent.referentCle,
-        referent2.referentCle,
-        regie.entrepriseRef,
-        regieBureauRef,
-        regieReferentRef,
-        regieReferentRef2,
-        concat(regie.adresse,' - ',regie.adresse),
-        concat(bureau.adresse,' - ',bureau.ville),
-        concat(referent.tel,' - ',referent.mail),
-        concat(referent2.tel,' - ',referent2.mail),
-        concat(regieReferent.tel,' - ',regieReferent.mail),
-        concat(regieReferent2.tel,' - ',regieReferent2.mail),
-        formationRef,
-        notifAttribTuteur
+        opca.nom as opcaNom,
+        referent.referentCle as refCle,
+        referent2.referentCle as ref1Cle,
+        regie.entrepriseRef as regieEntrCle,
+        regieBureauRef as regieBureauRef,
+        regieReferentRef as regieReferentRef,
+        regieReferentRef2 as regieReferent1Ref ,
+        concat(regie.adresse,' - ',regie.adresse) as regieAdresse,
+        concat(bureau.adresse,' - ',bureau.ville) as bureauAdresse,
+        concat(referent.tel,' - ',referent.mail) as coordRef,
+        concat(referent2.tel,' - ',referent2.mail) as coordRef2,
+        concat(regieReferent.tel,' - ',regieReferent.mail) as coordRegieRef,
+        concat(regieReferent2.tel,' - ',regieReferent2.mail) as coordRegieRef2,
+        formationRef as formationRef,
+        notifAttribTuteur as notifAttribTuteur
     from
 	(contrat inner join etudiant
 		on etudCle=etudRef inner join etudiant_groupe on etudiant_groupe.annee=contrat.anneeCle
@@ -72,6 +72,7 @@ class queriesEtapes {
         where alternanceCle in ('" . $altRef . "') order by etudiant_groupe.groupeRef, prof, nom_etud, prenom_etud ;"
         );
 
+        //print_r($query);
         return $query;
 
     }

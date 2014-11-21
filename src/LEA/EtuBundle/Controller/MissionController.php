@@ -5,11 +5,6 @@ namespace LEA\EtuBundle\Controller;
 use LEA\EtuBundle\Entity\infosMission;
 use LEA\EtuBundle\Form\infosMissionsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Doctrine\ORM\Query\ResultSetMapping;
-use Doctrine\DBAL\Connection;
-use LEA\EtuBundle\Dbmngt\queriesEtapes;
-use LEA\EtuBundle\Dbmngt\queriesEtu;
-use LEA\EtuBundle\Dbmngt\UpdateQueries;
 
 class MissionController extends Controller
 {
@@ -22,10 +17,10 @@ class MissionController extends Controller
 
         $conn = $this->get('database_connection');
 
-        $queryEtu = new queriesEtu();
+        $queryEtu = $this->get('queries_etu');
         $altRef = $queryEtu->doGetAltRefForStudent($conn,$name);
 
-        $query = new queriesEtapes();
+        $query = $this->get('queries_etapes');
         $infos = $query->getInfosMissions($conn,$altRef);
 
         $infosMissions = new infosMission();
@@ -46,7 +41,7 @@ class MissionController extends Controller
             if($form->isValid()) {
 
                 $infosMissions = $form->getData();
-                $updateInfos = new UpdateQueries();
+                $updateInfos = $this->get("update_queries");
                 $updateInfos->updateInfosMissions($conn,$infosMissions,$altRef);
 
                 return $this->redirect(

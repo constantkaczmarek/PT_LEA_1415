@@ -6,6 +6,18 @@ lea_etu_infosStage:
     path:    /etudiant/{name}/infosStage
     defaults: { _controller: LEAEtuBundle:Stage:index }
 
+lea_etu_appel_ajax_entr:
+    path:    /etudiant/infosStage/creerListe
+    defaults: { _controller: LEAEtuBundle:Stage:ajaxEntr }
+    requirements:
+        _method: POST
+
+lea_etu_appel_ajax_regie:
+    path:    /etudiant/infosStage/creerListe
+    defaults: { _controller: LEAEtuBundle:Stage:ajaxRegie }
+    requirements:
+        _method: POST
+
 lea_etu_infosMission:
     path:    /etudiant/{name}/infosMission
     defaults: { _controller: LEAEtuBundle:Mission:index }
