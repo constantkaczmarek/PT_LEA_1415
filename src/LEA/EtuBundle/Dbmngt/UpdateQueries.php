@@ -26,10 +26,9 @@ class UpdateQueries {
                 $queryString .= "tuteurRef=NULL, ";
             }
 
-          /*  if ($infosStage["15"]) {
+            /* if ($infosStage["15"]) {
                 $queryString.="opcaRef='".$infosStage["20"]."',";
             }*/
-            //Ajout JTA
             if($infosStage->getBureau()){
                 $queryString.="bureauRef='".$infosStage->getBureau()."',";
             }

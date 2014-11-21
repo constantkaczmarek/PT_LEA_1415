@@ -126,30 +126,7 @@ class infosStageType extends AbstractType
 
         $builder->addEventSubscriber(new FormStageSubscriber());
 
-
     }
-
-    protected function addElements(FormInterface $form, $listbureau) {
-
-        $form->add('bureau','choice',array(
-            'required' => false,
-            'label' => 'Bureau ',
-            'choices' => $this->listBureau
-        ));
-    }
-
-    function onPreSubmit(FormEvent $event) {
-        $form = $event->getForm();
-        $data = $event->getData();
-
-        $form->add('bureau','choice',array(
-            'required' => false,
-            'label' => 'Bureau ',
-            'choices' => $this->listBureau
-        ));
-    }
-
-
 
     /**
      * @param OptionsResolverInterface $resolver

@@ -48,11 +48,11 @@ class StageController extends Controller
         $infosStage->setDateDebutContrat(new \DateTime($infos[0]["contratDeb"]));
         $infosStage->setDateFinContrat(new \DateTime($infos[0]["contratFin"]));
         $infosStage->setEntrepriseAlt($infos[0]["regieEntrCle"]);
+        $infosStage->setBureauAlt($infos[0]["regieBureauRef"]);
         $infosStage->setReferentAlt($infos[0]["regieReferentRef"]);
         $infosStage->setReferent1Alt($infos[0]["regieReferent1Ref"]);
 
         $form = $this->createForm(new infosStageType($infos,$listEntr,$listBureau,$listReferent,$listBureauAlt,$listReferentAlt),$infosStage);
-
         $request = $this->getRequest();
 
         if($request->isMethod('POST')){
@@ -87,7 +87,6 @@ class StageController extends Controller
         if (! $request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
-        // Get the province ID
         $entrCle = $request->query->get('entrCle');
 
         $conn = $this->get('database_connection');
@@ -106,7 +105,6 @@ class StageController extends Controller
         if (! $request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
-        // Get the province ID
         $regie = $request->query->get('regie');
 
         $conn = $this->get('database_connection');
