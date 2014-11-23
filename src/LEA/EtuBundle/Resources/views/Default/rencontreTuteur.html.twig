@@ -1,0 +1,62 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    <p>Bonjour {{ name }}</p>
+    {% if infoExist %}
+        <b>L'ETUDIANT : {{ et_pn }}</b><br/>
+        <table>
+        <tr>
+            <td>
+                Date rencontre (aaaa-mm-jj) : {{ date }}<br/>
+                Entreprise chosie : {{ entr }}<br/>
+                Service/Projet : {{ serv }}<br/>
+                (éventuellement client) : {{ client }}<br/>
+            </td>
+        </tr>
+        <tr>
+            <td><div>
+                    <b>Quels sont (ou seront) les missions confiées ?</b><br/>
+                    <div>
+                        <p>{{ missions }}</p>
+                    </div>
+                </div></td>
+        </tr>
+        <tr>
+            <td><div>
+                    <b>Dans quel environnement technique ?</b><br/>
+                    <div>
+                        <p{{ env }}</p>
+                    </div>
+                </div></td>
+        </tr>
+        <tr>
+            <td><div>
+                    <b>Comment se passe l'intégration dans l'entreprise ?</b><br/>
+                    <div>
+                        <p>{{ integration }}</p>
+                    </div>
+                </div></td>
+        </tr>
+        <tr>
+            <td><div>
+                    <b>Validation de l'étudiant </b>CHECKBOX A CREER<br/>
+                    <div>
+                        <p>TEXTAREA A CREER, SUIVI DE: {{ rmqEtud }}</p>
+
+                    </div>
+                </div></td>
+        </tr>
+        <tr>
+            <td><div>
+                    <b>Validation du tuteur </b>{{ signTut }}. (remarques éventuelles)<br/>
+                    <div>
+                        <p{{ rmqTut }}</p>
+                    </div>
+                </div></td>
+        </tr>";
+    {% else %}
+        <p>Il n'y a aucune informations à afficher pour le moment</p>
+    {% endif %}
+
+{% endblock %}

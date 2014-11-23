@@ -34,3 +34,6 @@ lea_etu_infosMission:
     path:    /etudiant/{name}/infosMission
     defaults: { _controller: LEAEtuBundle:Mission:index }
 
+lea_etu_rencontreTuteur:
+    path:    /etudiant/{name}/rencontreTuteur
+    defaults: { _controller: LEAEtuBundle:Rencontre:index }

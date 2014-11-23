@@ -139,6 +139,8 @@ services:
     inscrire:
         class: LEA\EtuBundle\Dbmngt\Inscrire
     normaliser:
-            class: LEA\EtuBundle\Dbmngt\Normaliser
+        class: LEA\EtuBundle\Dbmngt\Normaliser
     distance:
         class: LEA\EtuBundle\Distance\CalculDistance
+    html_utils:
+        class: LEA\EtuBundle\Html\Utils
