@@ -10,6 +10,14 @@ lea_etu_inscrireEntr:
     path:    /etudiant/{name}/infosStage/inscrireEntr
     defaults: { _controller: LEAEtuBundle:Stage:inscrireEntr }
 
+lea_etu_inscrireBureau:
+    path:    /etudiant/{name}/infosStage/inscrireBureau?{entr}
+    defaults: { _controller: LEAEtuBundle:Stage:inscrireBureau }
+
+lea_etu_inscrireRef:
+    path:    /etudiant/{name}/infosStage/inscrireRef?{entr}
+    defaults: { _controller: LEAEtuBundle:Stage:inscrireRef }
+
 lea_etu_appel_ajax_entr:
     path:    /etudiant/infosStage/creerListe
     defaults: { _controller: LEAEtuBundle:Stage:ajaxEntr }

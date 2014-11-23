@@ -8,8 +8,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('#infosMissionForm_entreprise').change(function(){
-                var entrCle = $(this).val();
+            var entrCle = $('#infosMissionForm_entreprise');
+            var regieCle = $('#infosMissionForm_entrepriseAlt');
+
+            entrCle.change(function(){
+                entrCle = $(this).val();
 
                 $.ajax({
                     type: "POST",
@@ -36,12 +39,12 @@
                 return false;
             });
 
-            $('#infosMissionForm_entrepriseAlt').change(function(){
-                var entrCle = $(this).val();
+            regieCle.change(function(){
+                regieCle = $(this).val();
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('lea_etu_appel_ajax_regie') }}?entrCle="+entrCle,
+                    url: "{{ url('lea_etu_appel_ajax_regie') }}?entrCle="+regieCle,
 
                     success: function(data) {
                         console.log(data);
@@ -64,6 +67,50 @@
                 return false;
             });
 
+            var inscrireBureau = $('#insBur');
+            inscrireBureau.click(function(){
+
+                var nomEntr = $('#infosMissionForm_entreprise option:selected').text().split('-');
+
+                var url = '{{ path("lea_etu_inscrireBureau", {'name': name,'entr':'entre'}) }}';
+                url = url.replace("entre",nomEntr["0"]);
+                window.location=url;
+
+            });
+
+            var inscrireRef = $('#insRef');
+            inscrireRef.click(function(){
+
+                var nomEntr = $('#infosMissionForm_entreprise option:selected').text().split('-');
+
+                var url = '{{ path("lea_etu_inscrireRef", {'name': name,'entr':'entre'}) }}';
+                url = url.replace("entre",nomEntr["0"]);
+                window.location=url;
+
+            });
+
+            var inscrireBureauAlt = $('#insBurAlt');
+            inscrireBureau.click(function(){
+
+                var nomEntr = $('#infosMissionForm_entrepriseAlt option:selected').text().split('-');
+
+                var url = '{{ path("lea_etu_inscrireBureau", {'name': name,'entr':'entre'}) }}';
+                url = url.replace("entre",nomEntr["0"]);
+                window.location=url;
+
+            });
+
+            var inscrireRefAlt = $('#insRefAlt');
+            inscrireRef.click(function(){
+
+                var nomEntr = $('#infosMissionForm_entrepriseAlt option:selected').text().split('-');
+
+                var url = '{{ path("lea_etu_inscrireRef", {'name': name,'entr':'entre'}) }}';
+                url = url.replace("entre",nomEntr["0"]);
+                window.location=url;
+
+            });
+
         });
     </script>
     <div class="container-fluid">
@@ -79,6 +126,32 @@
         <div>
             <a href="{{ path('lea_etu_inscrireEntr',{'name':name} ) }}">
                 ---- Nouvelle entreprise
+            </a>
+        </div>
+        <div>
+            <a id="insBur" >
+                ---- Nouveau Bureau
+            </a>
+        </div>
+        <div>
+            <a id="insRef">
+                ---- Nouveau Référent
+            </a>
+        </div>
+
+        <div>
+            <a href="{{ path('lea_etu_inscrireEntr',{'name':name} ) }}">
+                ---- Nouvelle entreprise Regie
+            </a>
+        </div>
+        <div>
+            <a id="insBurAlt" >
+                ---- Nouveau Bureau Regie
+            </a>
+        </div>
+        <div>
+            <a id="insRefAlt">
+                ---- Nouveau Référent Regie
             </a>
         </div>
 

@@ -2,10 +2,14 @@
 
 namespace LEA\EtuBundle\Controller;
 
+use LEA\EtuBundle\Entity\Bureau;
 use LEA\EtuBundle\Entity\Entreprise;
 use LEA\EtuBundle\Entity\infosStage;
+use LEA\EtuBundle\Entity\Referent;
+use LEA\EtuBundle\Form\BureauType;
 use LEA\EtuBundle\Form\EntrepriseType;
 use LEA\EtuBundle\Form\infosStageType;
+use LEA\EtuBundle\Form\ReferentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -123,7 +127,6 @@ class StageController extends Controller
 
         $conn = $this->get('database_connection');
 
-
         $entr = new Entreprise();
         $form = $this->createForm(new EntrepriseType(),$entr);
 
@@ -154,5 +157,86 @@ class StageController extends Controller
             'name' => $name
         ));
     }
+
+    public function inscrireBureauAction($name,$entr){
+
+        $conn = $this->get('database_connection');
+
+        $bur = new Bureau();
+        $form = $this->createForm(new BureauType(),$bur);
+
+        $request = $this->getRequest();
+
+        if($request->isMethod('POST')){
+
+            $form->bind($request);
+
+            if($form->isValid()) {
+
+                $infosBur = $form->getData();
+                $dist = $this->get("distance");
+                $norm = $this->get("normaliser");
+                $inscr = $this->get("inscrire");
+                $inscr->inscrireBureau($conn,$infosBur,$dist,$norm,$entr);
+
+                return $this->redirect(
+                    $this->generateUrl('lea_etu_infosStage',array(
+                        'name' => $name,
+                    ))
+                );
+            }
+        }
+
+        return $this->render('LEAEtuBundle:Default:InscrireBureau.html.twig',array(
+            'form'=> $form->createView(),
+            'entr'=> $entr,
+            'name' => $name
+        ));
+    }
+
+    public function inscrireRefAction($name,$entr){
+
+        $conn = $this->get('database_connection');
+
+        $dbQueries = $this->get('queries');
+        $dbutils = $this->get('dbutils');
+        $norm = $this->get("normaliser");
+
+
+        $listBureau = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$norm->genererCleEntrepriseAPartirDeNom($entr)),"bureauCle","ad");
+
+        $ref = new Referent();
+        $form = $this->createForm(new ReferentType($listBureau),$ref);
+
+        $request = $this->getRequest();
+
+        if($request->isMethod('POST')){
+
+            $form->bind($request);
+
+            if($form->isValid()) {
+
+                $infosRef = $form->getData();
+                $dist = $this->get("distance");
+                $inscr = $this->get("inscrire");
+                $inscr->inscrireRef($conn,$infosRef,$dist,$norm,$entr);
+
+                return $this->redirect(
+                    $this->generateUrl('lea_etu_infosStage',array(
+                        'name' => $name,
+                    ))
+                );
+            }
+        }
+
+        return $this->render('LEAEtuBundle:Default:InscrireRef.html.twig',array(
+            'form'=> $form->createView(),
+            'entr' => $entr,
+            'name' => $name
+        ));
+    }
+
+
+
 
 }
