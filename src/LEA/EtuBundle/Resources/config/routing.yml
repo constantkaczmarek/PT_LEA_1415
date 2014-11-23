@@ -6,6 +6,10 @@ lea_etu_infosStage:
     path:    /etudiant/{name}/infosStage
     defaults: { _controller: LEAEtuBundle:Stage:index }
 
+lea_etu_inscrireEntr:
+    path:    /etudiant/{name}/infosStage/inscrireEntr
+    defaults: { _controller: LEAEtuBundle:Stage:inscrireEntr }
+
 lea_etu_appel_ajax_entr:
     path:    /etudiant/infosStage/creerListe
     defaults: { _controller: LEAEtuBundle:Stage:ajaxEntr }

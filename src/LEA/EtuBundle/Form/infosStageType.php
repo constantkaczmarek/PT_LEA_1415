@@ -45,11 +45,11 @@ class infosStageType extends AbstractType
             ))
 
             ->add('mail','email',array(
-                'label' => 'E-mail  :  :'
+                'label' => 'E-mail :'
             ))
 
             ->add('mailLille1','email',array(
-                'label' => 'E-mail lille1  :  :'
+                'label' => 'E-mail lille :'
             ))
 
             ->add('tuteur','text',array(

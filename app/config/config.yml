@@ -136,3 +136,9 @@ services:
         class: LEA\EtuBundle\Dbmngt\queriesEtu
     update_queries:
         class: LEA\EtuBundle\Dbmngt\UpdateQueries
+    inscrire:
+        class: LEA\EtuBundle\Dbmngt\Inscrire
+    normaliser:
+            class: LEA\EtuBundle\Dbmngt\Normaliser
+    distance:
+        class: LEA\EtuBundle\Distance\CalculDistance

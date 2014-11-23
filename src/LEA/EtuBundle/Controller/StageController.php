@@ -2,7 +2,9 @@
 
 namespace LEA\EtuBundle\Controller;
 
+use LEA\EtuBundle\Entity\Entreprise;
 use LEA\EtuBundle\Entity\infosStage;
+use LEA\EtuBundle\Form\EntrepriseType;
 use LEA\EtuBundle\Form\infosStageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -117,5 +119,40 @@ class StageController extends Controller
         return new JsonResponse(array('bureau'=> $listBureau, 'referent' => $listReferent));
     }
 
+    public function inscrireEntrAction($name){
+
+        $conn = $this->get('database_connection');
+
+
+        $entr = new Entreprise();
+        $form = $this->createForm(new EntrepriseType(),$entr);
+
+        $request = $this->getRequest();
+
+        if($request->isMethod('POST')){
+
+            $form->bind($request);
+
+            if($form->isValid()) {
+
+                $infosEntr = $form->getData();
+                $dist = $this->get("distance");
+                $norm = $this->get("normaliser");
+                $inscr = $this->get("inscrire");
+                $inscr->inscrireEntr($conn,$infosEntr,$dist,$norm);
+
+                return $this->redirect(
+                    $this->generateUrl('lea_etu_infosStage',array(
+                        'name' => $name,
+                    ))
+                );
+            }
+        }
+
+        return $this->render('LEAEtuBundle:Default:InscrireEntreprise.html.twig',array(
+            'form'=> $form->createView(),
+            'name' => $name
+        ));
+    }
 
 }

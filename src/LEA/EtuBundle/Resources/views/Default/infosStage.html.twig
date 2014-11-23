@@ -3,7 +3,6 @@
 
 {% block body %}
 
-    {# Add ajax thingie that will update the city select box #}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -74,9 +73,14 @@
             {{ form_widget(form) }}
 
             <input type="submit" name="Enregistrer" value="Enregistrer"/>
-
-
+        
         {{ form_end(form) }}
+        
+        <div>
+            <a href="{{ path('lea_etu_inscrireEntr',{'name':name} ) }}">
+                ---- Nouvelle entreprise
+            </a>
+        </div>
 
         <div>
             C'est ca : {{ altref }} et {{ infosStage.bureau }}
