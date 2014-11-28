@@ -21,8 +21,8 @@ class queriesEtapes {
         etudiant.tel as etuTel,
         etudiant.mail etuMail,
 
-        membre.prenom, membre.nom as prof,
-        membre.tel, membre.mail,
+        membre.prenom as prof_prenom, membre.nom as prof,
+        membre.tel as prof_tel, membre.mail as prof_mail,
 
         referent.prenom as refPre, referent.nom as refNom,
         referent.fonction as refFonc,
@@ -48,6 +48,8 @@ class queriesEtapes {
         regieBureauRef as regieBureauRef,
         regieReferentRef as regieReferentRef,
         regieReferentRef2 as regieReferent1Ref ,
+        referent.tel as refTel,
+        regieReferentRef as refTelRegie,
         concat(regie.adresse,' - ',regie.adresse) as regieAdresse,
         concat(bureau.adresse,' - ',bureau.ville) as bureauAdresse,
         concat(referent.tel,' - ',referent.mail) as coordRef,
@@ -73,25 +75,25 @@ class queriesEtapes {
         );
 
         //print_r($query);
-        return $query;
+        return $query[0];
 
     }
 
     public function getInfosMissions($conn,$altRef){
 
-        $query=$conn->fetchArray("select
+        $query=$conn->fetchAll("select
         contrat.alternanceCle,
         etudiant.prenom, etudiant.nom,
         etapeetudtut.dateRencontre,
         entreprise.nom,
-        if (etapeetudtut.service is null,infoetud.service,etapeetudtut.service),
-        if (etapeetudtut.client is null,infoetud.client,etapeetudtut.client),
-        if (etapeetudtut.missions is null,infoetud.missions,etapeetudtut.missions),
-        if (etapeetudtut.environnementTechnique is null,infoetud.environnementTechnique,etapeetudtut.environnementTechnique),
+        if (etapeetudtut.service is null,infoetud.service,etapeetudtut.service) as service,
+        if (etapeetudtut.client is null,infoetud.client,etapeetudtut.client) as client,
+        if (etapeetudtut.missions is null,infoetud.missions,etapeetudtut.missions) as mission,
+        if (etapeetudtut.environnementTechnique is null,infoetud.environnementTechnique,etapeetudtut.environnementTechnique) as techno,
         etapeetudtut.integrationEntreprise,
         etapeetudtut.signatureEtud,etapeetudtut.remarquesEtud,
         etapeetudtut.signatureTuteur,etapeetudtut.remarquesTuteur,
-        if (etapeetudtut.motscles is null,infoetud.motscles,etapeetudtut.motscles)
+        if (etapeetudtut.motscles is null,infoetud.motscles,etapeetudtut.motscles) as motscle
         from
         (contrat inner join etudiant
             on etudCle=etudRef inner join etudiant_groupe on etudiant_groupe.annee=contrat.anneeCle
@@ -104,7 +106,7 @@ class queriesEtapes {
             where alternanceCle in ('". $altRef . "') order by etudiant_groupe.groupeRef, etudiant.nom;"
         );
 
-        return $query;
+        return $query[0];
 
     }
 

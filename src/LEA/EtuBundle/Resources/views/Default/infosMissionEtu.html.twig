@@ -5,10 +5,14 @@
         <form action="{{ path("lea_etu_infosMission",{ 'name': name}) }}" method="post">
             {{ form_widget(form) }}
             <input type="submit" name="Enregistrer" value="Enregistrer"/>
+            <div>
+                <a href="{{ path('lea_etu_homepage',{'name':name}) }}">Revenir</a>
+            </div>
         </form>
         <div>
             C'est ca : {{ altref }} et {{ infosMissions.service }}
         </div>
+
     </div>
 
 {% endblock %}

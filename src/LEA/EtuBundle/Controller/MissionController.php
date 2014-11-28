@@ -15,17 +15,17 @@ class MissionController extends Controller
         $conn = $this->get('database_connection');
 
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name);
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosMissions($conn,$altRef);
 
         $infosMissions = new infosMission();
-        $infosMissions->setClient($infos[6]);
-        $infosMissions->setService($infos[5]);
-        $infosMissions->setMissions($infos[7]);
-        $infosMissions->setTechnos($infos[8]);
-        $infosMissions->setMotscles($infos[14]);
+        $infosMissions->setClient($infos["client"]);
+        $infosMissions->setService($infos["service"]);
+        $infosMissions->setMissions($infos["mission"]);
+        $infosMissions->setTechnos($infos["techno"]);
+        $infosMissions->setMotscles($infos["motscle"]);
 
         $form = $this->createForm(new infosMissionsType(),$infosMissions);
 

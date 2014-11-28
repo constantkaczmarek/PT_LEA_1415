@@ -6,6 +6,10 @@ lea_etu_infosStage:
     path:    /etudiant/{name}/infosStage
     defaults: { _controller: LEAEtuBundle:Stage:index }
 
+lea_etu_afficherInfosStage:
+    path:    /etudiant/{name}/infosStage/afficher
+    defaults: { _controller: LEAEtuBundle:Stage:afficherInfos }
+
 lea_etu_inscrireEntr:
     path:    /etudiant/{name}/infosStage/inscrireEntr
     defaults: { _controller: LEAEtuBundle:Stage:inscrireEntr }
@@ -33,6 +37,10 @@ lea_etu_appel_ajax_regie:
 lea_etu_infosMission:
     path:    /etudiant/{name}/infosMission
     defaults: { _controller: LEAEtuBundle:Mission:index }
+
+lea_etu_soutenanceRapport:
+    path:    /etudiant/{name}/soutenanceRapport
+    defaults: { _controller: LEAEtuBundle:SoutenanceRapport:index }
 
 lea_etu_rencontreTuteur:
     path:    /etudiant/{name}/rencontreTuteur

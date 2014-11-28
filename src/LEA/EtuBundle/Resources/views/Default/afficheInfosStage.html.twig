@@ -1,0 +1,68 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1> Mise à jour des informations concernant  </h1>
+        <div class="row">
+            Informations mises à jour
+            <a href="{{ path('lea_etu_homepage',{'name':name}) }}"> Retour accueil </a>
+        </div>
+
+        <div class="row">
+            <h2> {{ infos.prenom_etud }} {{ infos.nom_etud }} </h2>
+        </div>
+        <div class="row">
+            <h3>Télephone</h3>
+            <p> {{ infos.etuTel }} </p>
+            <h3>Email </h3>
+            <p> {{ infos.etuMail }} </p>
+        </div>
+        <div class="row">
+            <h3>Entreprise</h3>
+            <p> {{ infos.entrepriseNom }} </p>
+            <h3>Référent </h3>
+            <p>{{ infos.refPre }} {{ infos.refNom }}</p>
+            {% set refs = infos.ref1Cle  |split('_')  %}
+            <p>{{ refs[0] }} {{ refs[1] }}</p>
+        </div>
+        <div class="row">
+            <h3>Télephone référent </h3>
+            <p> {{ infos.refTel }} </p>
+            <h3>Email </h3>
+            <p> {{ infos.coordRef }}</p>
+            <p> {{ infos.coordRef2 }}</p>
+        </div>
+        <div class="row">
+            <h3>Regie</h3>
+            <p> {{ infos.regieEntrCle | upper }} </p>
+            <h3>Référents </h3>
+            {% set refs = infos.regieReferentRef  |split('_')  %}
+            <p>{{ refs[0] }} {{ refs[1] }}</p>
+            {% set refs = infos.regieReferent1Ref  |split('_')  %}
+            <p>{{ refs[0] }} {{ refs[1] }}</p>
+        </div>
+        <div class="row">
+            <h3>Coordonnées</h3>
+            <p> {{ infos.coordRegieRef }} </p>
+            <p> {{ infos.coordRegieRef2 }} </p>
+        </div>
+        <div class="row">
+            <h3>Signature contrat</h3>
+            <p> {{ infos.contratSignContrat }} </p>
+            <h3>Début </h3>
+            <p>{{ infos.contratDeb }} </p>
+            <h3>Fin </h3>
+            <p> {{ infos.contratFin }}</p>
+        </div>
+        <div class="row">
+            <h3> Tuteur </h3>
+            <p> {{ infos.prof_prenom }} </p>
+            <p> {{ infos.prof }} </p>
+            <h3>Tel </h3>
+            <p> {{ infos.prof_tel }}</p>
+            <h3> Email </h3>
+            <p>{{ infos.prof_mail }} </p>
+        </div>
+
+    </div>
+{% endblock %}

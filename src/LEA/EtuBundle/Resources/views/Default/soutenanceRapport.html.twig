@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h2>Informations de rapport et de soutenance</h2>
+        <div class="row">
+            <span> Date et remise du rapport : </span>
+            <span> {{ infos[0].dateRemise }} </span>
+        </div>
+        <div class="row">
+            <span> Dates de soutenance : </span>
+            <span> {{ infos[0].datesSoutenances }}</span>
+        </div>
+        <div class="row">
+            <span> Longueur du rapport </span>
+            <span>{{ infos[0].longueurRapport }} </span>
+        </div>
+        <div class="row">
+            <span> Durée de la soutenance </span>
+            <span> {{ infos[0].duréeSoutenance }}</span>
+        </div>
+        <div class="row">
+            <span> Observations </span>
+            <span>{{ infos[0].observationsTous }} </span>
+        </div>
+        <div>
+            <a href="{{ path('lea_etu_homepage',{'name':name}) }}">Revenir</a>
+        </div>
+    </div>
+
+{% endblock %}

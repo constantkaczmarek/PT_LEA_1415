@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <h3>Informations</h3>
-            <p> - Votre tuteur : </p>
+            <p> - Votre tuteur : {{ tuteur }} </p>
         </div>
         <div class="row">
             <h3>Opérations</h3>
@@ -31,7 +31,7 @@
         </div>
         <div class="row">
             <h3>Rapport et soutenance</h3>
-            <a href="">
+            <a href="{{ path('lea_etu_soutenanceRapport',{'name':name}) }}">
                 <button>Dates & consignes générales</button>
             </a>
         </div>

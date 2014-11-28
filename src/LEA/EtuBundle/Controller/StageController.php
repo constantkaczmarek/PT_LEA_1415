@@ -25,7 +25,7 @@ class StageController extends Controller
         $conn = $this->get('database_connection');
 
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name);
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$altRef);
@@ -34,29 +34,29 @@ class StageController extends Controller
         $dbutils = $this->get('dbutils');
 
         $listEntr = $dbutils->convertArrayToChoices($dbQueries->getListeEntreprise($conn),"__sans entreprise__","SANS ENTREPRISE");
-        $listBureau = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$infos[0]["entrCle"]),"bureauCle","ad");
-        $listReferent = $dbutils->convertArrayToChoices($dbQueries->getListeReferent($conn,$infos[0]["entrCle"]),"keyRef","sans referent");
+        $listBureau = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$infos["entrCle"]),"bureauCle","ad");
+        $listReferent = $dbutils->convertArrayToChoices($dbQueries->getListeReferent($conn,$infos["entrCle"]),"keyRef","sans referent");
 
-        $listBureauAlt = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$infos[0]["regieEntrCle"]),"bureauCle","ad");
-        $listReferentAlt = $dbutils->convertArrayToChoices($dbQueries->getListeReferent($conn,$infos[0]["regieEntrCle"]),"keyRef","sans referent");
+        $listBureauAlt = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$infos["regieEntrCle"]),"bureauCle","ad");
+        $listReferentAlt = $dbutils->convertArrayToChoices($dbQueries->getListeReferent($conn,$infos["regieEntrCle"]),"keyRef","sans referent");
 
         $infosStage = new infosStage();
 
-        $infosStage->setTel((int)$infos[0]["etuTel"]);
-        $infosStage->setMail($infos[0]["etuMail"]);
-        $infosStage->setMailLille1($infos[0]["etuMailLille1"]);
-        $infosStage->setTuteur($infos[0]["profCle"]);
-        $infosStage->setEntreprise($infos[0]["entrCle"]);
-        $infosStage->setBureau($infos[0]["bureauRef"]);
-        $infosStage->setReferent($infos[0]["refCle"]);
-        $infosStage->setReferent1($infos[0]["ref1Cle"]);
-        $infosStage->setDateContrat(new \DateTime($infos[0]["contratSignContrat"]));
-        $infosStage->setDateDebutContrat(new \DateTime($infos[0]["contratDeb"]));
-        $infosStage->setDateFinContrat(new \DateTime($infos[0]["contratFin"]));
-        $infosStage->setEntrepriseAlt($infos[0]["regieEntrCle"]);
-        $infosStage->setBureauAlt($infos[0]["regieBureauRef"]);
-        $infosStage->setReferentAlt($infos[0]["regieReferentRef"]);
-        $infosStage->setReferent1Alt($infos[0]["regieReferent1Ref"]);
+        $infosStage->setTel((int)$infos["etuTel"]);
+        $infosStage->setMail($infos["etuMail"]);
+        $infosStage->setMailLille1($infos["etuMailLille1"]);
+        $infosStage->setTuteur($infos["profCle"]);
+        $infosStage->setEntreprise($infos["entrCle"]);
+        $infosStage->setBureau($infos["bureauRef"]);
+        $infosStage->setReferent($infos["refCle"]);
+        $infosStage->setReferent1($infos["ref1Cle"]);
+        $infosStage->setDateContrat(new \DateTime($infos["contratSignContrat"]));
+        $infosStage->setDateDebutContrat(new \DateTime($infos["contratDeb"]));
+        $infosStage->setDateFinContrat(new \DateTime($infos["contratFin"]));
+        $infosStage->setEntrepriseAlt($infos["regieEntrCle"]);
+        $infosStage->setBureauAlt($infos["regieBureauRef"]);
+        $infosStage->setReferentAlt($infos["regieReferentRef"]);
+        $infosStage->setReferent1Alt($infos["regieReferent1Ref"]);
 
         $form = $this->createForm(new infosStageType($infos,$listEntr,$listBureau,$listReferent,$listBureauAlt,$listReferentAlt),$infosStage);
         $request = $this->getRequest();
@@ -72,7 +72,7 @@ class StageController extends Controller
                 $updateInfos->updateInfosStage($conn,$infosStage,$altRef,$name);
 
                 return $this->redirect(
-                    $this->generateUrl('lea_etu_homepage',array(
+                    $this->generateUrl('lea_etu_afficherInfosStage',array(
                         'name' => $name,
                     ))
                 );
@@ -236,7 +236,23 @@ class StageController extends Controller
         ));
     }
 
+    public function afficherInfosAction($name){
+
+        $conn = $this->get('database_connection');
+
+        $queryEtu = $this->get('queries_etu');
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
+
+        $query = $this->get('queries_etapes');
+        $infos = $query->getInfosStage($conn,$altRef);
+
+        return $this->render('LEAEtuBundle:Default:afficheInfosStage.html.twig',array(
+            'name' => $name,
+            'infos' => $infos,
+        ));
+
+    }
 
 
 
-}
+    }

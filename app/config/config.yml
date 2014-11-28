@@ -132,6 +132,8 @@ services:
         class: LEA\EtuBundle\Dbmngt\DbUtils
     queries_etapes:
         class: LEA\EtuBundle\Dbmngt\queriesEtapes
+    queries_sout:
+            class: LEA\EtuBundle\Dbmngt\QueriesSout
     queriesEtu:
         class: LEA\EtuBundle\Dbmngt\queriesEtu
     update_queries:
