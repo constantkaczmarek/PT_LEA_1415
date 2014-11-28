@@ -26,9 +26,6 @@ class UpdateQueries {
             $queryString .= "tuteurRef=NULL, ";
         }
 
-        /* if ($infosStage["15"]) {
-            $queryString.="opcaRef='".$infosStage["20"]."',";
-        }*/
         if($infosStage->getBureau()){
             $queryString.="bureauRef='".$infosStage->getBureau()."',";
         }
@@ -64,4 +61,11 @@ class UpdateQueries {
 
     }
 
+    public function updateRencontre($conn, $validationRencontre, $altCle){
+        $conn->query("update etapeetudtut set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
+    }
+
+    public function updateVisiteUn($conn, $validationRencontre, $altCle){
+        $conn->query("update etapevisite1 set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
+    }
 } 

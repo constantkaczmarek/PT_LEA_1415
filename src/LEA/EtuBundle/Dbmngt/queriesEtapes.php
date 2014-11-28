@@ -110,19 +110,19 @@ class queriesEtapes {
 
     public function getRencontreTuteur($conn, $altRefs) {
 
-        $query = $conn->fetchArray("select
+        $query = $conn->fetchAll("select
         contrat.alternanceCle,
         etudiant.prenom, etudiant.nom,
         etapeetudtut.dateRencontre,
-        entreprise.nom,
-        if (etapeetudtut.service is null,infoetud.service,etapeetudtut.service),
-        if (etapeetudtut.client is null,infoetud.client,etapeetudtut.client),
-        if (etapeetudtut.missions is null,infoetud.missions,etapeetudtut.missions),
-        if (etapeetudtut.environnementTechnique is null,infoetud.environnementTechnique,etapeetudtut.environnementTechnique),
+        entreprise.nom as entreprise,
+        if (etapeetudtut.service is null,infoetud.service,etapeetudtut.service) as service,
+        if (etapeetudtut.client is null,infoetud.client,etapeetudtut.client) as client,
+        if (etapeetudtut.missions is null,infoetud.missions,etapeetudtut.missions) as missions,
+        if (etapeetudtut.environnementTechnique is null,infoetud.environnementTechnique,etapeetudtut.environnementTechnique) as environnementTechnique,
         etapeetudtut.integrationEntreprise,
         etapeetudtut.signatureEtud,etapeetudtut.remarquesEtud,
         etapeetudtut.signatureTuteur,etapeetudtut.remarquesTuteur,
-        if (etapeetudtut.motscles is null,infoetud.motscles,etapeetudtut.motscles)
+        if (etapeetudtut.motscles is null,infoetud.motscles,etapeetudtut.motscles) as motscles
     from
 	(contrat inner join etudiant
 		on etudCle=etudRef inner join etudiant_groupe on etudiant_groupe.annee=contrat.anneeCle
@@ -134,7 +134,39 @@ class queriesEtapes {
             infoetud on infoetud.alternanceRef like alternanceCle
         where alternanceCle in ('" . $altRefs . "') order by etudiant_groupe.groupeRef, etudiant.nom;");
 
-        return $query;
+        return $query[0];
     }
 
-} 
+    public function getVisiteUn($conn, $altRefs) {
+        $query = $conn->fetchAll("select
+        contrat.alternanceCle,
+        etudiant.prenom, etudiant.nom,
+        etapevisite1.dateRencontre,
+        etapevisite1.adequationMission,
+        etapevisite1.integrationEtudiant,
+        etapevisite1.signatureEtud,etapevisite1.remarquesEtud,
+        etapevisite1.signatureReferent,etapevisite1.remarquesReferent,
+        etapevisite1.signatureTuteur,etapevisite1.remarquesTuteur,
+        etudiant.mail as mailEtudiant,
+        membre.mail as mailMembre,
+        referent.mail as mailRef,referent.prenom as prenomRef,referent.nom as nomRef,
+        membre.prenom as prenomMembre, membre.nom as nomMembre,
+        referent2.mail as mailRef2, referent2.prenom as prenomRef2, referent2.nom as nomRef2,
+        referentRegie.mail as mailRefRegie, referentRegie.prenom as mailRefRegie,
+        referentRegie2.mail as mailRefRegie2, referentRegie2.prenom as prenomRefRegie2, referentRegie2.nom as nomRefRegie2
+
+    from
+	(contrat inner join etudiant
+		on etudCle=etudRef inner join etudiant_groupe on etudiant_groupe.annee=contrat.anneeCle
+      and etudiant_groupe.etudRef=etudiant.etudCle inner join groupe on groupe.groupeCle=etudiant_groupe.groupeRef) left join
+            etapevisite1 on etapevisite1.alternanceRef like alternanceCle
+            inner join referent on contrat.referentRef=referentCle
+            left join referent referent2 on contrat.referentRef2=referent2.referentCle
+            left join referent referentRegie on contrat.regieReferentRef=referentRegie.referentCle
+            left join referent referentRegie2 on contrat.regieReferentRef2=referentRegie2.referentCle
+            inner join membre on contrat.tuteurRef=profCle
+        where alternanceCle in ('" . $altRefs . "') order by etudiant_groupe.groupeRef, etudiant.nom;");
+
+        return $query[0];
+    }
+}

@@ -12,9 +12,6 @@ class MissionController extends Controller
     public function indexAction($name)
     {
 
-        //$rsm = new ResultSetMapping();
-        //$em = $this->getDoctrine()->getManager()
-
         $conn = $this->get('database_connection');
 
         $queryEtu = $this->get('queries_etu');

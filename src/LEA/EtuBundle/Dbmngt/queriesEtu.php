@@ -16,7 +16,7 @@ class queriesEtu {
 
         $query = $conn->fetchArray("select alternanceCle from contrat where etudRef='".$student."';");
 
-
+        
         if ($query === FALSE){
             return FALSE;
         }

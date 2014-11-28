@@ -13,13 +13,18 @@ class Utils
         return $final;
     }
 
+    function toText($str) {
+        $str1 = str_replace("<br/>", "\r\n", $str);
+        $final = $str1;
+        return $final;
+    }
+
     function toMinimumLines($str, $nbLines) {
         if ($str == null || count($str) == 0)
             $lines = "";
         else
             $lines = explode("<br/>", $str);
         $add = "";
-        //echo $str," ",count($lines);
         for ($i = count($lines); $i < $nbLines; $i++)
             $add.="<br/>";
         $final = $str . "" . $add;
