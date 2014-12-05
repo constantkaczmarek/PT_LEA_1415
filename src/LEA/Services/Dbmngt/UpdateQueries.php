@@ -70,4 +70,9 @@ class UpdateQueries {
     public function updateVisiteUn($conn, $validationRencontre, $altCle){
         $conn->query("update etapevisite1 set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
     }
+
+    public function updateVisiteDeux($conn, $validationRencontre, $altCle){
+        $conn->query("update etapevisite2 set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
+    }
+
 } 

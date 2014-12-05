@@ -171,4 +171,36 @@ class queriesEtapes {
 
         return $query[0];
     }
+
+    public function getVisiteDeux($conn, $altRefs) {
+        $query = $conn->fetchAll("select
+        contrat.alternanceCle,
+        etudiant.prenom, etudiant.nom,
+        groupe.formationRef,
+        etapevisite2.dateRencontre,
+        etapevisite2.pointsPositifs,
+        etapevisite2.pointsProgres,
+        etapevisite2.avancementProjet,
+        etapevisite2.dateProbableSoutenance,
+        etapevisite2.signatureEtud,etapevisite2.remarquesEtud,
+        etapevisite2.signatureReferent,etapevisite2.remarquesReferent,
+        etapevisite2.signatureTuteur,etapevisite2.remarquesTuteur,
+        etudiant.mail,
+        membre.mail,
+        referent.mail,referent.prenom,referent.nom,
+        membre.prenom,membre.nom,
+        ref2.mail,ref2.prenom,ref2.nom
+    from
+	(contrat inner join etudiant
+		on etudCle=etudRef inner join etudiant_groupe on etudiant_groupe.annee=contrat.anneeCle
+      and etudiant_groupe.etudRef=etudiant.etudCle inner join groupe on groupe.groupeCle=etudiant_groupe.groupeRef) inner join
+
+            membre on contrat.tuteurRef = membre.profCle inner join
+            referent on contrat.referentRef=referent.referentCle left join
+            referent ref2 on contrat.referentRef2=ref2.referentCle left join
+            etapevisite2 on etapevisite2.alternanceRef like alternanceCle
+        where alternanceCle in ('" . $altRefs . "') order by etudiant_groupe.groupeRef, etudiant.nom;");
+
+        return $query[0];
+    }
 }

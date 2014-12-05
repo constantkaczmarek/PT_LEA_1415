@@ -37,4 +37,16 @@ class queriesEtu {
 
     }
 
+    function doGetFormationForStudent($conn,$student,$yearRef)
+    {
+        $query=$conn->fetchAll("select formationRef from etudiant e inner join etudiant_groupe eg
+                    on e.etudCle=eg.etudRef inner join groupe g on eg.groupeRef=g.groupeCle
+         where etudCle='".$student."' and eg.annee='".$yearRef."';");
+
+        if ($query===FALSE)
+            return FALSE;
+        else {
+            return $query[0]['formationRef'];
+        }
+    }
 } 

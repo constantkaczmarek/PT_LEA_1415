@@ -14,7 +14,7 @@ class RencontreController extends Controller
         $conn = $this->get('database_connection');
 
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name);
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)['alternanceCle'];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getRencontreTuteur($conn,$altRef);

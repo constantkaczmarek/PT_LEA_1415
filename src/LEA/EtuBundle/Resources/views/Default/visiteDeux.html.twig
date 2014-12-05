@@ -1,0 +1,88 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    <p>Bonjour {{ name }}</p>
+    {% if infoExist %}
+        <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
+        {% if rendu == false %}
+            <form action="{{ path("lea_etu_visiteUn",{ 'name': name}) }}" method="post">
+        {% endif %}
+        <table>
+            <tr>
+                <td>
+                    Date rencontre (aaaa-mm-jj) : {{ infos.dateRencontre }}<br/>
+                </td>
+            </tr>
+            <tr>
+                <td><div>
+                        <b>Quels sont les points positifs ?</b><br/>
+                        <div>
+                            <p>{{ infos.pointsPositifs }}</p>
+                        </div>
+                    </div></td>
+            </tr>
+            <tr>
+                <td><div>
+                        <b>Quels sont les points de progrès ?</b><br/>
+                        <div>
+                            <p>{{ infos.pointsProgres }}</p>
+                        </div>
+                    </div></td>
+            </tr>
+            {% if infos.avecSoutenance %}
+                <tr>
+                    <td><div>
+                            <b>Quel est l'avancement du projet ?</b><br/>
+                            <div>
+                                <p>{{ infos.avancementProjet }}</p>
+                            </div>
+                        </div></td>
+                </tr>
+                <tr>
+                    <td>
+                        Date probable de soutenance (aaaa-mm-jj) : {{ infos.dateProbableSoutenance }}<br/>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td>
+                    <div>
+                        {% if rendu %}
+                            <b>Validation de l'étudiant </b>{{ infos.signatureEtud }}. (remarques éventuelles)<br/>
+                            <div>
+                                <p>{{ infos.remarquesEtud }}</p>
+                            </div>
+                        {%  else %}
+                            {{ form_widget(form) }}
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><div>
+                        <b>Validation du référent </b>{{ infos.signatureReferent }}. (remarques éventuelles)<br/>
+                        <div>
+                            <p>{{ infos.remarquesReferent }}</p>
+                        </div>
+                    </div></td>
+            </tr>
+            <tr>
+                <td><div>
+                        <b>Validation du tuteur </b>{{ infos.signatureTuteur }}. (remarques éventuelles)<br/>
+                        <div>
+                            <p>{{ infos.remarquesTuteur }}</p>
+                        </div>
+                    </div></td>
+            </tr>
+            {% if rendu == false %}
+                <tr><td><input type="submit" name="Enregistrer" value="Enregistrer"/></td></tr>
+            {% endif %}
+        </table>
+        </form>
+        <a href="{{ path("lea_etu_homepage",{ 'name': name}) }}">Retour à l'accueil</a>
+    {% else %}
+        <p>Il n'y a aucune informations à afficher pour le moment</p>
+    {% endif %}
+
+{% endblock %}

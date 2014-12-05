@@ -57,3 +57,11 @@ lea_etu_visiteUn:
 lea_etu_visiteUnRendu:
     path:    /etudiant/{name}/visiteUnRendu
     defaults: { _controller: LEAEtuBundle:VisiteUn:rendu }
+
+lea_etu_visiteDeux:
+    path:    /etudiant/{name}/visiteDeux
+    defaults: { _controller: LEAEtuBundle:VisiteDeux:index }
+
+lea_etu_visiteDeuxRendu:
+    path:    /etudiant/{name}/visiteDeuxRendu
+    defaults: { _controller: LEAEtuBundle:VisiteDeux:rendu }

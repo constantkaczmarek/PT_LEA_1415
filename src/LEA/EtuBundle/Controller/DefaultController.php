@@ -14,6 +14,9 @@ class DefaultController extends Controller
         $date = new \DateTime();
         $year = $date->format('Y');
         $tuteur = $queryEtu->doGetTuteurInfoForStudent($conn,$name,$year);
+        $formation = $queryEtu->doGetFormationForStudent($conn, $name, $year);
+        $refFormationType = substr($formation,strlen($formation)-2,2);
+        $formationType=($refFormationType=="FA")?"alternance":"stage";
 
         if($tuteur != null) {
             $tuteur = $tuteur["prenom"] . " " . $tuteur["nom"];
@@ -22,7 +25,8 @@ class DefaultController extends Controller
 
         return $this->render('LEAEtuBundle:Default:index.html.twig', array(
             'name' => $name,
-            'tuteur' => $tuteur
+            'tuteur' => $tuteur,
+            'formationType' => $formationType,
         ));
     }
 }

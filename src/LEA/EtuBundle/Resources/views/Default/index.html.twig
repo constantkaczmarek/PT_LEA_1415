@@ -28,6 +28,13 @@
             <a href="{{ path('lea_etu_visiteUn',{ 'name': name}) }}">
                 <button>Première visite en entreprise</button>
             </a>
+            <br/>
+            {# MODIFIER STAGE PAR ALTERNANCE #}
+            {% if formationType == "stage" %}
+            <a href="{{ path('lea_etu_visiteDeux',{ 'name': name}) }}">
+                <button>Deuxième visite en entreprise</button>
+            </a>
+            {% endif %}
         </div>
         <div class="row">
             <h3>Rapport et soutenance</h3>
