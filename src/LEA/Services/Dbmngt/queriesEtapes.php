@@ -203,4 +203,35 @@ class queriesEtapes {
 
         return $query[0];
     }
+
+    public function getMissionSoutenance($conn, $altRefs) {
+        $query = $conn->fetchAll("select
+        contrat.alternanceCle,
+        etudiant.prenom, etudiant.nom,
+        etapemissionsout.dateRencontre,
+        etapemissionsout.typeRencontre,
+        etapemissionsout.dateValidation,
+        etapemissionsout.missions,
+        etapemissionsout.environnementTechnique,
+        etapemissionsout.enjeux,
+        etapemissionsout.signatureEtud,etapemissionsout.remarquesEtud,
+        etapemissionsout.signatureReferent,etapemissionsout.remarquesReferent,
+        etapemissionsout.signatureTuteur,etapemissionsout.remarquesTuteur,
+        etudiant.mail,
+        membre.mail,
+        referent.mail,referent.prenom,referent.nom,
+        membre.prenom,membre.nom,
+        referent2.mail,referent2.prenom,referent2.nom
+    from
+	(contrat inner join etudiant
+		on etudCle=etudRef inner join etudiant_groupe on etudiant_groupe.annee=contrat.anneeCle
+      and etudiant_groupe.etudRef=etudiant.etudCle inner join groupe on groupe.groupeCle=etudiant_groupe.groupeRef) inner join
+            membre on contrat.tuteurRef = membre.profCle inner join
+            referent on contrat.referentRef=referent.referentCle left join
+            referent referent2 on contrat.referentRef2=referent2.referentCle left join
+            etapemissionsout on etapemissionsout.alternanceRef like alternanceCle
+        where alternanceCle in ('" . $altRefs . "') order by etudiant_groupe.groupeRef, etudiant.nom;");
+
+        return $query[0];
+    }
 }

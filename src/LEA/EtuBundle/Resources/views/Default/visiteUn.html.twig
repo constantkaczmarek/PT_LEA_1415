@@ -65,9 +65,9 @@
                 {% endif %}
             </table>
         </form>
-        <a href="{{ path("lea_etu_homepage",{ 'name': name}) }}">Retour à l'accueil</a>
     {% else %}
         <p>Il n'y a aucune informations à afficher pour le moment</p>
     {% endif %}
+    <a href="{{ path("lea_etu_homepage",{ 'name': name}) }}">Retour à l'accueil</a>
 
 {% endblock %}

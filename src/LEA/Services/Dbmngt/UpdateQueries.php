@@ -57,13 +57,10 @@ class UpdateQueries {
     }
 
     public function updateInfosMissions($conn,$infosMissions,$altRef){
-
-
         $transf = new DateTimeToStringTransformer();
 
         $conn->query("update infoetud set dateSaisie='".$transf->transform(new \DateTime())."', service='".$infosMissions->getService()."', client='".$infosMissions->getClient().
             "', missions='".$infosMissions->getMissions()."', environnementTechnique='".$infosMissions->getTechnos()."', motscles='".$infosMissions->getMotscles()."' where alternanceRef='".$altRef."'");
-
     }
 
     public function updateRencontre($conn, $validationRencontre, $altCle){
@@ -78,4 +75,7 @@ class UpdateQueries {
         $conn->query("update etapevisite2 set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
     }
 
+    public function updateMissionSoutenance($conn, $validationRencontre, $altCle) {
+        $conn->query("update etapemissionsout set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
+    }
 } 

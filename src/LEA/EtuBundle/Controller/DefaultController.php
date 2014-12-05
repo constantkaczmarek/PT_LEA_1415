@@ -16,17 +16,21 @@ class DefaultController extends Controller
         $tuteur = $queryEtu->doGetTuteurInfoForStudent($conn,$name,$year);
         $formation = $queryEtu->doGetFormationForStudent($conn, $name, $year);
         $refFormationType = substr($formation,strlen($formation)-2,2);
-        $formationType=($refFormationType=="FA")?"alternance":"stage";
 
-        if($tuteur != null) {
-            $tuteur = $tuteur["prenom"] . " " . $tuteur["nom"];
-        }
-        else $tuteur = "Aucun tuteur pour le moment";
+        // A DECOMMENTER EN VERSION FINALE, ET SUPPRIMER LES DEUX INITIALISATIONS A TRUE
+        $missionSoutenance = (strcmp($formation, "M1MIAGEFA") !=0 && $refFormationType == "FA") ? true : false;
+        $deuxiemeVisite = ($refFormationType == "FA") ? true : false;
+
+        $missionSoutenance = true;
+        $deuxiemeVisite = true;
+
+        $tuteur = ($tuteur != null) ? $tuteur["prenom"] . " " . $tuteur["nom"] : "Aucun tuteur pour le moment";
 
         return $this->render('LEAEtuBundle:Default:index.html.twig', array(
             'name' => $name,
             'tuteur' => $tuteur,
-            'formationType' => $formationType,
+            'missionSoutenance' => $missionSoutenance,
+            'deuxiemeVisite' => $deuxiemeVisite,
         ));
     }
 }
