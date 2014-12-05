@@ -1,6 +1,6 @@
 <?php
 
-namespace LEA\EtuBundle\Html;
+namespace LEA\Services\Html;
 
 class Utils
 {

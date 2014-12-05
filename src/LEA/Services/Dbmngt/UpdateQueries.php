@@ -6,7 +6,7 @@
  * Time: 11:52
  */
 
-namespace LEA\EtuBundle\Dbmngt;
+namespace LEA\Services\Dbmngt;
 
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 
@@ -27,6 +27,7 @@ class UpdateQueries {
         }
 
         if($infosStage->getBureau()){
+            $queryString.="bureauRef='".$infosStage->getBureau()."',";
             $queryString.="bureauRef='".$infosStage->getBureau()."',";
         }
         if($infosStage->getReferent()){

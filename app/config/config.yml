@@ -127,22 +127,22 @@ swiftmailer:
 
 services:
     queries:
-        class: LEA\EtuBundle\Dbmngt\Queries
+        class: LEA\Services\Dbmngt\Queries
     dbutils:
-        class: LEA\EtuBundle\Dbmngt\DbUtils
+        class: LEA\Services\Dbmngt\DbUtils
     queries_etapes:
-        class: LEA\EtuBundle\Dbmngt\queriesEtapes
+        class: LEA\Services\Dbmngt\queriesEtapes
     queries_sout:
-            class: LEA\EtuBundle\Dbmngt\QueriesSout
+        class: LEA\Services\Dbmngt\QueriesSout
     queriesEtu:
-        class: LEA\EtuBundle\Dbmngt\queriesEtu
+        class: LEA\Services\Dbmngt\queriesEtu
     update_queries:
-        class: LEA\EtuBundle\Dbmngt\UpdateQueries
+        class: LEA\Services\Dbmngt\UpdateQueries
     inscrire:
-        class: LEA\EtuBundle\Dbmngt\Inscrire
+        class: LEA\Services\Dbmngt\Inscrire
     normaliser:
-        class: LEA\EtuBundle\Dbmngt\Normaliser
+        class: LEA\Services\Dbmngt\Normaliser
     distance:
-        class: LEA\EtuBundle\Distance\CalculDistance
+        class: LEA\Services\Distance\CalculDistance
     html_utils:
-        class: LEA\EtuBundle\Html\Utils
+        class: LEA\Services\Html\Utils

@@ -6,7 +6,7 @@
  * Time: 11:48
  */
 
-namespace LEA\EtuBundle\Dbmngt;
+namespace LEA\Services\Dbmngt;
 
 
 class queriesEtu {

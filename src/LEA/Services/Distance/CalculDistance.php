@@ -1,6 +1,6 @@
 <?php
 
-namespace LEA\EtuBundle\Distance;
+namespace LEA\Services\Distance;
 
 
 class CalculDistance {
