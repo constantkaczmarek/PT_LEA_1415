@@ -12,56 +12,56 @@
             <h2> {{ infos.prenom_etud }} {{ infos.nom_etud }} </h2>
         </div>
         <div class="row">
-            <h3>Télephone</h3>
-            <p> {{ infos.etuTel }} </p>
-            <h3>Email </h3>
-            <p> {{ infos.etuMail }} </p>
+            <strong>Télephone: </strong>
+            <span> {{ infos.etuTel }} </span>
+            <strong>Email: </strong>
+            <span> {{ infos.etuMail }} </span>
         </div>
         <div class="row">
-            <h3>Entreprise</h3>
-            <p> {{ infos.entrepriseNom }} </p>
-            <h3>Référent </h3>
-            <p>{{ infos.refPre }} {{ infos.refNom }}</p>
+            <strong>Entreprise: </strong>
+            <span> {{ infos.entrepriseNom }} </span>
+            <strong>Référent: </strong>
+            <span>{{ infos.refPre }} {{ infos.refNom }}</span>
             {% set refs = infos.ref1Cle  |split('_')  %}
-            <p>{{ refs[0] }} {{ refs[1] }}</p>
+            <span>{{ refs[0] }} {{ refs[1] }}</span>
         </div>
         <div class="row">
-            <h3>Télephone référent </h3>
-            <p> {{ infos.refTel }} </p>
-            <h3>Email </h3>
-            <p> {{ infos.coordRef }}</p>
-            <p> {{ infos.coordRef2 }}</p>
+            <strong>Télephone référent: </strong>
+            <span> {{ infos.refTel }} </span>
+            <strong>Email: </strong>
+            <span> {{ infos.coordRef }}</span>
+            <span> {{ infos.coordRef2 }}</span>
         </div>
         <div class="row">
-            <h3>Regie</h3>
-            <p> {{ infos.regieEntrCle | upper }} </p>
-            <h3>Référents </h3>
+            <strong>Regie: </strong>
+            <span> {{ infos.regieEntrCle | upper }} </span>
+            <strong>Référents: </strong>
             {% set refs = infos.regieReferentRef  |split('_')  %}
-            <p>{{ refs[0] }} {{ refs[1] }}</p>
+            <span>{{ refs[0] }} {{ refs[1] }}</span>
             {% set refs = infos.regieReferent1Ref  |split('_')  %}
-            <p>{{ refs[0] }} {{ refs[1] }}</p>
+            <span>{{ refs[0] }} {{ refs[1] }}</span>
         </div>
         <div class="row">
-            <h3>Coordonnées</h3>
-            <p> {{ infos.coordRegieRef }} </p>
-            <p> {{ infos.coordRegieRef2 }} </p>
+            <strong>Coordonnées: </strong>
+            <span> {{ infos.coordRegieRef }} </span>
+            <span> {{ infos.coordRegieRef2 }} </span>
         </div>
         <div class="row">
-            <h3>Signature contrat</h3>
-            <p> {{ infos.contratSignContrat }} </p>
-            <h3>Début </h3>
-            <p>{{ infos.contratDeb }} </p>
-            <h3>Fin </h3>
-            <p> {{ infos.contratFin }}</p>
+            <strong>Signature contrat: </strong>
+            <span> {{ infos.contratSignContrat }} </span>
+            <strong>Début: </strong>
+            <span>{{ infos.contratDeb }} </span>
+            <strong>Fin: </strong>
+            <span> {{ infos.contratFin }}</span>
         </div>
         <div class="row">
-            <h3> Tuteur </h3>
-            <p> {{ infos.prof_prenom }} </p>
-            <p> {{ infos.prof }} </p>
-            <h3>Tel </h3>
-            <p> {{ infos.prof_tel }}</p>
-            <h3> Email </h3>
-            <p>{{ infos.prof_mail }} </p>
+            <strong> Tuteur: </strong>
+            <span> {{ infos.prof_prenom }} </span>
+            <span> {{ infos.prof }} </span>
+            <strong>Tel: </strong>
+            <span> {{ infos.prof_tel }}</span>
+            <strong> Email: </strong>
+            <span>{{ infos.prof_mail }} </span>
         </div>
 
     </div>

@@ -8,7 +8,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "{{ url('lea_etu_appel_ajax_entr') }}?entrCle="+entrCle,
+            url: Routing.generate('lea_etu_appel_ajax_entr',{entrCle:entrCle}),
 
             success: function(data) {
                 console.log(data);
@@ -36,8 +36,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "{{ url('lea_etu_appel_ajax_regie') }}?entrCle="+regieCle,
-
+            url: Routing.generate('lea_etu_appel_ajax_regie',{entrCle:regieCle}),
             success: function(data) {
                 console.log(data);
                 $('#infosMissionForm_bureauAlt').html('');
@@ -64,8 +63,7 @@ $(document).ready(function () {
 
         var nomEntr = $('#infosMissionForm_entreprise option:selected').text().split('-');
 
-        var url = "{{ path('lea_etu_inscrireBureau', {'name': name,'entr':'entre'}) }}";
-        url = url.replace("entre",nomEntr["0"]);
+        var url = Routing.generate('lea_etu_inscrireBureau',{name:'m1infofi1AA72',entr:nomEntr[0]});
         window.location=url;
 
     });
@@ -75,8 +73,7 @@ $(document).ready(function () {
 
         var nomEntr = $('#infosMissionForm_entreprise option:selected').text().split('-');
 
-        var url = "{{ path('lea_etu_inscrireRef', {'name': name,'entr':'entre'}) }}";
-        url = url.replace("entre",nomEntr["0"]);
+        var url = Routing.generate('lea_etu_inscrireRef',{name:'m1infofi1AA72','entr':nomEntr[0]});
         window.location=url;
 
     });

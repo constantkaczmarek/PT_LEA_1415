@@ -9,6 +9,7 @@
 namespace LEA\Services\Dbmngt;
 
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class UpdateQueries {
@@ -58,7 +59,9 @@ class UpdateQueries {
     public function updateInfosMissions($conn,$infosMissions,$altRef){
 
 
-        $conn->query("update infoetud set dateSaisie='".'haha'."', service='".$infosMissions->getService()."', client='".$infosMissions->getClient().
+        $transf = new DateTimeToStringTransformer();
+
+        $conn->query("update infoetud set dateSaisie='".$transf->transform(new \DateTime())."', service='".$infosMissions->getService()."', client='".$infosMissions->getClient().
             "', missions='".$infosMissions->getMissions()."', environnementTechnique='".$infosMissions->getTechnos()."', motscles='".$infosMissions->getMotscles()."' where alternanceRef='".$altRef."'");
 
     }

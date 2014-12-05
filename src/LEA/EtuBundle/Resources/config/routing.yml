@@ -15,24 +15,32 @@ lea_etu_inscrireEntr:
     defaults: { _controller: LEAEtuBundle:Stage:inscrireEntr }
 
 lea_etu_inscrireBureau:
-    path:    /etudiant/{name}/infosStage/inscrireBureau?{entr}
+    path:    /etudiant/{name}/infosStage/{entr}/inscrireBureau
     defaults: { _controller: LEAEtuBundle:Stage:inscrireBureau }
+    options:
+        expose: true
 
 lea_etu_inscrireRef:
-    path:    /etudiant/{name}/infosStage/inscrireRef?{entr}
+    path:    /etudiant/{name}/infosStage/{entr}/inscrireRef
     defaults: { _controller: LEAEtuBundle:Stage:inscrireRef }
+    options:
+         expose: true
 
 lea_etu_appel_ajax_entr:
     path:    /etudiant/infosStage/creerListe
     defaults: { _controller: LEAEtuBundle:Stage:ajaxEntr }
     requirements:
         _method: POST
+    options:
+        expose: true
 
 lea_etu_appel_ajax_regie:
     path:    /etudiant/infosStage/creerListe
     defaults: { _controller: LEAEtuBundle:Stage:ajaxRegie }
     requirements:
         _method: POST
+    options:
+        expose: true
 
 lea_etu_infosMission:
     path:    /etudiant/{name}/infosMission

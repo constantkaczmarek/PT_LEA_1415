@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new LEA\EtuBundle\LEAEtuBundle(),
             new LEA\RespBundle\LEARespBundle(),
             new LEA\ProfBundle\LEAProfBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
