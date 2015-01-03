@@ -38,6 +38,7 @@ class VisiteUnController extends Controller
 
             $signatureEtudiant = new SignatureEtudiant();
             $signatureEtudiant->setSignatureEtud($infos['signatureEtud'] != 0 ? true : false);
+            $signatureEtudiant->setRemarquesEtud($infos['remarquesEtud']);
 
             $form = $this->createForm(new SignatureEtudiantType(), $signatureEtudiant);
 

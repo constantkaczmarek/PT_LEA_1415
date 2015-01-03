@@ -6,7 +6,7 @@
     {% if infoExist %}
         <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
         {% if rendu == false %}
-            <form action="{{ path("lea_etu_visiteDeux",{ 'name': name}) }}" method="post">
+            <form action="{{ path("lea_etu_missionSoutenance",{ 'name': name}) }}" method="post">
         {% endif %}
         <table>
             <tr>
@@ -15,36 +15,35 @@
                 </td>
             </tr>
             <tr>
+                <td>Type rencontre : </td><td>{{ infos.typeRencontre }}</td>
+            </tr>
+            <tr>
+                <td>Date validation (aaaa-mm-jj) : </td><td>{{ infos.dateValidation }}</td>
+            </tr>
+            <tr>
                 <td><div>
-                        <b>Quels sont les points positifs ?</b><br/>
+                        <b>Quelle est la mission (ou partie de mission) choisie ?</b><br/>
                         <div>
-                            <p>{{ infos.pointsPositifs }}</p>
+                            <p>{{ infos.missions }}</p>
                         </div>
                     </div></td>
             </tr>
             <tr>
                 <td><div>
-                        <b>Quels sont les points de progrès ?</b><br/>
+                        <b>Dans quel environnement technique ?</b><br/>
                         <div>
-                            <p>{{ infos.pointsProgres }}</p>
+                            <p>{{ infos.environnementTechnique }}</p>
                         </div>
                     </div></td>
             </tr>
-            {% if infos.avecSoutenance %}
-                <tr>
-                    <td><div>
-                            <b>Quel est l'avancement du projet ?</b><br/>
-                            <div>
-                                <p>{{ infos.avancementProjet }}</p>
-                            </div>
-                        </div></td>
-                </tr>
-                <tr>
-                    <td>
-                        Date probable de soutenance (aaaa-mm-jj) : {{ infos.dateProbableSoutenance }}<br/>
-                    </td>
-                </tr>
-            {% endif %}
+            <tr>
+                <td><div>
+                        <b>Avec quels enjeux pour l'entreprise et/ou le client ?</b><br/>
+                        <div>
+                            <p>{{ infos.enjeux }}</p>
+                        </div>
+                    </div></td>
+            </tr>
             <tr>
                 <td>
                     <div>
@@ -84,5 +83,4 @@
         <p>Il n'y a aucune informations à afficher pour le moment</p>
     {% endif %}
     <a href="{{ path("lea_etu_homepage",{ 'name': name}) }}">Retour à l'accueil</a>
-
 {% endblock %}

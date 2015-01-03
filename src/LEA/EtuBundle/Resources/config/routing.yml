@@ -73,3 +73,11 @@ lea_etu_visiteDeux:
 lea_etu_visiteDeuxRendu:
     path:    /etudiant/{name}/visiteDeuxRendu
     defaults: { _controller: LEAEtuBundle:VisiteDeux:rendu }
+
+lea_etu_missionSoutenance:
+    path:    /etudiant/{name}/missionSoutenance
+    defaults: { _controller: LEAEtuBundle:MissionSoutenance:index }
+
+lea_etu_missionSoutenanceRendu:
+    path:    /etudiant/{name}/missionSoutenanceRendu
+    defaults: { _controller: LEAEtuBundle:MissionSoutenance:rendu }
