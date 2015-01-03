@@ -1,1 +1,66 @@
-Hello {{ name }}!
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+
+
+    <div class="contenu">
+        <div id="cadre_0" class="contenu-item2 on">
+            <h1>Bienvenue!</h1>
+            <h2>Nouveautés</h2>
+            <ul>
+                <li>La nouvelle version du site est arrivée.</li>
+                <li>Vous pouvez choisir de voir
+                    les informations sur vos étudiants sur plusieurs années en choisissant l'année souhaitée en haut de page.</li>
+                <li>Vous pouvez à la fois suivre vos étudiants en stage et en alternance.</li>
+                <li>Lors de la mise en place du livret de l'année 2012 : les étudiants que vous avez suivi par le passé vous ont été automatiquement ajouté à votre compte.
+                    <ul><li>Si vous n'en voulez pas, dans la rubrique Mes étudiants, selectionnez les étudiants concernés et choisissez l'action "ne plus suivre cet étudiant"
+                        </li><li>En fonction, de ses impératives le responsable de formation, peut vous enlever certains des étudiants reconduits automatiquement. Les étudiants ne sont pas définitivement suivi par vous, avant que le mail de notification/prise de contact, soit envoyé.</li>
+                    </ul></li>
+            </ul>
+            <h2>Informations</h2>
+            <p>
+                Le tuteur universitaire accompagne l’étudiant dans le développement de son
+                expertise et lui apporte un soutien en cas de difficultés. Il a d’une part un rôle
+                d’écoute et de propositions en termes pédagogiques et d’autre part, il assure un
+                suivi relationnel important avec l’entreprise et l’étudiant dans son contexte
+                professionnel. Il travaille en collaboration avec le référent entreprise qui est aussi
+                associé au parcours de l’étudiant.
+            </p>
+            <p>
+                En particulier :
+            <ul>
+                <li>
+                    il procède à un bilan périodique de l’évolution de l’étudiant.
+                </li><li>
+                    il encadre le rapport et la soutenance du projet de fin d’études.
+                </li><li>
+                    il conseille l’étudiant et le soutient en cas de difficultés.
+                </li>
+            </ul>
+            <p>
+                De même :
+            </p>
+            <ul>
+                <li>
+                    il a périodiquement des échanges avec le référent d’entreprise sur le
+                    déroulement des activités de l’étudiant.
+                </li><li>
+                    il assiste aux réunions pédagogiques.
+                </li><li>
+                    il veille à l’adéquation entre formation pratique et formation à l’Université.
+                </li><li>
+                    il renseigne le livret pendant les échanges.
+                </li><li>
+                    il propose des modifications pour faire évoluer les contenus de la formation.
+                </li>
+            </ul>
+            <br/>
+
+        </div>
+    </div>
+
+
+{% endblock %}

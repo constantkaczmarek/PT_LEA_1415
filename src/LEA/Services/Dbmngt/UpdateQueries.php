@@ -78,4 +78,8 @@ class UpdateQueries {
         $conn->query("update etapevisite2 set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
     }
 
+    public function enregChoixTuteur($conn,$choix){
+        $conn->query("INSERT INTO `temp_tuteurs` (`etat`,`tuteurRef`,`formationRef`,`alternanceRef`) VALUES ('0','".$choix->getTuteurRef()."','".$choix->getFormationRef()."','".$choix->getAltCle()."')");
+    }
+
 } 

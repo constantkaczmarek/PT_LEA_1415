@@ -43,7 +43,7 @@ class queriesEtu {
                     on e.etudCle=eg.etudRef inner join groupe g on eg.groupeRef=g.groupeCle
          where etudCle='".$student."' and eg.annee='".$yearRef."';");
 
-        if ($query===FALSE)
+        if (empty($query))
             return FALSE;
         else {
             return $query[0]['formationRef'];

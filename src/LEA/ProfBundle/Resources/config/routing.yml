@@ -1,3 +1,15 @@
 lea_prof_homepage:
-    path:     /hello/{name}
+    path:     /prof/{name}
     defaults: { _controller: LEAProfBundle:Default:index }
+
+lea_prof_choisir:
+    path:    /prof/{name}/choisir
+    defaults: { _controller: LEAProfBundle:Choisir:index}
+
+lea_prof_changeForm:
+    path:    /prof/{name}/changeForm
+    defaults: { _controller: LEAProfBundle:Choisir:changeForm }
+    requirements:
+        _method: POST
+    options:
+        expose: true
