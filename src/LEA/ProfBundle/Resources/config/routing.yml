@@ -6,8 +6,13 @@ lea_prof_choisir:
     path:    /prof/{name}/choisir
     defaults: { _controller: LEAProfBundle:Choisir:index}
 
+lea_prof_etuAttribues:
+    path:    /prof/{name}/etuAttribues
+    defaults: { _controller: LEAProfBundle:EtuAttribues:index}
+
+
 lea_prof_changeForm:
-    path:    /prof/{name}/changeForm
+    path:    /prof/ajax/changeForm
     defaults: { _controller: LEAProfBundle:Choisir:changeForm }
     requirements:
         _method: POST

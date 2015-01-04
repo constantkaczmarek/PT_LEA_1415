@@ -6,6 +6,28 @@ function hideModal(ele){
     ele.style.visibility = "hidden";
 }
 
+
+function changeFilter(ele){
+
+    var eleValue = $("#"+ele+"");
+
+    eleValue.change(function(){
+
+        eleValue = $(this).val();
+
+        alert(ele+":"+eleValue);
+        $.ajax({
+            type: "POST",
+            url: Routing.generate('lea_prof_changeForm',{ele:eleValue}),
+            success:function(data){
+                alert(data);
+                location.reload();
+            }
+        });
+        return false;
+    });
+}
+
 $(document).ready(function () {
 
 
@@ -16,13 +38,24 @@ $(document).ready(function () {
         formation = $(this).val();
         $.ajax({
             type: "POST",
-            url: Routing.generate('lea_prof_changeForm',{name:"bilasco",formation:formation}),
-
+            url: Routing.generate('lea_prof_changeForm',{formation:formation}),
             success:function(data){
-                //alert(data.formation);
                 location.reload();
-                //window.location.replace(Routing.generate('lea_prof_choisir',{name:"bilasco"}));
+            }
+        });
+        return false;
+    });
 
+    var situ = $("#situ");
+
+    situ.change(function(){
+
+        situ = $(this).val();
+        $.ajax({
+            type: "POST",
+            url: Routing.generate('lea_prof_changeForm',{"situ":situ}),
+            success:function(data){
+                location.reload();
             }
         });
         return false;

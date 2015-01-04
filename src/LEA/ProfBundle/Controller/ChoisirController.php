@@ -76,29 +76,74 @@ class ChoisirController extends Controller
         $keysValues["keys"][]="M2MOCADFI";$keysValues["values"][]=" - MOCAD - M2 FI";
         $keysValues["keys"][]="M2TIIRFI";$keysValues["values"][]=" - TIIR - M2 FI";
 
+
+        $keysSansTuteur= array("OUI", "NON", "EXCL", "ENTR");
+        $valuesSansTuteur = array("tous les étudiants",
+            "les étudiants sans tuteurs potentiels",
+            "les étudiants sans tuteur retenu",
+            "les étudiants ayant trouvé une entreprise");
+
+        $sanstuteur = array(
+           'keys' =>$keysSansTuteur,
+            'values'=> $valuesSansTuteur
+        );
+
+        //print_r($sanstuteur);
+
         //print_r($keysValues);
 
         //$form["keys"][]
-        $form="M1MIAGEFA,M2MIAGEFA, M2IPINTFA,M1MIAGEFA,M2MIAGEFA,M2IPINTFA,M1INFOFI,M2IAGLFA,M2ESERVFA,M2TIIRFA,M2IVIFA,M2MOCADFA,M1INFOFI,M1IAGLFA,M1ESERVFA,M1TIIRFA,M1IVIFA,M1MOCADFA,M1ESERVFA,M1IAGLFA,M1IVIFA,M1MOCADFA,M1TIIRFA,M1INFOFI,M2IAGLFA,M2ESERVFA,M2TIIRFA,M2IVIFA,M2MOCADFA,M2ESERVFA,M2IAGLFA,M2IVIFA,M2MOCADFA,M2TIIRFA";
+        //$form="M1MIAGEFA,M2MIAGEFA, M2IPINTFA,M1MIAGEFA,M2MIAGEFA,M2IPINTFA,M1INFOFI,M2IAGLFA,M2ESERVFA,M2TIIRFA,M2IVIFA,M2MOCADFA,M1INFOFI,M1IAGLFA,M1ESERVFA,M1TIIRFA,M1IVIFA,M1MOCADFA,M1ESERVFA,M1IAGLFA,M1IVIFA,M1MOCADFA,M1TIIRFA,M1INFOFI,M2IAGLFA,M2ESERVFA,M2TIIRFA,M2IVIFA,M2MOCADFA,M2ESERVFA,M2IAGLFA,M2IVIFA,M2MOCADFA,M2TIIRFA";
 
         $conn = $this->get('database_connection');
         $queries = $this->get('queries');
+        $distance = $this->get('distance');
 
         $session = $this->getRequest()->getSession();
-        print_r($session->get("formation"));
+        //print_r($session->get("formation"));
         $listEtu = $queries->getEtudiantFormation($conn,$session->get("formation"),2014);
         $taille = count($listEtu);
-
         $listAlt=array();
-        for($i = 0; $i< $taille ; $i++){
-            $tuteurs = $queries->getTuteursPotentiels($conn, $form,  $listEtu[$i]['alternanceCle'], 2014);
-            if(empty ($tuteurs))
+
+
+        for($i = 0; $i< $taille ; $i++) {
+            $listEtu[$i]['lienDistance'] = $distance->getLien($listEtu[$i]["bureauAd"]." ".$listEtu[$i]["bureauCod"]." ".$listEtu[$i]["ville"]);
+            $tuteurs = $queries->getTuteursPotentiels($conn, $session->get("formation"),  $listEtu[$i]['alternanceCle'], 2014);
+            if(empty ($tuteurs)){
                 $listEtu[$i]['tuteurs']['tuteurRef'] = "aucun";
+            }
             else {
                 $listEtu[$i]['tuteurs'] = $tuteurs[0];
             }
             $listAlt[$listEtu[$i]["alternanceCle"]] = $listEtu[$i]["alternanceCle"];
         }
+
+       /* $listExcl = array();
+
+        for($i = 0; $i< $taille ; $i++) {
+            $tuteurs = $queries->getTuteursPotentiels($conn, $session->get("formation"),  $listEtu[$i]['alternanceCle'], 2014);
+            if(empty ($tuteurs)){
+                $listEtu[$i]['tuteurs']['tuteurRef'] = "aucun";
+                if($session->get("sanstuteur")=="EXCL"){
+                    array_push($listExcl,$listEtu[$i]);
+                }
+            }
+            else {
+                $listEtu[$i]['tuteurs'] = $tuteurs[0];
+            }
+        }
+
+        $listAlt=array();
+        if($session->get("sanstuteur")=="EXCL"){
+            $listTri = $listExcl;
+        }else
+            $listTri = $listEtu;
+
+        $taille = count($listTri);
+        for($i = 0; $i< $taille ; $i++){
+            $listAlt[$listTri[$i]["alternanceCle"]] = $listTri[$i]["alternanceCle"];
+        }*/
+
 
 
         $choix = new ChoixSansTuteur();
@@ -109,7 +154,6 @@ class ChoisirController extends Controller
         $request = $this->getRequest();
 
         if($request->isMethod('POST')){
-
 
             $form->bind($request);
 
@@ -134,18 +178,23 @@ class ChoisirController extends Controller
             'form' => $form->createView(),
             'listForm' => $keysValues,
             'formation' => $session->get('formation'),
-            //'choix' => $choix,
+            'choixTuteur' => $sanstuteur,
+            'situation' => $session->get('sanstuteur'),
         ));
     }
 
-
-    public function changeFormAction($name){
+    public function changeFormAction(){
 
         $request = $this->container->get('request');
 
-
         $session = $this->getRequest()->getSession();
-        $session->set("formation",$request->query->get('formation'));
+
+        if(!empty($request->query->get('situ'))){
+            $session->set("sanstuteur",$request->query->get('situ'));
+        }else{
+            $session->set("formation",$request->query->get('formation'));
+        }
+
 
         return new JsonResponse(array("formation"=>$session->get('formation')));
 

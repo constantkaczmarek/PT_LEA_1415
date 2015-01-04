@@ -58,8 +58,8 @@ class Queries {
         if(contrat.notifAttribTuteur is null,0,contrat.notifAttribTuteur),
         etudiant.mailLille1,
         bureau.distance,
-        bureau.adresse,
-        bureau.codePostal
+        bureau.adresse as bureauAd,
+        bureau.codePostal as bureauCod
     from
 	contrat inner join etudiant on contrat.etudRef=etudiant.etudCle
                     inner join etudiant_groupe on etudiant.etudCle=etudiant_groupe.etudRef and contrat.anneeCle=etudiant_groupe.annee
@@ -96,6 +96,73 @@ class Queries {
             where '" . $formation . "' like concat('%',formationRef,'%')
             and alternanceRef like '" . $alternanceRef . "'");
         //..and anneeCle in (".$yearRef.");";
+
+        return $query;
+    }
+
+    function getEtudByTuteur($conn, $formation, $tuteur, $yearRef=null) {
+        if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
+
+        $query = $conn->fetchAll("select
+        contrat.alternanceCle as alternanceCle,
+        etudiant.nom as nom_etud,
+        etudiant.prenom as prenom_etud,
+        if (groupeCle not like concat(formationCle,'%'),concat(groupeCle),formation.formationCle) as formation,
+        if (bureau.ville='SANS SIEGE','',bureau.ville) as ville,
+        if (referent.nom='__sans','', referent.nom) as referent,
+        referent.mail as mail_referent,
+        bureau.entrepriseRef as entreprise,
+        if (etapeetudtut.missions is null,infoetud.missions,etapeetudtut.missions),
+        if (etapeetudtut.service is null,infoetud.service,etapeetudtut.service),
+        if (etapeetudtut.client is null,infoetud.client,etapeetudtut.client),
+        if (etapeetudtut.environnementTechnique is null,infoetud.environnementTechnique,etapeetudtut.environnementTechnique),
+
+        membre.nom,
+        membre.mail,
+        if(etudiant.mailLille1 is null,
+            etudiant.mail,
+            concat(etudiant.mailLille1,concat(',',etudiant.mail))
+          ),
+        if (etapeetudtut.motscles is null,infoetud.motscles,etapeetudtut.motscles),
+        contrat.tuteurRef,
+        contrat.notifAttribTuteur
+    from
+	contrat
+            inner join etudiant on contrat.etudRef=etudiant.etudCle
+                    inner join etudiant_groupe on etudiant.etudCle=etudiant_groupe.etudRef and contrat.anneeCle=etudiant_groupe.annee
+                    inner join groupe on etudiant_groupe.groupeRef=groupe.groupeCle
+                    inner join formation on groupe.formationRef=formation.formationCle
+           inner join
+                    referent on contrat.referentRef=referent.referentCle inner join
+                        membre on (contrat.tuteurRef=membre.profCle ) left join
+            etapeetudtut on contrat.alternanceCle=etapeetudtut.alternanceRef
+                            left join
+            infoetud on contrat.alternanceCle=infoetud.alternanceRef
+
+            left join bureau on contrat.bureauRef = bureau.bureauCle
+        where '" . $formation . "' like concat('%',groupe.formationRef,'%')
+          and membre.profCle like '" . $tuteur . "'
+          and anneeCle in (".$yearRef.")
+        order by formation, nom_etud, prenom_etud ;");
+
+        return $query;
+    }
+
+    function getTuteurFormationSuivi($conn, $tuteurRef, $yearRef=null,$onlyM1INFOFAnoParcours=false) {
+        if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
+        $query = $conn->fetchAll( "select distinct
+                    formation.nom,".
+            ($onlyM1INFOFAnoParcours?"if(formation.formationCle like 'M1%FA' and
+                           formation.formationCle not like '%MIAGE%',
+                          'M1INFOFA',
+                          formation.formationCle)":"formation.formationCle")." from
+                    membre inner join contrat on membre.profCle=contrat.tuteurRef
+                    inner join etudiant on contrat.etudRef=etudiant.etudCle
+                    inner join etudiant_groupe on etudiant.etudCle=etudiant_groupe.etudRef
+                                                  and contrat.anneeCle=etudiant_groupe.annee
+                    inner join groupe on etudiant_groupe.groupeRef=groupe.groupeCle
+                    inner join formation on groupe.formationRef=formation.formationCle
+                where membre.profCle = '" . $tuteurRef . "' and contrat.anneeCle in (".$yearRef.");");
 
         return $query;
     }

@@ -21,7 +21,20 @@
                     {% endif %}
                 {% endfor %}
             </select>
-            <input type="submit" name="changeFormation" value="Changer Formation"/>
+        </form>
+
+        <span>Choisir situation : </span>
+
+        <form  method="post">
+            <select id="situ" name="situ" >
+                {% for situ in choixTuteur.keys %}
+                    {% if situ==situation %}
+                        <option value="{{ situ }}" selected="selected">{{ choixTuteur.values[loop.index-1] }}</option>
+                    {% else %}
+                        <option value="{{ situ }}">{{ choixTuteur.values[loop.index-1] }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
         </form>
     </div>
     <br/>
@@ -32,6 +45,9 @@
         {{ form_errors(form) }}
 
         <input type="submit" name="Enregistrer" value="Transmettre vos choix" class="btn btn-primary"/>
+        <div>
+            {{ situation }}
+        </div>
         <br/>
         <br/>
 
@@ -48,28 +64,87 @@
             </tr>
 
         {% if listEtu %}
-            {% for etu in listEtu %}
-                <tr>
-                    <td>{{ form_row(form.altCle[loop.index-1]) }}</td>
-                    <td>{{ etu.nom_etud }}</td>
-                    <td>{{ etu.nom_prenom }}</td>
-                    <td>{{ etu.formation }}</td>
-                    <td>{{ etu.ville }}</td>
-                    <td>{{ etu.entreprise }}</td>
-                    <td>{{ etu.tuteurs.tuteurRef }}</td>
-                    <td onclick="showModal({{ etu.alternanceCle }})"><a href="#">Détails</a></td>
-                    <td id= "{{ etu.alternanceCle }}" style="visibility: hidden" >
-                        <table class="table table-default">
-                            <tr><td>Etudiant </td> <td> {{ etu.nom_etud }}</td></tr>
-                            <tr><td>Referent</td> <td> {{ etu.referent }}</td></tr>
-                            <tr><td>Missions</td><td> {{ etu.mission }}</td></tr>
-                            <tr><td>Services</td><td> {{ etu.service }}</td></tr>
-                            <tr><td>Envirnmnt Tech.</td><td> {{ etu.tech }}</td></tr>
-                            <tr><td><a onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
-                        </table>
-                    </td>
-                </tr>
-            {% endfor %}
+
+            {% if (situation=="EXCL" or situation=="NON")%}
+
+                {% for etu in listEtu %}
+
+                    {% if etu.tuteurs.tuteurRef=="aucun" %}
+                        <tr>
+                            <td>{{ form_row(form.altCle[loop.index-1]) }}</td>
+                            <td>{{ etu.nom_etud }}</td>
+                            <td>{{ etu.nom_prenom }}</td>
+                            <td>{{ etu.formation }}</td>
+                            <td>{{ etu.ville }}/<a href="{{ etu.lienDistance }}">{{ etu.distance }}</a></td>
+                            <td>{{ etu.entreprise }}</td>
+                            <td>{{ etu.tuteurs.tuteurRef }}</td>
+                            <td onclick="showModal({{ etu.alternanceCle }})"><a href="#">Détails</a></td>
+                            <td id= "{{ etu.alternanceCle }}" style="visibility: hidden" >
+                                <table class="table table-default">
+                                    <tr><td>Etudiant </td> <td> {{ etu.nom_etud }}</td></tr>
+                                    <tr><td>Referent</td> <td> {{ etu.referent }}</td></tr>
+                                    <tr><td>Missions</td><td> {{ etu.mission }}</td></tr>
+                                    <tr><td>Services</td><td> {{ etu.service }}</td></tr>
+                                    <tr><td>Envirnmnt Tech.</td><td> {{ etu.tech }}</td></tr>
+                                    <tr><td><a onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+
+            {% elseif situation=="OUI" %}
+
+                {% for etu in listEtu %}
+                    <tr>
+                        <td>{{ form_row(form.altCle[loop.index-1]) }}</td>
+                        <td>{{ etu.nom_etud }}</td>
+                        <td>{{ etu.nom_prenom }}</td>
+                        <td>{{ etu.formation }}</td>
+                        <td>{{ etu.ville }}/<a href="{{ etu.lienDistance }}">{{ etu.distance }}</a></td>
+                        <td>{{ etu.entreprise }}</td>
+                        <td>{{ etu.tuteurs.tuteurRef }}</td>
+                        <td onclick="showModal({{ etu.alternanceCle }})"><a href="#">Détails</a></td>
+                        <td id= "{{ etu.alternanceCle }}" style="visibility: hidden" >
+                            <table class="table table-default">
+                                <tr><td>Etudiant </td> <td> {{ etu.nom_etud }}</td></tr>
+                                <tr><td>Referent</td> <td> {{ etu.referent }}</td></tr>
+                                <tr><td>Missions</td><td> {{ etu.mission }}</td></tr>
+                                <tr><td>Services</td><td> {{ etu.service }}</td></tr>
+                                <tr><td>Envirnmnt Tech.</td><td> {{ etu.tech }}</td></tr>
+                                <tr><td><a onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+            {% elseif situation=="ENTR" %}
+                {% for etu in listEtu %}
+                    {% if etu.entreprise != "__sans entreprise__"  %}
+                        <tr>
+                            <td>{{ form_row(form.altCle[loop.index-1]) }}</td>
+                            <td>{{ etu.nom_etud }}</td>
+                            <td>{{ etu.nom_prenom }}</td>
+                            <td>{{ etu.formation }}</td>
+                            <td>{{ etu.ville }}/<a href="{{ etu.lienDistance }}">{{ etu.distance }}</a></td>
+                            <td>{{ etu.entreprise }}</td>
+                            <td>{{ etu.tuteurs.tuteurRef }}</td>
+                            <td onclick="showModal({{ etu.alternanceCle }})"><a href="#">Détails</a></td>
+                            <td id= "{{ etu.alternanceCle }}" style="visibility: hidden" >
+                                <table class="table table-default">
+                                    <tr><td>Etudiant </td> <td> {{ etu.nom_etud }}</td></tr>
+                                    <tr><td>Referent</td> <td> {{ etu.referent }}</td></tr>
+                                    <tr><td>Missions</td><td> {{ etu.mission }}</td></tr>
+                                    <tr><td>Services</td><td> {{ etu.service }}</td></tr>
+                                    <tr><td>Envirnmnt Tech.</td><td> {{ etu.tech }}</td></tr>
+                                    <tr><td><a onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </table>
 
         {% endif %}

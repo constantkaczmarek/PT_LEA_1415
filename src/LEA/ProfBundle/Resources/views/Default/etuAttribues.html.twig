@@ -1,0 +1,72 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% javascripts '@LEAProfBundle/Resources/Js/choisir.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+    <div>
+        <span>Choisissez la formation : </span>
+        <form action="{{  path('lea_prof_changeForm',{'name':name}) }}" method="post">
+            <select id="formation" name="formation" >
+                <option value="{{ aucune }}">aucune</option>
+                {% for forma in listForm %}
+                    {% if forma.formationCle == formation %}
+                        <option value="{{ forma.formationCle }}" selected="selected">{{ forma.nom }}</option>
+                    {% else %}
+                        <option value="{{ forma.formationCle }}">{{ forma.nom }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+    <br/>
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Formation</th>
+            <th>Ville</th>
+            <th>Entreprise</th>
+            <th>Référent</th>
+            <th>Actions</th>
+        </tr>
+
+    {% if listEtu %}
+        {% for etu in listEtu %}
+            <tr>
+                <td></td>
+                <td>{{ etu.nom_etud }} {{ etu.prenom_etud }}</td>
+                <td>{{ etu.formation }}</td>
+                <td>{{ etu.ville }}</td>
+                <td>{{ etu.entreprise }}</td>
+                <td>{{ etu.referent }}</td>
+                <td>
+                    <form action="">
+                        <select name="action" id="action">
+                            <option value="aucune">aucune</option>
+                            <option value="globale">Dossier globale</option>
+                            <option value="générales">Informations générales</option>
+                            <option value="">Rencontre étudiant tuteur</option>
+                            <option value="">1ère visite pédagogique </option>
+                            <option value="">Mission soutenance (sauf MA MIAGE FA)</option>
+                            <option value="">Deuxième viste pédagogique</option>
+                            <option value="">-----------</option>
+                            <option value="odm">Génération ordre de mission</option>
+                            <option value="">-----------</option>
+                            <option value="delete">Ne plus suivre cet étudiant</option>
+                        </select>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+        {% endif %}
+
+{% endblock %}
