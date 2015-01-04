@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Nom</td>
+                <td>Prénom</td>
+                <td>Formation</td>
+                <td>Ville/Kilométrage</td>
+                <td>Entreprise</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etudiant in etudiants %}
+            <tr>
+                <td>{{ etudiant.nom }}</td>
+                <td>{{ etudiant.prenom }}</td>
+                <td>{{ etudiant.nomFormation }}</td>
+                <td>{{ etudiant.ville }} / {{ etudiant.distance }}</td>
+                <td>{{ etudiant.nomEntreprise }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

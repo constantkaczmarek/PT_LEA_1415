@@ -18,3 +18,7 @@ lea_prof_changeForm:
         _method: POST
     options:
         expose: true
+
+lea_prof_suivi:
+    path:    /prof/{name}/suivi
+    defaults: { _controller: LEAProfBundle:Suivi:index}

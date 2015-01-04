@@ -134,6 +134,8 @@ services:
         class: LEA\Services\Dbmngt\queriesEtapes
     queries_sout:
         class: LEA\Services\Dbmngt\QueriesSout
+    queries_tuteur:
+        class: LEA\Services\Dbmngt\QueriesTuteur
     queriesEtu:
         class: LEA\Services\Dbmngt\queriesEtu
     update_queries:
