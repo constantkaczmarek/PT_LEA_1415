@@ -1,12 +1,24 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <div class="container-fluid">
+
+
+
+    {% if role=='prof' %}
+        {% include "LEAProfBundle:Default:navbar.html.twig" %}
+        <div class="container-fluid">
+        <a href="{{ path('lea_prof_modifierEtuGeneral',{'name':name,'nameEtu':nameEtu}) }}">Modifier</a>
+    {% else %}
         <h1> Mise à jour des informations concernant  </h1>
         <div class="row">
             Informations mises à jour
             <a href="{{ path('lea_etu_homepage',{'name':name}) }}"> Retour accueil </a>
         </div>
+    {% endif %}
+
+    <div class="container-fluid">
+
+
 
         <div class="row">
             <h2> {{ infos.prenom_etud }} {{ infos.nom_etud }} </h2>

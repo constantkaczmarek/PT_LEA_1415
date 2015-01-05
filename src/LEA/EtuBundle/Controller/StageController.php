@@ -24,6 +24,8 @@ class StageController extends Controller
 
         $conn = $this->get('database_connection');
 
+        $role = $this->getRequest()->getSession()->get('role');
+
         $queryEtu = $this->get('queries_etu');
         $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
 
@@ -58,7 +60,7 @@ class StageController extends Controller
         $infosStage->setReferentAlt($infos["regieReferentRef"]);
         $infosStage->setReferent1Alt($infos["regieReferent1Ref"]);
 
-        $form = $this->createForm(new infosStageType($infos,$listEntr,$listBureau,$listReferent,$listBureauAlt,$listReferentAlt),$infosStage);
+        $form = $this->createForm(new infosStageType($infos,$listEntr,$listBureau,$listReferent,$listBureauAlt,$listReferentAlt),$infosStage,$role);
         $request = $this->getRequest();
 
         if($request->isMethod('POST')){
@@ -246,9 +248,12 @@ class StageController extends Controller
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$altRef);
 
+        $role = $this->getRequest()->getSession()->get('role');
+
         return $this->render('LEAEtuBundle:Default:afficheInfosStage.html.twig',array(
             'name' => $name,
             'infos' => $infos,
+            'role' => $role,
         ));
 
     }

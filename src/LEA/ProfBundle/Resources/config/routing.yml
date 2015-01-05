@@ -10,10 +10,29 @@ lea_prof_etuAttribues:
     path:    /prof/{name}/etuAttribues
     defaults: { _controller: LEAProfBundle:EtuAttribues:index}
 
+lea_prof_etuGeneral:
+    path:    /prof/{name}/etuAttribues/{nameEtu}/general
+    defaults: { _controller: LEAProfBundle:General:index}
+    options:
+            expose: true
+
+lea_prof_modifierEtuGeneral:
+    path:    /prof/{name}/etuAttribues/{nameEtu}/general/modifer
+    defaults: { _controller: LEAProfBundle:General:index}
+    options:
+            expose: true
 
 lea_prof_changeForm:
     path:    /prof/ajax/changeForm
     defaults: { _controller: LEAProfBundle:Choisir:changeForm }
+    requirements:
+        _method: POST
+    options:
+        expose: true
+
+lea_prof_changeAction:
+    path:    /prof/ajax/changeAction
+    defaults: { _controller: LEAProfBundle:EtuAttribues:changeActionProf }
     requirements:
         _method: POST
     options:

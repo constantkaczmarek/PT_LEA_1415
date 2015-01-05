@@ -6,12 +6,16 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
+    {% javascripts '@LEAProfBundle/Resources/Js/choisirAction.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
     {% include "LEAProfBundle:Default:navbar.html.twig" %}
 
     <div>
         <span>Choisissez la formation : </span>
         <form action="{{  path('lea_prof_changeForm',{'name':name}) }}" method="post">
-            <select id="formation" name="formation" >
+            <select id="formation" name="formation" class="form-control">
                 <option value="{{ aucune }}">aucune</option>
                 {% for forma in listForm %}
                     {% if forma.formationCle == formation %}
@@ -47,19 +51,12 @@
                 <td>{{ etu.entreprise }}</td>
                 <td>{{ etu.referent }}</td>
                 <td>
-                    <form action="">
-                        <select name="action" id="action">
+                    <form>
+                        <select name="action" onchange="redirectAction('{{ etu.alternanceCle }}',this.value)">
                             <option value="aucune">aucune</option>
-                            <option value="globale">Dossier globale</option>
-                            <option value="générales">Informations générales</option>
-                            <option value="">Rencontre étudiant tuteur</option>
-                            <option value="">1ère visite pédagogique </option>
-                            <option value="">Mission soutenance (sauf MA MIAGE FA)</option>
-                            <option value="">Deuxième viste pédagogique</option>
-                            <option value="">-----------</option>
-                            <option value="odm">Génération ordre de mission</option>
-                            <option value="">-----------</option>
-                            <option value="delete">Ne plus suivre cet étudiant</option>
+                            {% for action in actions.keys %}
+                                <option value="{{ action }}">{{ actions.values[loop.index-1] }}</option>
+                            {% endfor %}
                         </select>
                     </form>
                 </td>
@@ -67,6 +64,6 @@
         {% endfor %}
     </table>
 
-        {% endif %}
+    {% endif %}
 
 {% endblock %}

@@ -195,14 +195,7 @@ class ChoisirController extends Controller
             $session->set("formation",$request->query->get('formation'));
         }
 
-
         return new JsonResponse(array("formation"=>$session->get('formation')));
-
-       /*return $this->redirect(
-            $this->generateUrl('lea_prof_choisir',array(
-                'name' => $name,
-            ))
-        );*/
 
     }
 }

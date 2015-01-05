@@ -12,7 +12,7 @@
         <span>Choisissez la formation : </span>
 
         <form action="{{  path('lea_prof_changeForm',{'name':name}) }}" method="post">
-            <select id="formation" name="formation" >
+            <select id="formation" name="formation" class="form-control" >
                 {% for forma in listForm.keys %}
                     {% if forma==formation %}
                         <option value="{{ forma }}" selected="selected">{{ listForm.values[loop.index-1] }}</option>
