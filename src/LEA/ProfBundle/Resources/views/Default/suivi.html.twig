@@ -2,6 +2,10 @@
 
 {% block body %}
 
+    {% javascripts '@LEAProfBundle/Resources/Js/suivi.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
     {% include "LEAProfBundle:Default:navbar.html.twig" %}
 
     <table class="table table-striped">
@@ -12,6 +16,7 @@
                 <td>Formation</td>
                 <td>Ville/Kilométrage</td>
                 <td>Entreprise</td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +27,7 @@
                 <td>{{ etudiant.nomFormation }}</td>
                 <td>{{ etudiant.ville }} / {{ etudiant.distance }}</td>
                 <td>{{ etudiant.nomEntreprise }}</td>
+                <td><button class="button" id="{{ etudiant.alternanceCle }}">Retirer</button></td>
             </tr>
         {% endfor %}
         </tbody>

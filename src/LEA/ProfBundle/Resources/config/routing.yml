@@ -22,3 +22,11 @@ lea_prof_changeForm:
 lea_prof_suivi:
     path:    /prof/{name}/suivi
     defaults: { _controller: LEAProfBundle:Suivi:index}
+
+lea_prof_suiviSuppr:
+    path:    /prof/ajax/suiviSuppr
+    defaults: { _controller: LEAProfBundle:Suivi:suppr }
+    requirements:
+        _method: POST
+    options:
+        expose: true
