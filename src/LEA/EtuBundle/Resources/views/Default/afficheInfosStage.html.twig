@@ -7,7 +7,7 @@
     {% if role=='prof' %}
         {% include "LEAProfBundle:Default:navbar.html.twig" %}
         <div class="container-fluid">
-        <a href="{{ path('lea_prof_modifierEtuGeneral',{'name':name,'nameEtu':nameEtu}) }}">Modifier</a>
+        <a href="{{ path('lea_prof_modifierEtuGeneral',{'name':name}) }}">Modifier</a>
     {% else %}
         <h1> Mise à jour des informations concernant  </h1>
         <div class="row">
@@ -17,8 +17,6 @@
     {% endif %}
 
     <div class="container-fluid">
-
-
 
         <div class="row">
             <h2> {{ infos.prenom_etud }} {{ infos.nom_etud }} </h2>

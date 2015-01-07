@@ -87,6 +87,11 @@ class Queries {
         return $query;
     }
 
+    function getListTuteurs($conn) {
+        $query  = $conn->fetchAll("select profCle, nom, prenom, mail from membre order by nom ;");
+        return $query;
+    }
+
     function getTuteursPotentiels($conn, $formation, $alternanceRef, $yearRef=null) {
         if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
         $query = $conn->fetchAll("select distinct

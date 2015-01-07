@@ -53,7 +53,6 @@
                 <td>
                     <form>
                         <select name="action" onchange="redirectAction('{{ etu.alternanceCle }}',this.value)">
-                            <option value="aucune">aucune</option>
                             {% for action in actions.keys %}
                                 <option value="{{ action }}">{{ actions.values[loop.index-1] }}</option>
                             {% endfor %}

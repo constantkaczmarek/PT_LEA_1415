@@ -27,7 +27,9 @@ class StageController extends Controller
         $role = $this->getRequest()->getSession()->get('role');
 
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
+        //$altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
+
+        $altRef = $name;
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$altRef);
@@ -35,9 +37,12 @@ class StageController extends Controller
         $dbQueries = $this->get('queries');
         $dbutils = $this->get('dbutils');
 
+        $listTuteur = $dbutils->convertArrayToChoices($dbQueries->getListTuteurs($conn),"profCle","nom","prenom");
+
         $listEntr = $dbutils->convertArrayToChoices($dbQueries->getListeEntreprise($conn),"__sans entreprise__","SANS ENTREPRISE");
         $listBureau = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$infos["entrCle"]),"bureauCle","ad");
         $listReferent = $dbutils->convertArrayToChoices($dbQueries->getListeReferent($conn,$infos["entrCle"]),"keyRef","sans referent");
+
 
         $listBureauAlt = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$infos["regieEntrCle"]),"bureauCle","ad");
         $listReferentAlt = $dbutils->convertArrayToChoices($dbQueries->getListeReferent($conn,$infos["regieEntrCle"]),"keyRef","sans referent");
@@ -60,7 +65,7 @@ class StageController extends Controller
         $infosStage->setReferentAlt($infos["regieReferentRef"]);
         $infosStage->setReferent1Alt($infos["regieReferent1Ref"]);
 
-        $form = $this->createForm(new infosStageType($infos,$listEntr,$listBureau,$listReferent,$listBureauAlt,$listReferentAlt),$infosStage,$role);
+        $form = $this->createForm(new infosStageType($infos,$listEntr,$listBureau,$listReferent,$listBureauAlt,$listReferentAlt,$listTuteur),$infosStage);
         $request = $this->getRequest();
 
         if($request->isMethod('POST')){
@@ -73,19 +78,31 @@ class StageController extends Controller
                 $updateInfos = $this->get("update_queries");
                 $updateInfos->updateInfosStage($conn,$infosStage,$altRef,$name);
 
-                return $this->redirect(
-                    $this->generateUrl('lea_etu_afficherInfosStage',array(
-                        'name' => $name,
-                    ))
-                );
+                if($role=="prof"){
+                    return $this->redirect(
+                        $this->generateUrl('lea_prof_etuGeneral',array(
+                            'name' => $name,
+                        ))
+                    );
+                }else
+                    return $this->redirect(
+                        $this->generateUrl('lea_etu_afficherInfosStage',array(
+                            'name' => $name,
+                        ))
+                    );
             }
+        }
+
+        if($role!='prof'){
+            $form->remove('tuteur');
         }
 
         return $this->render('LEAEtuBundle:Default:infosStage.html.twig',array(
             'form'=> $form->createView(),
             'infosStage' => $infosStage,
             'altref' => $altRef,
-            'name' => $name
+            'name' => $name,
+            'role' => $role,
         ));
     }
 

@@ -11,8 +11,12 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class ChoisirController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
+
+        $session = $this->getRequest()->getSession();
+
+        $name = $session->get('name');
 
         $keysValues=array();
         $keysValues["keys"]=array();
@@ -99,7 +103,6 @@ class ChoisirController extends Controller
         $queries = $this->get('queries');
         $distance = $this->get('distance');
 
-        $session = $this->getRequest()->getSession();
         //print_r($session->get("formation"));
         $listEtu = $queries->getEtudiantFormation($conn,$session->get("formation"),2014);
         $taille = count($listEtu);

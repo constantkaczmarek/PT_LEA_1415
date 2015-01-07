@@ -20,7 +20,7 @@ function changeFilter(ele){
 }
 
 function redirectAction(etu,value){
-    window.location.href = Routing.generate('lea_prof_'+value+'',{name:'bilasco',nameEtu:etu});
+    window.location.href = Routing.generate('lea_prof_'+value+'',{name:etu});
 }
 
 $(document).ready(function () {

@@ -11,12 +11,15 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class EtuAttribuesController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
 
+        $session = $this->getRequest()->getSession();
+        $name=$session->get('name');
+
         $actionCodes=array("aucune",
+            "global",
             "etuGeneral",
-            "renduEtape0_act",
             //"majEtape0",
             "renduEtape1_act",
             //"majEtape1",
@@ -57,8 +60,6 @@ class EtuAttribuesController extends Controller
 
         $conn = $this->get('database_connection');
         $queries = $this->get('queries');
-
-        $session = $this->getRequest()->getSession();
 
         $listEtu = $queries->getEtudByTuteur($conn, $session->get("formation"), $name, 2014);
         $formation = $queries->getTuteurFormationSuivi($conn,$name,2014);

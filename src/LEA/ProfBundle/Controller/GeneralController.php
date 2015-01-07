@@ -11,20 +11,22 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class GeneralController extends Controller
 {
-    public function indexAction($name,$nameEtu)
+    public function indexAction($name)
     {
+
+        $session = $this->getRequest()->getSession();
+        //$name = $session->get('name');
+        $role = $session->get('role');
 
         $conn = $this->get('database_connection');
 
 
         $query = $this->get('queries_etapes');
-        $infos = $query->getInfosStage($conn,$nameEtu);
+        $infos = $query->getInfosStage($conn,$name);
 
-        $role = $this->getRequest()->getSession()->get('role');
 
         return $this->render('LEAEtuBundle:Default:afficheInfosStage.html.twig',array(
             'name' => $name,
-            'nameEtu' => $nameEtu,
             'infos' => $infos,
             'role' =>$role,
         ));

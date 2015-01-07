@@ -20,9 +20,9 @@ class infosStageType extends AbstractType
     private $listRef;
     private $listBureauAlt;
     private $listRefAlt;
-    private $role;
+    private $listTuteur;
 
-    public function __construct($infos,$listEntr,$listBureau,$listRef,$listBureauAlt,$listRefAlt,$role)
+    public function __construct($infos,$listEntr,$listBureau,$listRef,$listBureauAlt,$listRefAlt,$listTuteur)
     {
         $this->infos = $infos;
         $this->listEntr = $listEntr;
@@ -30,8 +30,7 @@ class infosStageType extends AbstractType
         $this->listRef = $listRef;
         $this->listBureauAlt = $listBureauAlt;
         $this->listRefAlt = $listRefAlt;
-        $this->role = $role;
-
+        $this->listTuteur = $listTuteur;
     }
 
     /**
@@ -54,9 +53,9 @@ class infosStageType extends AbstractType
                 'label' => 'E-mail lille :'
             ))
 
-            ->add('tuteur','text',array(
+            ->add('tuteur','choice',array(
                 'label' => 'Tuteur  :',
-                'read_only' => true
+                'choices' => $this->listTuteur,
             ))
 
             ->add('entreprise','choice',array(

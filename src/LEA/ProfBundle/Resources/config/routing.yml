@@ -1,24 +1,24 @@
 lea_prof_homepage:
-    path:     /prof/{name}
+    path:     /prof
     defaults: { _controller: LEAProfBundle:Default:index }
 
 lea_prof_choisir:
-    path:    /prof/{name}/choisir
+    path:    /prof/choisir
     defaults: { _controller: LEAProfBundle:Choisir:index}
 
 lea_prof_etuAttribues:
-    path:    /prof/{name}/etuAttribues
+    path:    /prof/etuAttribues
     defaults: { _controller: LEAProfBundle:EtuAttribues:index}
 
 lea_prof_etuGeneral:
-    path:    /prof/{name}/etuAttribues/{nameEtu}/general
+    path:    /prof/etuAttribues/{name}/general
     defaults: { _controller: LEAProfBundle:General:index}
     options:
             expose: true
 
 lea_prof_modifierEtuGeneral:
-    path:    /prof/{name}/etuAttribues/{nameEtu}/general/modifer
-    defaults: { _controller: LEAProfBundle:General:index}
+    path:    /prof/etuAttribues/{name}/general/modifer
+    defaults: { _controller: LEAEtuBundle:Stage:index}
     options:
             expose: true
 
