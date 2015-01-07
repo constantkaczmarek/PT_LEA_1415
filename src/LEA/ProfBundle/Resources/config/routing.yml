@@ -6,6 +6,10 @@ lea_prof_choisir:
     path:    /prof/choisir
     defaults: { _controller: LEAProfBundle:Choisir:index}
 
+lea_prof_rapportSoutenance:
+    path:    /prof/rapportsoutenance
+    defaults: { _controller: LEAProfBundle:RapportSoutenance:index}
+
 lea_prof_etuAttribues:
     path:    /prof/etuAttribues
     defaults: { _controller: LEAProfBundle:EtuAttribues:index}
@@ -21,6 +25,19 @@ lea_prof_modifierEtuGeneral:
     defaults: { _controller: LEAEtuBundle:Stage:index}
     options:
             expose: true
+
+lea_prof_odm:
+    path:    /prof/etuAttribues/{name}/odm
+    defaults: { _controller: LEAProfBundle:ODM:index}
+    options:
+            expose: true
+
+lea_prof_creerOdm:
+    path:    /prof/etuAttribues/{name}/odm/generer
+    defaults: { _controller: LEAProfBundle:ODM:creer}
+    options:
+            expose: true
+
 
 lea_prof_changeForm:
     path:    /prof/ajax/changeForm

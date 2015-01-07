@@ -7,7 +7,11 @@
     {% if role=='prof' %}
         {% include "LEAProfBundle:Default:navbar.html.twig" %}
         <div class="container-fluid">
-        <a href="{{ path('lea_prof_modifierEtuGeneral',{'name':name}) }}">Modifier</a>
+        {% if odm== false %}
+            <a href="{{ path('lea_prof_modifierEtuGeneral',{'name':name}) }}">Modifier</a>
+        {% else %}
+            <a href="{{ path('lea_prof_creerOdm',{'name':name}) }}">Générer ODM</a>
+        {% endif %}
     {% else %}
         <h1> Mise à jour des informations concernant  </h1>
         <div class="row">

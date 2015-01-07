@@ -20,20 +20,14 @@ class GeneralController extends Controller
 
         $conn = $this->get('database_connection');
 
-
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$name);
-
 
         return $this->render('LEAEtuBundle:Default:afficheInfosStage.html.twig',array(
             'name' => $name,
             'infos' => $infos,
             'role' =>$role,
         ));
-
-        /*return $this->forward('LEAEtuBundle:Stage:afficherInfos',array(
-           'name'
-        ));*/
     }
 }
 

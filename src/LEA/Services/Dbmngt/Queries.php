@@ -172,4 +172,41 @@ class Queries {
         return $query;
     }
 
+    function getFormationSuivieTuteur($conn, $tuteurRef, $yearRef=null,$onlyM1INFOFAnoParcours=false) {
+        if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
+        $query = $conn->fetchAll("select distinct
+
+                    formation.nom,".
+            ($onlyM1INFOFAnoParcours?"if(formation.formationCle like 'M1%FA' and
+                           formation.formationCle not like '%MIAGE%',
+                          'M1INFOFA',
+                          formation.formationCle)":"formation.formationCle")." as formationCle from
+                    membre inner join contrat on membre.profCle=contrat.tuteurRef
+                    inner join etudiant on contrat.etudRef=etudiant.etudCle
+                    inner join etudiant_groupe on etudiant.etudCle=etudiant_groupe.etudRef
+                                                  and contrat.anneeCle=etudiant_groupe.annee
+                    inner join groupe on etudiant_groupe.groupeRef=groupe.groupeCle
+                    inner join formation on groupe.formationRef=formation.formationCle
+                where membre.profCle = '" . $tuteurRef . "' and contrat.anneeCle in (".$yearRef.");");
+
+        return $query;
+    }
+
+    function getDetailSoutenance($conn,$formation,$yearRef=null) {
+        if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
+        $query= $conn->fetchAll("select formationRef,
+                          dateRemise,
+                          datesSoutenances,
+                         	longueurRapport,
+                         	duréeSoutenance as dureeSoutenance,
+                         	observationsTous,
+                         	observationsTuteurs,
+                         	lienExterne
+                  from
+                    soutenance
+                  where formationRef like '".$formation."'
+                        and anneeReference <= $yearRef and obsolete=0  ;");
+        return $query;
+    }
+
 } 

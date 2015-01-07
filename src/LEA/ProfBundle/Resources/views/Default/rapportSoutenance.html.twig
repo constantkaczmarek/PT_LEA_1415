@@ -1,0 +1,45 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% javascripts '@LEAProfBundle/Resources/Js/choisir.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+    {% for info in infosSoutenance %}
+        <h1>{{ info.formationRef }}</h1>
+        <table>
+            <tr>
+                <td>Date de remise du rapport</td>
+                <td>{{ info.dateRemise }}</td>
+            </tr>
+            <tr>
+                <td>Dates de soutenances</td>
+                <td>{{ info.datesSoutenances }}</td>
+            </tr>
+            <tr>
+                <td>Longueur du rapport</td>
+                <td>{{ info.longueurRapport }}</td>
+            </tr>
+            <tr>
+                <td>Durée de la soutenance</td>
+                <td>{{ info.dureeSoutenance }}</td>
+            </tr>
+            <tr>
+                <td>Observations (réservées aux étudiants)</td>
+                <td>{{ info.observationsTous }}</td>
+            </tr>
+            <tr>
+                <td>Observations (réservées aux tuteurs uniquement)</td>
+                <td>{{ info.observationsTuteurs }}</td>
+            </tr>
+            <tr>
+                <td>Lien externe</td>
+                <td><a href="{{ info.lienExterne }}">{{ info.lienExterne }}</a></td>
+            </tr>
+        </table>
+    {% endfor %}
+
+{% endblock %}
