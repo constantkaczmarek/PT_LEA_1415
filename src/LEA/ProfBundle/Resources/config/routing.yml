@@ -20,6 +20,18 @@ lea_prof_etuGeneral:
     options:
             expose: true
 
+lea_prof_etuRencontre:
+    path:    /prof/etuAttribues/{name}/rencontre
+    defaults: { _controller: LEAProfBundle:EtuAttriRencontre:index}
+    options:
+        expose: true
+
+lea_prof_etuRencontreEdit:
+    path:    /prof/etuAttribues/{name}/rencontreEdit
+    defaults: { _controller: LEAProfBundle:EtuAttriRencontre:rendu}
+    options:
+        expose: true
+
 lea_prof_modifierEtuGeneral:
     path:    /prof/etuAttribues/{name}/general/modifer
     defaults: { _controller: LEAEtuBundle:Stage:index}
@@ -58,6 +70,8 @@ lea_prof_changeAction:
 lea_prof_suivi:
     path:    /prof/{name}/suivi
     defaults: { _controller: LEAProfBundle:Suivi:index}
+    options:
+       expose: true
 
 lea_prof_suiviSuppr:
     path:    /prof/ajax/suiviSuppr

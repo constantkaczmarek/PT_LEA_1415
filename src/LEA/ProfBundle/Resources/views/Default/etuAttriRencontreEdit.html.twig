@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
+    <form action="{{ path("lea_prof_etuRencontreEdit",{ 'name': name}) }}" method="post">
+        {{ form_widget(form) }}
+        <input type="submit" name="Enregistrer" value="Enregistrer"/>
+    </form>
+{% endblock %}

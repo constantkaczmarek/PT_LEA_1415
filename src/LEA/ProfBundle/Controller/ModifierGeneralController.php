@@ -23,7 +23,7 @@ class ModifierGeneralController extends Controller
 
         $role = $this->getRequest()->getSession()->get('role');
 
-        return $this->render('LEAEtuBundle:Default:afficheInfosStage.html.twig',array(
+        return $this->render('LEAProfBundle:Default:afficheInfosStage.html.twig',array(
             'name' => $name,
             'infos' => $infos,
             'role' =>$role,

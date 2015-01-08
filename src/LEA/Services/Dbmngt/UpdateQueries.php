@@ -82,4 +82,11 @@ class UpdateQueries {
     public function updateMissionSoutenance($conn, $validationRencontre, $altCle) {
         $conn->query("update etapemissionsout set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
     }
+
+    public function profUpdateRencontre($conn, $rencontre, $altCle) {
+        $conn->query("update etapeetudtut set dateRencontre='".$rencontre->getDateRencontre()."', service='".$rencontre->getService()."', client='".$rencontre->getClient().
+            "', missions='".$rencontre->getMissions()."', environnementTechnique='".$rencontre->getEnvironnementTechnique()."', integrationEntreprise='".$rencontre->getIntegrationEntreprise().
+            "', signatureTuteur='".$rencontre->getSignatureTuteur()."', remarquesTuteur='".$rencontre->getRemarquesTuteur().
+            "', motscles='".$rencontre->getMotscles()."' where alternanceRef='".$altCle."'");
+    }
 }

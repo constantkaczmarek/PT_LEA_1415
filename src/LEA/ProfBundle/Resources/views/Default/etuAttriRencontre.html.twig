@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+    {% if post %}
+        <p>Informations de rencontre mises à jour!</p>
+    {% endif %}
+    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
+    <table>
+        <tr>
+            <td>Date rencontre (aaaa-mm-jj)</td>
+            <td>{{ infos.dateRencontre }}</td>
+        </tr>
+        <tr>
+            <td>Entreprise chosie</td>
+            <td>{{ infos.entreprise }}</td>
+        </tr>
+        <tr>
+            <td>Service/Projet</td>
+            <td>{{ infos.service }}</td>
+        </tr>
+            <td>Eventuellement client</td>
+            <td>{{ infos.client }}</td>
+        </tr>
+        <tr>
+            <td>Quels sont (ou seront) les missions confiées ?</td>
+            <td>{{ infos.missions }}</td>
+        </tr>
+        <tr>
+            <td>Dans quel environnement technique ?</td>
+            <td>{{ infos.environnementTechnique }}</td>
+        </tr>
+        <tr>
+            <td>Comment se passe l'intégration dans l'entreprise ?</td>
+            <td>{{ infos.integrationEntreprise }}</td>
+        </tr>
+        <tr>
+            <td>Validation de l'étudiant</td>
+            <td>{{ infos.signatureEtud }}</td>
+            </tr>
+        <tr>
+            <td>Remarques éventuelles</td>
+            <td>{{ infos.remarquesEtud }}</td>
+        </tr>
+        <tr>
+            <td>Validation du tuteur</td>
+            <td>{{ infos.signatureTuteur }}</td>
+        </tr>
+        <tr>
+            <td>Remarques éventuelles</td>
+            <td>{{ infos.remarquesTuteur }}</td>
+        </tr>
+    </table>
+    <br>
+    <a href="{{ path("lea_prof_etuRencontreEdit",{ 'name': name}) }}"><button class="button">Modifier</button></a>
+
+{% endblock %}
