@@ -37,12 +37,13 @@
                 {{ form_row(form.mailLille1) }}
             </div>
 
+            {% if role == "prof" %}
             <div>
                 {{ form_row(form.tuteur) }}
             </div>
-            {% if role != "prof" %}
+            {% else %}
                 <div>
-                    Tuteur : {{ infosStage.tuteur }}
+                    <b>Tuteur</b> : {{ infosStage.tuteur }}
                 </div>
             {% endif %}
             <div>

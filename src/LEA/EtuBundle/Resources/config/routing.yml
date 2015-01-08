@@ -1,9 +1,9 @@
 lea_etu_homepage:
-    path:     /etudiant/{name}
+    path:     /etudiant
     defaults: { _controller: LEAEtuBundle:Default:index }
 
 lea_etu_infosStage:
-    path:    /etudiant/{name}/infosStage
+    path:    /etudiant/infosStage
     defaults: { _controller: LEAEtuBundle:Stage:index }
 
 lea_etu_afficherInfosStage:
@@ -15,13 +15,13 @@ lea_etu_inscrireEntr:
     defaults: { _controller: LEAEtuBundle:Stage:inscrireEntr }
 
 lea_etu_inscrireBureau:
-    path:    /etudiant/{name}/infosStage/{entr}/inscrireBureau
+    path:    /etudiant/infosStage/{entr}/inscrireBureau
     defaults: { _controller: LEAEtuBundle:Stage:inscrireBureau }
     options:
         expose: true
 
 lea_etu_inscrireRef:
-    path:    /etudiant/{name}/infosStage/{entr}/inscrireRef
+    path:    /etudiant/infosStage/{entr}/inscrireRef
     defaults: { _controller: LEAEtuBundle:Stage:inscrireRef }
     options:
          expose: true
@@ -43,11 +43,11 @@ lea_etu_appel_ajax_regie:
         expose: true
 
 lea_etu_infosMission:
-    path:    /etudiant/{name}/infosMission
+    path:    /etudiant/infosMission
     defaults: { _controller: LEAEtuBundle:Mission:index }
 
 lea_etu_soutenanceRapport:
-    path:    /etudiant/{name}/soutenanceRapport
+    path:    /etudiant/soutenanceRapport
     defaults: { _controller: LEAEtuBundle:SoutenanceRapport:index }
 
 lea_etu_rencontreTuteur:

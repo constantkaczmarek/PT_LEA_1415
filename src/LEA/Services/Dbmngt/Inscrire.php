@@ -59,7 +59,6 @@ class Inscrire {
 
     function inscrireBureau($conn,$infosBur,$dist,$norm, $entreprise) {
 
-
         $nom = $entreprise . "_" . $infosBur->getVille() . "_" . $infosBur->getAdresse();
         $cle = $norm->genererCleBureau($entreprise,$infosBur->getVille(),$infosBur->getAdresse());
 
@@ -70,7 +69,7 @@ class Inscrire {
         }
 
         //Verification que l'entreprise existe (Foreign KEY )
-        $queryString = $conn->fetchArray("select * from entreprise where lower(entrepriseCle) like '" .
+        $queryString = $conn->fetchAll("select * from entreprise where lower(entrepriseCle) like '" .
             $norm->genererCleEntrepriseAPartirDeNom($entreprise). "';");
 
         if (!$queryString) {// Si le resultat est null cela veut dire que l'entreprise n'existe pas !
@@ -80,7 +79,7 @@ class Inscrire {
 
         $DistanceTmp = $dist->getDistance($infosBur->getAdresse()." ".$infosBur->getCp()." ".$infosBur->getVille());
 
-        $queryString = "insert into bureau(`bureauCle`, `entrepriseRef`, `adresse`, `codePostal`, `ville`, `tel`,`distance`)
+        $queryString = "insert into bureau(bureauCle,entrepriseRef,adresse,codePostal,ville,tel,distance)
       values" .
             "('" . $cle . "'," .
             "'" . $norm->genererCleEntrepriseAPartirDeNom($entreprise) . "'," .

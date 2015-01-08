@@ -3,18 +3,25 @@
 namespace LEA\EtuBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
         $conn = $this->get('database_connection');
+
+        $session = new Session();
+        $session->set('role','etudiant');
+        $session->set('etudiant','m1infofi1AA72');
+
+        $nameEtu = $session->get('etudiant');
 
         $queryEtu = $this->get('queries_etu');
         $date = new \DateTime();
         $year = $date->format('Y');
-        $tuteur = $queryEtu->doGetTuteurInfoForStudent($conn,$name,$year);
-        $formation = $queryEtu->doGetFormationForStudent($conn, $name, $year);
+        $tuteur = $queryEtu->doGetTuteurInfoForStudent($conn,$nameEtu,$year);
+        $formation = $queryEtu->doGetFormationForStudent($conn, $nameEtu, $year);
         $refFormationType = substr($formation,strlen($formation)-2,2);
 
         // A DECOMMENTER EN VERSION FINALE, ET SUPPRIMER LES DEUX INITIALISATIONS A TRUE
@@ -27,7 +34,7 @@ class DefaultController extends Controller
         $tuteur = ($tuteur != null) ? $tuteur["prenom"] . " " . $tuteur["nom"] : "Aucun tuteur pour le moment";
 
         return $this->render('LEAEtuBundle:Default:index.html.twig', array(
-            'name' => $name,
+            'name' => $nameEtu,
             'tuteur' => $tuteur,
             'missionSoutenance' => $missionSoutenance,
             'deuxiemeVisite' => $deuxiemeVisite,

@@ -63,13 +63,13 @@ class ChoixSansTuteur
      */
     public function getAltCle()
     {
-        return $this->altCle;
+        return array($this->altCle);
     }
 
     /**
      * @param mixed $altCle
      */
-    public function setAltCle($altCle)
+    public function setAltCle(array $altCle)
     {
         $this->altCle = $altCle;
     }

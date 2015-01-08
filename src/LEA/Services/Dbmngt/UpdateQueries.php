@@ -76,7 +76,12 @@ class UpdateQueries {
     }
 
     public function enregChoixTuteur($conn,$choix){
-        $conn->query("INSERT INTO `temp_tuteurs` (`etat`,`tuteurRef`,`formationRef`,`alternanceRef`) VALUES ('0','".$choix->getTuteurRef()."','".$choix->getFormationRef()."','".$choix->getAltCle()."')");
+
+        print_r($choix->getAltCle());
+        foreach($choix->getAltCle()[0] as $value ){
+            print_r($value);
+            $conn->query("INSERT INTO `temp_tuteurs` (`etat`,`tuteurRef`,`formationRef`,`alternanceRef`) VALUES ('0','".$choix->getTuteurRef()."','".$choix->getFormationRef()."','".$value."')");
+        }
     }
 
     public function updateMissionSoutenance($conn, $validationRencontre, $altCle) {

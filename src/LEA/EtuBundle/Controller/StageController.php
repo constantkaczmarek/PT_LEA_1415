@@ -19,17 +19,16 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class StageController extends Controller
 {
 
-    public function indexAction($name)
+    public function indexAction()
     {
 
         $conn = $this->get('database_connection');
-
-        $role = $this->getRequest()->getSession()->get('role');
+        $session = $this->getRequest()->getSession();
+        $role = $session->get('role');
+        $nameEtu = $session->get('etudiant');
 
         $queryEtu = $this->get('queries_etu');
-        //$altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
-
-        $altRef = $name;
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)["alternanceCle"];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$altRef);
@@ -76,18 +75,18 @@ class StageController extends Controller
 
                 $infosStage = $form->getData();
                 $updateInfos = $this->get("update_queries");
-                $updateInfos->updateInfosStage($conn,$infosStage,$altRef,$name);
+                $updateInfos->updateInfosStage($conn,$infosStage,$altRef,$nameEtu);
 
                 if($role=="prof"){
                     return $this->redirect(
                         $this->generateUrl('lea_prof_etuGeneral',array(
-                            'name' => $name,
+                            'name' => $nameEtu,
                         ))
                     );
                 }else
                     return $this->redirect(
                         $this->generateUrl('lea_etu_afficherInfosStage',array(
-                            'name' => $name,
+                            'name' => $nameEtu,
                         ))
                     );
             }
@@ -101,7 +100,7 @@ class StageController extends Controller
             'form'=> $form->createView(),
             'infosStage' => $infosStage,
             'altref' => $altRef,
-            'name' => $name,
+            'name' => $nameEtu,
             'role' => $role,
         ));
     }
@@ -142,9 +141,11 @@ class StageController extends Controller
         return new JsonResponse(array('bureau'=> $listBureau, 'referent' => $listReferent));
     }
 
-    public function inscrireEntrAction($name){
+    public function inscrireEntrAction(){
 
         $conn = $this->get('database_connection');
+        $session = $this->getRequest()->getSession();
+        $nameEtu = $session->get('etudiant');
 
         $entr = new Entreprise();
         $form = $this->createForm(new EntrepriseType(),$entr);
@@ -164,25 +165,25 @@ class StageController extends Controller
                 $inscr->inscrireEntr($conn,$infosEntr,$dist,$norm);
 
                 return $this->redirect(
-                    $this->generateUrl('lea_etu_infosStage',array(
-                        'name' => $name,
-                    ))
-                );
+                    $this->generateUrl('lea_etu_infosStage'));
             }
         }
 
         return $this->render('LEAEtuBundle:Default:InscrireEntreprise.html.twig',array(
             'form'=> $form->createView(),
-            'name' => $name
+            'name' => $nameEtu
         ));
     }
 
-    public function inscrireBureauAction($name,$entr){
+    public function inscrireBureauAction($entr){
 
         $conn = $this->get('database_connection');
+        $session = $this->getRequest()->getSession();
+        $nameEtu = $session->get('etudiant');
 
         $bur = new Bureau();
         $form = $this->createForm(new BureauType(),$bur);
+
 
         $request = $this->getRequest();
 
@@ -199,9 +200,7 @@ class StageController extends Controller
                 $inscr->inscrireBureau($conn,$infosBur,$dist,$norm,$entr);
 
                 return $this->redirect(
-                    $this->generateUrl('lea_etu_infosStage',array(
-                        'name' => $name,
-                    ))
+                    $this->generateUrl('lea_etu_infosStage')
                 );
             }
         }
@@ -209,13 +208,15 @@ class StageController extends Controller
         return $this->render('LEAEtuBundle:Default:InscrireBureau.html.twig',array(
             'form'=> $form->createView(),
             'entr'=> $entr,
-            'name' => $name
+            'name' => $nameEtu
         ));
     }
 
-    public function inscrireRefAction($name,$entr){
+    public function inscrireRefAction($entr){
 
         $conn = $this->get('database_connection');
+        $session = $this->getRequest()->getSession();
+        $nameEtu = $session->get('etudiant');
 
         $dbQueries = $this->get('queries');
         $dbutils = $this->get('dbutils');
@@ -241,9 +242,7 @@ class StageController extends Controller
                 $inscr->inscrireRef($conn,$infosRef,$dist,$norm,$entr);
 
                 return $this->redirect(
-                    $this->generateUrl('lea_etu_infosStage',array(
-                        'name' => $name,
-                    ))
+                    $this->generateUrl('lea_etu_infosStage')
                 );
             }
         }
@@ -251,24 +250,27 @@ class StageController extends Controller
         return $this->render('LEAEtuBundle:Default:InscrireRef.html.twig',array(
             'form'=> $form->createView(),
             'entr' => $entr,
-            'name' => $name
+            'name' => $nameEtu
         ));
     }
 
-    public function afficherInfosAction($name){
+    public function afficherInfosAction(){
 
         $conn = $this->get('database_connection');
+        $session = $this->getRequest()->getSession();
+        $role = $session->get('role');
+        $nameEtu = $session->get('etudiant');
 
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)["alternanceCle"];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$altRef);
 
-        $role = $this->getRequest()->getSession()->get('role');
+
 
         return $this->render('LEAEtuBundle:Default:afficheInfosStage.html.twig',array(
-            'name' => $name,
+            'name' => $nameEtu,
             'infos' => $infos,
             'role' => $role,
         ));

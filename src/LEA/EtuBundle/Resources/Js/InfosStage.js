@@ -63,7 +63,8 @@ $(document).ready(function () {
 
         var nomEntr = $('#infosMissionForm_entreprise option:selected').text().split('-');
 
-        var url = Routing.generate('lea_etu_inscrireBureau',{name:'m1infofi1AA72',entr:nomEntr[0]});
+        nomEntr = nomEntr[0].substring(0,nomEntr[0].length-1);
+        var url = Routing.generate('lea_etu_inscrireBureau',{entr:nomEntr});
         window.location=url;
 
     });
@@ -73,7 +74,8 @@ $(document).ready(function () {
 
         var nomEntr = $('#infosMissionForm_entreprise option:selected').text().split('-');
 
-        var url = Routing.generate('lea_etu_inscrireRef',{name:'m1infofi1AA72','entr':nomEntr[0]});
+        nomEntr = nomEntr[0].substring(0,nomEntr[0].length-1);
+        var url = Routing.generate('lea_etu_inscrireRef',{entr:nomEntr});
         window.location=url;
 
     });

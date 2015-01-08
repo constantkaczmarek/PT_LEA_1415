@@ -9,13 +9,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class MissionController extends Controller
 {
 
-    public function indexAction($name)
+    public function indexAction()
     {
 
         $conn = $this->get('database_connection');
+        $session = $this->getRequest()->getSession();
 
+        $nameEtu = $session->get('etudiant');
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)["alternanceCle"];
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)["alternanceCle"];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosMissions($conn,$altRef);
@@ -43,7 +45,7 @@ class MissionController extends Controller
 
                 return $this->redirect(
                     $this->generateUrl('lea_etu_homepage',array(
-                        'name' => $name,
+                        'name' => $nameEtu,
                     ))
                 );
             }
@@ -53,7 +55,7 @@ class MissionController extends Controller
             'form'=> $form->createView(),
             'infosMissions' => $infosMissions,
             'altref' => $altRef,
-            'name' => $name
+            'name' => $nameEtu
         ));
     }
 

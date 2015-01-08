@@ -19,21 +19,24 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class SoutenanceRapportController extends Controller
 {
 
-    public function indexAction($name)
+    public function indexAction()
     {
 
         $conn = $this->get('database_connection');
+        $session = $this->getRequest()->getSession();
+        $role = $session->get('role');
+        $nameEtu = $session->get('etudiant');
 
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name);
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu);
 
         $query = $this->get('queries_sout');
         $date = new \DateTime();
         $year = $date->format('Y');
-        $infos = $query->getDetailsSoutenanceEtu($conn,$name,$year);
+        $infos = $query->getDetailsSoutenanceEtu($conn,$nameEtu,2014);
 
         return $this->render('LEAEtuBundle:Default:soutenanceRapport.html.twig',array(
-            'name' => $name,
+            'name' => $nameEtu,
             'infos' => $infos
         ));
     }
