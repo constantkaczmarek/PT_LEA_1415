@@ -23,7 +23,7 @@ class EtuAttribuesController extends Controller
             //"majEtape0",
             "etuRencontre",
             //"majEtape1",
-            "renduEtape2_act",
+            "etuVisiteUn",
             "renduEtapeMissionSoutenance_act",
             "renduEtapeBilan_act",
             "aucune",
