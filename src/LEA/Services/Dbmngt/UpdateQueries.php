@@ -106,4 +106,20 @@ class UpdateQueries {
             "', remarquesTuteur='".$visiteUn->getRemarquesTuteur()."', remarquesReferent='".$visiteUn->getRemarquesReferent()."' ".
             "where alternanceRef='".$altCle."'");
     }
+
+    public function profUpdateVisiteDeux($conn, $visiteDeux, $altCle) {
+
+        $verif = $conn->fetchAll("select alternanceRef from etapevisite2 where alternanceRef='".$altCle."'");
+        if(count($verif) === 0)
+            $conn->query("insert into etapevisite2 (`alternanceRef`) values ('".$altCle."')");
+
+        $conn->query("update etapevisite2 set dateRencontre='".$visiteDeux->getDateRencontre().
+            "', pointsPositifs='".$visiteDeux->getPointsPositifs().
+            "', pointsProgres='".$visiteDeux->getPointsProgres().
+            "', avancementProjet='".$visiteDeux->getAvancementProjet().
+            "', dateProbableSoutenance='".$visiteDeux->getDateProbableSoutenance().
+            "', signatureTuteur='".$visiteDeux->getSignatureTuteur()."', signatureReferent='".$visiteDeux->getSignatureReferent().
+            "', remarquesTuteur='".$visiteDeux->getRemarquesTuteur()."', remarquesReferent='".$visiteDeux->getRemarquesReferent()."' ".
+            "where alternanceRef LIKE '".$altCle."'");
+    }
 }

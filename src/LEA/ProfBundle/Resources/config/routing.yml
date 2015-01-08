@@ -44,6 +44,18 @@ lea_prof_etuVisiteUnEdit:
     options:
         expose: true
 
+lea_prof_etuVisiteDeux:
+    path:    /prof/etuAttribues/{name}/visiteDeux
+    defaults: { _controller: LEAProfBundle:EtuAttriVisiteDeux:index}
+    options:
+        expose: true
+
+lea_prof_etuVisiteDeuxEdit:
+    path:    /prof/etuAttribues/{name}/visiteDeuxEdit
+    defaults: { _controller: LEAProfBundle:EtuAttriVisiteDeux:rendu}
+    options:
+        expose: true
+
 lea_prof_modifierEtuGeneral:
     path:    /prof/etuAttribues/{name}/general/modifer
     defaults: { _controller: LEAEtuBundle:Stage:index}

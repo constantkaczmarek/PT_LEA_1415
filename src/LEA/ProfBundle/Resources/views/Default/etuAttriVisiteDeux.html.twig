@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+    {% if post %}
+        <p>Informations de deuxième visite mises à jour!</p>
+    {% endif %}
+    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
+    <table>
+        <tr>
+            <td>Date rencontre (aaaa-mm-jj)</td>
+            <td>{{ infos.dateRencontre }}</td>
+        </tr>
+        <tr>
+            <td>Quels sont les points positifs ?</td>
+            <td>{{ infos.pointsPositifs }}</td>
+        </tr>
+        <tr>
+            <td>Quels sont les points de progrès ?</td>
+            <td>{{ infos.pointsProgres }}</td>
+        </tr>
+        <tr>
+            <td>Quel est l'avancement du projet ?</td>
+            <td>{{ infos.avancementProjet }}</td>
+        </tr>
+        <tr>
+            <td>Date probable de soutenance (aaaa-mm-jj)</td>
+            <td>{{ infos.dateProbableSoutenance }}</td>
+        </tr>
+        <tr>
+            <td>Validation de l'étudiant</td>
+            <td>{{ infos.signatureEtud }}</td>
+        </tr>
+        <tr>
+            <td>Remarques éventuelles</td>
+            <td>{{ infos.remarquesEtud }}</td>
+        </tr>
+        <tr>
+            <td>Validation du référent</td>
+            <td>{{ infos.signatureReferent }}</td>
+        </tr>
+        <tr>
+            <td>Remarques éventuelles</td>
+            <td>{{ infos.remarquesReferent }}</td>
+        </tr>
+        <tr>
+            <td>Validation du tuteur</td>
+            <td>{{ infos.signatureTuteur }}</td>
+        </tr>
+            <td>Remarques éventuelles</td>
+            <td>{{ infos.remarquesTuteur }}</td>
+        </tr>
+    </table>
+    <br>
+    <a href="{{ path("lea_prof_etuVisiteDeuxEdit",{ 'name': name}) }}"><button class="button">Modifier</button></a>
+
+{% endblock %}
