@@ -6,16 +6,14 @@ $(document).ready(function() {
 
         etudiants = $(this).attr('id');
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: Routing.generate('lea_prof_suiviSuppr',{"etudiant":etudiants}),
             datatype:"json",
             success:function(){
-                console.log("sucess");
                 location.reload(true);
             },
             error:function(){
                 console.log("error");
-                location.reload(true);
             }
         });
     });

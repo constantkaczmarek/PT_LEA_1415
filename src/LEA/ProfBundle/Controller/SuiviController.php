@@ -3,7 +3,7 @@
 namespace LEA\ProfBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SuiviController extends Controller
 {

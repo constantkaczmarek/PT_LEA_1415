@@ -101,6 +101,6 @@ lea_prof_suiviSuppr:
     path:    /prof/ajax/suiviSuppr
     defaults: { _controller: LEAProfBundle:Suivi:suppr }
     requirements:
-        _method: POST
+        _method: GET
     options:
         expose: true

@@ -37,7 +37,7 @@ class QueriesTuteur {
 
     function doDeleteChoixTuteurPourEtudiant($conn,$alternance,$tuteur)
     {
-        $query = $conn->fetchAll("delete from temp_tuteurs where alternanceRef='".$alternance."' and tuteurRef='".$tuteur."';");
+        $query = $conn->query("delete from temp_tuteurs where alternanceRef='".$alternance."' and tuteurRef='".$tuteur."';");
 
         if (!$query)
             return false;
