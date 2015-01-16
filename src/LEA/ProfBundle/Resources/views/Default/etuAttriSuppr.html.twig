@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+    <p>Cet étudiant n'aura plus de tuteur associé dans l'appli pour l'année **** : {{ infos.et_pn }}</p>
+    <br>
+    <a href="{{ path("lea_prof_etuAttribues") }}"><button class="button">Annuler</button></a>
+    <a href="{{ path("lea_prof_etuSupprOk",{ 'name': name}) }}"><button class="button">Supprimer</button></a>
+
+{% endblock %}

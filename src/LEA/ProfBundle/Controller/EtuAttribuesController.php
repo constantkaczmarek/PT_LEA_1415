@@ -29,7 +29,7 @@ class EtuAttribuesController extends Controller
             "aucune",
             "odm",
             "aucune",
-            "dissocierTuteur_act");
+            "etuSuppr");
         $actionLabels=array("aucune",
             "Dossier global",
             "Informations générales",

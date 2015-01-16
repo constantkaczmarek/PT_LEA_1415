@@ -68,6 +68,18 @@ lea_prof_etuMissionSoutenanceEdit:
     options:
         expose: true
 
+lea_prof_etuSuppr:
+    path:    /prof/etuAttribues/{name}/suppr
+    defaults: { _controller: LEAProfBundle:EtuAttriSuppr:index}
+    options:
+        expose: true
+
+lea_prof_etuSupprOk:
+    path:    /prof/etuAttribues/{name}/supprOk
+    defaults: { _controller: LEAProfBundle:EtuAttriSuppr:suppr}
+    options:
+        expose: true
+
 lea_prof_modifierEtuGeneral:
     path:    /prof/etuAttribues/{name}/general/modifer
     defaults: { _controller: LEAEtuBundle:Stage:index}

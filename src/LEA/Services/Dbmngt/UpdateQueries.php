@@ -84,39 +84,39 @@ class UpdateQueries {
         }
     }
 
-    public function updateMissionSoutenance($conn, $validationRencontre, $altCle) {
-        $conn->query("update etapemissionsout set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
+    public function updateMissionSoutenance($conn, $validationRencontre, $altRef) {
+        $conn->query("update etapemissionsout set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altRef."'");
     }
 
-    public function profUpdateRencontre($conn, $rencontre, $altCle) {
+    public function profUpdateRencontre($conn, $rencontre, $altRef) {
 
-        $verif = $conn->fetchAll("select alternanceRef from etapeetudtut where alternanceRef='".$altCle."'");
+        $verif = $conn->fetchAll("select alternanceRef from etapeetudtut where alternanceRef='".$altRef."'");
         if (count($verif) === 0)
-            $conn->query("insert into etapeetudtut (`alternanceRef`) values ('".$altCle."')");
+            $conn->query("insert into etapeetudtut (`alternanceRef`) values ('".$altRef."')");
 
         $conn->query("update etapeetudtut set dateRencontre='".$rencontre->getDateRencontre()."', service='".$rencontre->getService()."', client='".$rencontre->getClient().
             "', missions='".$rencontre->getMissions()."', environnementTechnique='".$rencontre->getEnvironnementTechnique()."', integrationEntreprise='".$rencontre->getIntegrationEntreprise().
             "', signatureTuteur='".$rencontre->getSignatureTuteur()."', remarquesTuteur='".$rencontre->getRemarquesTuteur().
-            "', motscles='".$rencontre->getMotscles()."' where alternanceRef='".$altCle."'");
+            "', motscles='".$rencontre->getMotscles()."' where alternanceRef='".$altRef."'");
     }
 
-    public function profUpdateVisiteUn($conn, $visiteUn, $altCle) {
+    public function profUpdateVisiteUn($conn, $visiteUn, $altRef) {
 
-        $verif = $conn->fetchAll("select alternanceRef from etapevisite1 where alternanceRef='".$altCle."'");
+        $verif = $conn->fetchAll("select alternanceRef from etapevisite1 where alternanceRef='".$altRef."'");
         if(count($verif) === 0)
-            $conn->query("insert into etapevisite1 (`alternanceRef`) values ('".$altCle."')");
+            $conn->query("insert into etapevisite1 (`alternanceRef`) values ('".$altRef."')");
 
         $conn->query("update etapevisite1 set dateRencontre='".$visiteUn->getDateRencontre()."', adequationMission='".$visiteUn->getAdequationMission()."', integrationEtudiant='".$visiteUn->getIntegrationEtudiant().
             "', signatureTuteur='".$visiteUn->getSignatureTuteur()."', signatureReferent='".$visiteUn->getSignatureReferent().
             "', remarquesTuteur='".$visiteUn->getRemarquesTuteur()."', remarquesReferent='".$visiteUn->getRemarquesReferent()."' ".
-            "where alternanceRef='".$altCle."'");
+            "where alternanceRef='".$altRef."'");
     }
 
-    public function profUpdateVisiteDeux($conn, $visiteDeux, $altCle) {
+    public function profUpdateVisiteDeux($conn, $visiteDeux, $altRef) {
 
-        $verif = $conn->fetchAll("select alternanceRef from etapevisite2 where alternanceRef='".$altCle."'");
+        $verif = $conn->fetchAll("select alternanceRef from etapevisite2 where alternanceRef='".$altRef."'");
         if(count($verif) === 0)
-            $conn->query("insert into etapevisite2 (`alternanceRef`) values ('".$altCle."')");
+            $conn->query("insert into etapevisite2 (`alternanceRef`) values ('".$altRef."')");
 
         $conn->query("update etapevisite2 set dateRencontre='".$visiteDeux->getDateRencontre().
             "', pointsPositifs='".$visiteDeux->getPointsPositifs().
@@ -125,14 +125,14 @@ class UpdateQueries {
             "', dateProbableSoutenance='".$visiteDeux->getDateProbableSoutenance().
             "', signatureTuteur='".$visiteDeux->getSignatureTuteur()."', signatureReferent='".$visiteDeux->getSignatureReferent().
             "', remarquesTuteur='".$visiteDeux->getRemarquesTuteur()."', remarquesReferent='".$visiteDeux->getRemarquesReferent()."' ".
-            "where alternanceRef LIKE '".$altCle."'");
+            "where alternanceRef LIKE '".$altRef."'");
     }
 
-    public function profUpdateMissionSoutenance($conn, $missionSoutenance, $altCle) {
+    public function profUpdateMissionSoutenance($conn, $missionSoutenance, $altRef) {
 
-        $verif = $conn->fetchAll("select alternanceRef from etapemissionsout where alternanceRef='".$altCle."'");
+        $verif = $conn->fetchAll("select alternanceRef from etapemissionsout where alternanceRef='".$altRef."'");
         if(count($verif) === 0)
-            $conn->query("insert into etapemissionsout (`alternanceRef`) values ('".$altCle."');");
+            $conn->query("insert into etapemissionsout (`alternanceRef`) values ('".$altRef."');");
 
         $conn->query("update etapemissionsout set dateRencontre='".$missionSoutenance->getDateRencontre().
             "', typeRencontre='".$missionSoutenance->getTypeRencontre().
@@ -142,6 +142,11 @@ class UpdateQueries {
             "', enjeux='".$missionSoutenance->getEnjeux().
             "', signatureTuteur='".$missionSoutenance->getSignatureTuteur()."', signatureReferent='".$missionSoutenance->getSignatureReferent().
             "', remarquesTuteur='".$missionSoutenance->getRemarquesTuteur()."', remarquesReferent='".$missionSoutenance->getRemarquesReferent()."' ".
-            "where alternanceRef='".$altCle."'");
+            "where alternanceRef='".$altRef."'");
+    }
+
+    public function profStopSuivi ($conn, $altCle) {
+
+        $conn->query("update  contrat set tuteurRef=null, notifAttribTuteur=0 where alternanceCle in ('".$altCle."');");
     }
 }

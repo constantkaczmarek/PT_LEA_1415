@@ -11,6 +11,29 @@ namespace LEA\Services\Dbmngt;
 
 class queriesEtapes {
 
+    public function getInfosEtud($conn, $altRef){
+        $query = $conn->fetchAll("select
+        etudiant.prenom,
+        etudiant.nom
+    from
+	(contrat inner join etudiant
+		on etudCle=etudRef inner join etudiant_groupe on etudiant_groupe.annee=contrat.anneeCle
+      and etudiant_groupe.etudRef=etudiant.etudCle inner join groupe on groupe.groupeCle=etudiant_groupe.groupeRef) inner join
+            referent on contrat.referentRef=referent.referentCle left join
+            referent referent2 on contrat.referentRef2=referent2.referentCle left join
+            referent regieReferent on contrat.regieReferentRef=regieReferent.referentCle left join
+            referent regieReferent2 on contrat.regieReferentRef2=regieReferent2.referentCle left join
+            membre on contrat.tuteurRef=membre.profCle inner join
+            bureau on contrat.bureauRef=bureau.bureauCle
+            left join bureau regie on regie.bureauCle=contrat.regieBureauRef inner join
+            entreprise on bureau.entrepriseRef like entreprise.entrepriseCle
+            inner join opca on contrat.opcaRef=opcaCle
+        where alternanceCle in ('" . $altRef . "')"
+        );
+
+        //print_r($query);
+        return $query[0];
+    }
 
     public function getInfosStage($conn,$altRef){
         $query = $conn->fetchAll("select

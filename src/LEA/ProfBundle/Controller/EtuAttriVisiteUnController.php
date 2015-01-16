@@ -12,9 +12,6 @@ class EtuAttriVisiteUnController extends Controller
 {
     public function indexAction($name)
     {
-        //$session = $this->getRequest()->getSession();
-        //$session->set('nameEtu',$name);
-
         $query = $this->get('queries_etapes');
         $conn = $this->get('database_connection');
         $infos = $query->getVisiteUn($conn,$name);
