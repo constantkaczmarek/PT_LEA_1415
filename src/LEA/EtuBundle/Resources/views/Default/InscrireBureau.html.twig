@@ -3,10 +3,10 @@
 {% block body %}
     <div class="container-fluid">
         <h1>{{ entr }}</h1>
-        <form action="{{ path("lea_etu_inscrireBureau",{'name': name,'entr':entr}) }}" method="post">
+        <form action="{{ path("lea_etu_inscrireBureau",{'entr':entr}) }}" method="post">
             {{ form_widget(form) }}
             <input type="submit" name="Inscrire" value="Inscrire"/>
-            <a href="{{ path("lea_etu_infosStage",{'name':name}) }}">
+            <a href="{{ path("lea_etu_infosStage") }}">
                 <button>Annuler</button>
             </a>
         </form>

@@ -2,11 +2,11 @@
 
 {% block body %}
     <div class="container-fluid">
-        <form action="{{ path("lea_etu_infosMission",{ 'name': name}) }}" method="post">
+        <form action="{{ path("lea_etu_infosMission") }}" method="post">
             {{ form_widget(form) }}
             <input type="submit" name="Enregistrer" value="Enregistrer"/>
             <div>
-                <a href="{{ path('lea_etu_homepage',{'name':name}) }}">Revenir</a>
+                <a href="{{ path('lea_etu_homepage') }}">Revenir</a>
             </div>
         </form>
         <div>

@@ -9,12 +9,15 @@ use LEA\EtuBundle\Form\SignatureEtudiantType;
 class RencontreController extends Controller
 {
 
-    public function indexAction($name)
+    public function indexAction()
     {
         $conn = $this->get('database_connection');
 
+        $session = $this->getRequest()->getSession();
+        $nameEtu = $session->get('etudiant');
+
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)['alternanceCle'];
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)['alternanceCle'];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getRencontreTuteur($conn,$altRef);
@@ -23,7 +26,7 @@ class RencontreController extends Controller
 
             $infoExist = false;
             return $this->render('LEAEtuBundle:Default:rencontreTuteur.html.twig', array(
-                'name'      => $name,
+                'name'      => $nameEtu,
                 'infoExist' => $infoExist,
             ));
 
@@ -58,14 +61,14 @@ class RencontreController extends Controller
 
                     return $this->redirect(
                         $this->generateUrl('lea_etu_rencontreTuteurRendu', array(
-                            'name' => $name,
+                            'name' => $nameEtu,
                         ))
                     );
                 }
             }
 
             return $this->render('LEAEtuBundle:Default:rencontreTuteur.html.twig', array(
-                'name'      => $name,
+                'name'      => $nameEtu,
                 'infoExist' => $infoExist,
                 'rendu'     => false,
                 'infos' => $infos,
@@ -74,12 +77,15 @@ class RencontreController extends Controller
         }
     }
 
-    public function renduAction($name)
+    public function renduAction()
     {
         $conn = $this->get('database_connection');
 
+        $session = $this->getRequest()->getSession();
+        $nameEtu = $session->get('etudiant');
+
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name);
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)['alternanceCle'];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getRencontreTuteur($conn,$altRef);
@@ -88,7 +94,7 @@ class RencontreController extends Controller
 
             $infoExist = false;
             return $this->render('LEAEtuBundle:Default:rencontreTuteur.html.twig', array(
-                'name'      => $name,
+                'name'      => $nameEtu,
                 'infoExist' => $infoExist,
                 'rendu'     => true,
             ));
@@ -108,7 +114,7 @@ class RencontreController extends Controller
             $infos['remarquesTuteur'] = $html->toMinimumLines($html->toHtml($infos['remarquesTuteur']), 0);
 
             return $this->render('LEAEtuBundle:Default:rencontreTuteur.html.twig', array(
-                'name'      => $name,
+                'name'      => $nameEtu,
                 'infoExist' => $infoExist,
                 'rendu'     => true,
                 'infos' => $infos,

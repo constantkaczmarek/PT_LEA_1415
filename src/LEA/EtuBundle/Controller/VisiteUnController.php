@@ -9,12 +9,15 @@ use LEA\EtuBundle\Form\SignatureEtudiantType;
 class VisiteUnController extends Controller
 {
 
-    public function indexAction($name)
+    public function indexAction()
     {
         $conn = $this->get('database_connection');
 
+        $session = $this->getRequest()->getSession();
+        $nameEtu = $session->get('etudiant');
+
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)['alternanceCle'];
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)['alternanceCle'];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getVisiteUn($conn,$altRef);
@@ -23,7 +26,7 @@ class VisiteUnController extends Controller
 
             $infoExist = false;
             return $this->render('LEAEtuBundle:Default:visiteUn.html.twig', array(
-                'name'      => $name,
+                'name'      => $nameEtu,
                 'rendu'     => false,
                 'infoExist' => $infoExist,
             ));
@@ -56,14 +59,14 @@ class VisiteUnController extends Controller
 
                     return $this->redirect(
                         $this->generateUrl('lea_etu_visiteUnRendu', array(
-                            'name' => $name,
+                            'name' => $nameEtu,
                         ))
                     );
                 }
             }
 
             return $this->render('LEAEtuBundle:Default:visiteUn.html.twig', array(
-                'name'      => $name,
+                'name'      => $nameEtu,
                 'rendu'     => false,
                 'infoExist' => $infoExist,
                 'infos' => $infos,
@@ -72,11 +75,14 @@ class VisiteUnController extends Controller
         }
     }
 
-    public function renduAction($name) {
+    public function renduAction() {
         $conn = $this->get('database_connection');
 
+        $session = $this->getRequest()->getSession();
+        $nameEtu = $session->get('etudiant');
+
         $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$name)['alternanceCle'];
+        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)['alternanceCle'];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getVisiteUn($conn,$altRef);
@@ -85,7 +91,7 @@ class VisiteUnController extends Controller
 
             $infoExist = false;
             return $this->render('LEAEtuBundle:Default:visiteUn.html.twig', array(
-                'name'      => $name,
+                'name'      => $nameEtu,
                 'rendu'     => true,
                 'infoExist' => $infoExist,
             ));
@@ -100,7 +106,7 @@ class VisiteUnController extends Controller
             $infos['signatureTuteur'] = $infos['signatureTuteur']!=0?"OUI":"NON";
 
             return $this->render('LEAEtuBundle:Default:visiteUn.html.twig', array(
-                'name'      => $name,
+                'name'      => $nameEtu,
                 'rendu'     => true,
                 'infoExist' => $infoExist,
                 'infos' => $infos,

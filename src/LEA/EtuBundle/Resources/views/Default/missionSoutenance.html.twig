@@ -2,11 +2,11 @@
 
 {% block body %}
 
-    <p>Bonjour {{ name }}</p>
+    <p>Bonjour {{ infos.et_pn }}</p>
     {% if infoExist %}
         <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
         {% if rendu == false %}
-            <form action="{{ path("lea_etu_missionSoutenance",{ 'name': name}) }}" method="post">
+            <form action="{{ path("lea_etu_missionSoutenance") }}" method="post">
         {% endif %}
         <table>
             <tr>
@@ -82,5 +82,5 @@
     {% else %}
         <p>Il n'y a aucune informations à afficher pour le moment</p>
     {% endif %}
-    <a href="{{ path("lea_etu_homepage",{ 'name': name}) }}">Retour à l'accueil</a>
+    <a href="{{ path("lea_etu_homepage") }}">Retour à l'accueil</a>
 {% endblock %}

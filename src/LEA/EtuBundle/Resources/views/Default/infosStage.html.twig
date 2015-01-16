@@ -48,7 +48,7 @@
             {% endif %}
             <div>
                 {{ form_row(form.entreprise) }}
-                <a href="{{ path('lea_etu_inscrireEntr',{'name':name} ) }}">
+                <a href="{{ path('lea_etu_inscrireEntr') }}">
                     ---- Nouvelle entreprise
                 </a>
             </div>
@@ -81,7 +81,7 @@
             </div>
             <div>
                 {{ form_row(form.entrepriseAlt) }}
-                <a href="{{ path('lea_etu_inscrireEntr',{'name':name} ) }}">
+                <a href="{{ path('lea_etu_inscrireEntr') }}">
                     ---- Nouvelle entreprise Regie
                 </a>
             </div>
@@ -111,9 +111,9 @@
 
         <div>
             {% if role=="prof" %}
-                <a href="{{ path('lea_prof_etuGeneral',{'name':name}) }}">Revenir</a>
+                <a href="{{ path('lea_prof_etuGeneral') }}">Revenir</a>
             {% else %}
-                <a href="{{ path('lea_etu_homepage',{'name':name}) }}">Revenir</a>
+                <a href="{{ path('lea_etu_homepage') }}">Revenir</a>
             {% endif %}
         </div>
     </div>

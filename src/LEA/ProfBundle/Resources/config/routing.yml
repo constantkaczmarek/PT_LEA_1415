@@ -97,7 +97,7 @@ lea_prof_changeAction:
         expose: true
 
 lea_prof_suivi:
-    path:    /prof/{name}/suivi
+    path:    /prof/suivi
     defaults: { _controller: LEAProfBundle:Suivi:index}
     options:
        expose: true
