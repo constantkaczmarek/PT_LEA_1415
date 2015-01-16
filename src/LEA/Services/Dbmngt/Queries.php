@@ -209,4 +209,25 @@ class Queries {
         return $query;
     }
 
+    function getDonneeODM($conn, $altCle, $yearRef=null) {
+        if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
+        $query = $conn->fetchAll("SELECT membre.nom as membreNom,
+                               membre.prenom as membrePrenom,
+                               bureau.ville,
+                               bureau.adresse,
+                               bureau.distance,
+                    etudiant.nom as etuNom,etudiant.prenom as etuPrenom,entreprise.nom as entrepriseNom,groupe.formationRef
+            FROM contrat
+            inner join etudiant on contrat.etudRef=etudiant.etudCle
+                                inner join etudiant_groupe on etudiant.etudCle=etudiant_groupe.etudRef and contrat.anneeCle=etudiant_groupe.annee
+                                inner join groupe on etudiant_groupe.groupeRef=groupe.groupeCle
+                                inner join formation on groupe.formationRef=formation.formationCle
+            Inner JOIN membre ON contrat.tuteurRef = membre.profCle
+            Inner JOIN bureau ON contrat.bureauRef = bureau.bureauCle
+            Inner JOIN entreprise ON bureau.entrepriseRef = entreprise.entrepriseCle
+            WHERE alternanceCle ='" . $altCle . "' and anneeCle in (".$yearRef.")");
+        //echo $queryString;
+        return $query;
+    }
+
 } 

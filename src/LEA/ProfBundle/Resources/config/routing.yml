@@ -74,6 +74,11 @@ lea_prof_creerOdm:
     options:
             expose: true
 
+lea_prof_exportPDF:
+    path:    /prof/etuAttribues/{name}/odm/exportPDF
+    defaults: { _controller: LEAProfBundle:ODM:exportPDF}
+    options:
+            expose: true
 
 lea_prof_changeForm:
     path:    /prof/ajax/changeForm

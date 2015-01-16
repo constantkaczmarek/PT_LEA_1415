@@ -80,13 +80,13 @@ class StageController extends Controller
                 if($role=="prof"){
                     return $this->redirect(
                         $this->generateUrl('lea_prof_etuGeneral',array(
-                            'name' => $nameEtu,
+                            'name' => $altRef,
                         ))
                     );
                 }else
                     return $this->redirect(
                         $this->generateUrl('lea_etu_afficherInfosStage',array(
-                            'name' => $nameEtu,
+                            'name' => $altRef,
                         ))
                     );
             }
@@ -100,7 +100,7 @@ class StageController extends Controller
             'form'=> $form->createView(),
             'infosStage' => $infosStage,
             'altref' => $altRef,
-            'name' => $nameEtu,
+            'name' => $altRef,
             'role' => $role,
         ));
     }

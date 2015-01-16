@@ -2,9 +2,12 @@
 
 namespace LEA\ProfBundle\Controller;
 
+use LEA\ProfBundle\Entity\ODM;
+use LEA\ProfBundle\Form\ODMType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use LEA\ProfBundle\Entity\ChoixSansTuteur;
 use LEA\ProfBundle\Form\ChoixSansTuteurType;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -47,14 +50,93 @@ class ODMController extends Controller
         $query = $this->get('queries');
         $tuteurRef = $session->get('name');
 
+        $donneODM = $query->getDonneeODM($conn,$name,2014)[0];
 
-        $formationSuivi = $query->getFormationSuivieTuteur($conn, $tuteurRef, 2014,$onlyM1INFOFAnoParcours=true);
-        $infosSoutenance = $query->getDetailSoutenance($conn,$formationSuivi[0]["formationCle"],2014);
+        $ODM = new ODM();
+        $ODM->setNom($donneODM["membreNom"]);
+        $ODM->setPrenom($donneODM["membrePrenom"]);
+        $ODM->setObjet("Visite pédagogique en entreprise<br/> Etudiant : " . $donneODM["etuNom"] . " " . $donneODM["etuPrenom"] . "<br/> Formation : " . $donneODM["formationRef"] . " ");
+        $ODM->setAdresse($donneODM["adresse"]);
+        $ODM->setLieu($donneODM["ville"]);
+        $ODM->setPays("France");
 
+        $ODM->setDepartAller("Villeneuve d'ascq");
+        $ODM->setKmAller($donneODM["distance"]);
+        $ODM->setArriverAller($donneODM["adresse"]);
+        $ODM->setDepartRetour($donneODM["adresse"]);
+        $ODM->setArriverRetour("Villeneuve d'ascq");
+
+        $ODM->setHoraireDepartAller("09:00");
+        $ODM->setHoraireDepartRetour("09:00");
+        $ODM->setHoraireArriverAller("11:00");
+        $ODM->setHoraireArriverRetour("11:00");
+
+        if($ODM->getKmAller()<25)
+            $ODM->setFrais(true);
+        else
+            $ODM->setFrais(false);
+
+        $ODMType = new ODMType($donneODM);
+
+        $form = $this->createForm($ODMType,$ODM);
+
+        $request = $this->getRequest();
+
+        if($request->isMethod('POST')) {
+
+            $form->bind($request);
+
+            if ($form->isValid()) {
+
+                $donneODM = $form->getData();
+
+                $nbjours = $donneODM->getDateAller()->diff($donneODM->getDateRetour());
+
+
+                $html = $this->renderView('LEAProfBundle:Default:exportPDF.html.twig', array(
+                    'name' => $name,
+                    'donneODM' => $donneODM,
+                    'dateNow' => new \DateTime(),
+                    'nbjours' => $nbjours->format('%a jours')
+                ));
+
+                $html2pdf = $this->get('html2pdf_factory')->create('P','A4','fr');
+                $html2pdf->writeHTML($html);
+                $html2pdf->Output('ODM.pdf');
+
+
+                /*
+                $html2pdf = new \Html2Pdf_Html2Pdf('P','A4','fr');
+                $html2pdf->pdf->SetDisplayMode('real');
+                $html2pdf->writeHTML($html);
+                $html2pdf->Output('Facture.pdf');*/
+                return new Response();
+
+                /*return $this->redirect(
+                    $this->generateUrl('lea_prof_exportPDF',array(
+                        'name' => $name,
+                        'donneODM' => $donneODM,
+                    ))
+                );*/
+            }
+        }
         return $this->render('LEAProfBundle:Default:creerODM.html.twig',array(
             'name' => $name,
-
+            'form' => $form->createView(),
         ));
+
+    }
+
+    public function exportPDFAction($name){
+
+        /*$request = $this->getRequest();
+
+        $donneODM = $request->get('donneODM');
+
+        return $this->render('LEAProfBundle:Default:creer')*/
+
+
+
 
     }
 

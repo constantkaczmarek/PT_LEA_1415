@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new LEA\RespBundle\LEARespBundle(),
             new LEA\ProfBundle\LEAProfBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Ensepar\Html2pdfBundle\EnseparHtml2pdfBundle(),
 
         );
 

@@ -1,3 +1,8 @@
 lea_resp_homepage:
-    path:     /hello/{name}
+    path:     /resp
     defaults: { _controller: LEARespBundle:Default:index }
+
+
+lea_resp_attribution:
+    path:    /resp/attribution
+    defaults: { _controller: LEARespBundle:Attribution:index }

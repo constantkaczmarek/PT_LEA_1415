@@ -1,0 +1,252 @@
+<table border=1 align=center>
+    <tr >
+            <td border=0> <img src='./images/logo.jpg' width=150 height=75 />
+        </td>
+        <td colspan=4 align=center >
+            <H3> DEMANDE D'AUTORISATION DE  MISSION</H3>
+            ECRIRE LISIBLEMENT EN CARACTERE D'IMPRIMERIE
+            <br/>
+            <b> Attention :</b> Les demandes incompletes seront refusés ;
+        </td>
+
+        <td colspan=2 align=center>N&deg; d'ordre de mission :<br/><br/>
+
+            {% if donneODM.frais == true %}
+                <img src='./images/case-a-cocher-selectionnee.gif'/> Avec frais pour LILLE1</td>
+            {% else %}
+                <img src='./images/case-a-cocher-selectionnee.gif'/> Sans frais pour LILLE1</td>
+            {% endif %}
+      </tr>
+
+
+    <!--  Objet de la mission -->
+
+
+    <tr>
+        <td rowspan=5 align=center  bgcolor=#DAF2EF border=1 size=15><br/><b>OBJET <br/><br/>DE LA <br/><br/> MISSION</b></td>
+        <td colspan=6 size=10>Mr. / Mme / Mlle :  NOM : <b>  {{ donneODM.prenom }}  </b> Prénom : <b>  {{ donneODM.nom }} </b></td>
+    </tr>
+
+    <tr>
+        <td  colspan=6 size=10 >Objet : <b>{{ donneODM.objet|raw }}</b></td>
+    </tr>
+
+    <tr>
+
+        <td colspan=4  size=10>LIEU(X) effectif(s) de la mission :<b> {{ donneODM.lieu }} </b> <br/>
+            Adresse complète de la mission :<br/> <b>{{ donneODM.adresse }}</b></td>
+        <td colspan=2 size=10> Pays : <br/><b>{{ donneODM.pays }}</b> </td>
+    </tr>
+
+
+    <tr>
+        <td colspan=3 size=10>FRAIS D'INSCRIPTION :<br/> MONTANT : ..........</td>
+        <td colspan=3 size=10> <img src='./images/case-a-cocher.gif'/> avancés par le demandeur <br/> <img src='./images/case-a-cocher.gif'/> par bon de commande <br/>(uniquement pour les organismes français)   </td>
+    </tr>
+
+    <tr>
+        <td colspan=6 bgcolor=#636767 size=10>Participation &agrave; une manifestation scientifique : <br/>joindre le programme complet et le bulletin d'inscription
+            complété par le demandeur </td>
+    </tr>
+
+
+    <!-- Deroulement de la mission -->
+
+
+    <tr>
+        <td rowspan=5 align=center  bgcolor=#DAF2EF border=1 size=15><b>DéROULEMENT<br/><br/>DE LA <br/><br/> MISSION</b>
+            <br/>Merci de remplir de
+            <br/>manière détailée
+            <br/>pour toutes les
+            <br/>étapes de votre
+            <br/>voyage
+        </td>
+    </tr>
+    <tr>
+        <td size=10 colspan=6 >
+            {% if donneODM.transportTrain %}
+                <img src='./images/case-a-cocher-selectionnee.gif'/> Train
+                {% if donneODM.premiere %}
+                    <img src='./images/case-a-cocher-selectionnee.gif'/> 1ére <img src='./images/case-a-cocher.gif'/> 2ème Je bénéficie d'une réduction de <b>{{ donneODM.reductionTrain }}</b> % au titre de <b>{{ donneODM.moyenReductionTrain }}</b>
+                {% else %}
+                <img src='./images/case-a-cocher.gif'/> 1ére <img src='images/case-a-cocher-selectionnee.gif'/> 2ème Je bénéficie d'une réduction de <b>{{ donneODM.reductionTrain }}</b> % au titre de <b>{{ donneODM.moyenReductionTrain }}</b>
+               {% endif %}
+            {% else %}
+                <img src='./images/case-a-cocher.gif'/> Train <img src='./images/case-a-cocher.gif'/> 1ére <img src='./images/case-a-cocher.gif'/> 2ème Je bénéficie d'une réduction de.......... % au titre de .........
+            {% endif %}
+
+            {% if donneODM.transportAvion %}
+                <br/><img src='./images/case-a-cocher-selectionnee.gif'/> Avion
+            {% else %}
+                <br/><img src='./images/case-a-cocher.gif'/> Avion
+            {% endif %}
+
+            {% if donneODM.transportVoiture %}
+                <br/><img src='./images/case-a-cocher-selectionnee.gif'/> Véhicule personnel Puissance fiscale <b>{{ donneODM.CV }}</b> CV <br/>     Joindre copies carte grise + attestation assurance pour
+                1ére mission annuelle
+                <br/>Km Aller : <b>{{ donneODM.kmAller }}</b> Immatriculation :<b>{{ donneODM.immatriculation }}</b>
+            {% else %}
+                <br/><img src='./images/case-a-cocher.gif'/> Véhicule personnel Puissance fiscale ...... CV <br/> Joindre copies carte grise + attestation assurance pour
+                1ére mission annuelle
+                <br/>Km Aller : ...... Immatriculation : ......
+            {% endif %}
+
+            <br/> <small>(Je certifie que ma police d'assurances satisfait aux exigences l'article 34 du dècret n&deg; 90.437)</small>
+            {% if donneODM.transportTaxi %}
+                <br/><img src='./images/case-a-cocher-selectionnee.gif'/> Taxi
+            {% else %}
+                <br/><img src='./images/case-a-cocher.gif'/> Taxi
+            {% endif %}
+
+            {% if donneODM.transportVoitureLocation %}
+                <img src='./images/case-a-cocher-selectionnee.gif'/> Location de voiture par Agence de voyages sur marchè(Nbre de pers.:<b>{{ donneODM.nbPersVoitureLocation }}</b>)
+            {% else %}
+                <img src='./images/case-a-cocher.gif'/> Location de voiture par Agence de voyages sur marchè(Nbre de pers.:.....)
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td align=center size=10>DATES <br/>(Aller-Retour)</td>
+        <td align=center size=10>DEPART DE</td>
+        <td align=center size=10>HORAIRE</td>
+        <td align=center size=10>ARRIVEE A</td>
+        <td align=center size=10>HORAIRE</td>
+        <td align=center size=10>TRANSPORT<br/>UTILISE</td>
+    </tr>
+    <tr>
+        <b>
+            <td height=130 size = 10>{{ donneODM.dateAller|date('d-m-Y') }}<br/>
+
+            {% if not donneODM.escaleAller and not donneODM.escaleRetour %}
+                {{ donneODM.dateRetour|date('d-m-Y') }}</td>
+                <td height=130>{{ donneODM.departAller }}<br/>{{ donneODM.departRetour }}</td>
+                <td height=130>{{ donneODM.horaireDepartAller }}<br/>{{ donneODM.horaireDepartRetour }}</td>
+                <td height=130>{{ donneODM.arriverAller }}<br/>{{ donneODM.departAller }}</td>
+                <td height=130>{{ donneODM.horaireArriverAller }}<br/>{{ donneODM.horaireArriverRetour }}</td>
+                <td height=130>{{ donneODM.transportAller }}<br/>{{ donneODM.transportRetour }}</td>
+
+            {% elseif donneODM.escaleAller and not donneODM.escaleRetour %}
+                {{ donneODM.dateAller|date('d-m-Y') }}<br/>{{ donneODM.dateRetour|date('d-m-Y') }}</td>
+                <td height=130>{{ donneODM.departAller }}<br/>{{ donneODM.villeEscaleAller }}<br/>{{ donneODM.departRetour }}</td>
+                <td height=130>{{ donneODM.horaireDepartAller }}<br/>{{ donne.horaireDepartAllerEscale }}<br/>{{ donneODM.horaireDepartRetour }}</td>
+                <td height=130>{{ donneODM.villeEscaleAller }}<br/>{{ donneODM.arriverAller }}<br/>{{ donneODM.departAller }}</td>
+                <td height=130>{{ donneODM.horaireArriverAller }}<br/>{{ donneODM.horaireArriverAllerEscale }}<br/>{{ donneODM.horaireArriverRetour }}</td>
+                <td height=130>{{ donneODM.transportAller }}<br/>{{ donneODM.transportAllerEscale }}<br/>{{ donneODM.transportRetour }}</td>
+
+            {% elseif not donneODM.escaleAller and donneODM.escaleRetour %}
+                {{ donneODM.dateRetour|date('d-m-Y') }}<br/>{{ donneODM.dateRetour|date('d-m-Y') }}</td>
+                <td height=130>{{ donneODM.departAller }}<br/>{{ donneODM.departRetour }}<br/>{{ donneODM.villeEscaleRetour }}</td>
+                <td height=130>{{ donneODM.horaireDepartAller }}<br/>{{ donneODM.horaireDepartRetour }}<br/>{{ donne.horaireDepartRetourEscale }}</td>
+                <td height=130>{{ donneODM.arriverAller }}<br/>{{ donneODM.villeEscaleRetour }}<br/>{{ donneODM.departAller }}</td>
+                <td height=130>{{ donneODM.horaireArriverAller }}<br/>{{ donneODM.horaireArriverRetour }}<br/>{{ donneODM.horaireArriverRetourEscale }}</td>
+
+            {% else %}
+                {{ donneODM.dateAller|date('d-m-Y') }}<br/>{{ donneODM.dateRetour|date('d-m-Y') }}<br/>{{ donneODM.dateRetour|date('d-m-Y') }}</td>
+                <td height=130>{{ donneODM.departAller }}<br/>{{ donneODM.villeEscaleAller }}<br/>{{ donneODM.departRetour }}<br/>{{ donneODM.villeEscaleRetour }}</td>
+                <td height=130>{{ donneODM.horaireDepartAller }}<br/>{{ donne.horaireDepartAllerEscale }}<br/>{{ donneODM.horaireDepartRetour }}<br/>{{ donne.horaireDepartRetourEscale }}</td>
+                <td height=130>{{ donneODM.villeEscaleAller }}<br/>{{ donneODM.arriverAller }}<br/>{{ donneODM.villeEscaleRetour }}<br/>{{ donneODM.departAller }}</td>
+                <td height=130>{{ donneODM.horaireArriverAller }}<br/>{{ donneODM.horaireArriverAllerEscale }}<br/>{{ donneODM.horaireArriverRetour }}<br/>{{ donneODM.horaireArriverRetourEscale }}</td>
+                <td height=130>{{ donneODM.transportAller }}<br/>{{ donneODM.transportAllerEscale }}<br/>{{ donneODM.transportRetour }}<br/>{{ donneODM.transportRetourEscale }}</td>
+            {% endif %}
+        </b>
+    </tr>
+
+   <tr>
+        <td colspan=6 size=10>OBSERVATIONS : <b>{{ donneODM.observations }}</b> </td>
+    </tr>
+
+
+    <!--Prise en Charge de la mission -->
+
+    <tr>
+        <td rowspan=3 align=center  bgcolor=#DAF2EF border=1 size=15><b><br/><br/>PRISE EN <br/>CHARGE DE<br/>LA MISSION</b></td>
+    </tr>
+    <tr>
+        <td border=1 colspan=2 size=10>DEMANDE D'AVANCE :   <br/>
+            TRANSPORT :          <br/>
+            SéJOUR : <br/>
+            COLLOQUE :           <br/>
+            VISA :               </td>
+        <td colspan=1 border=1 size=10 >
+            <img src='./images/case-a-cocher.gif'/> LILLE1<br/>
+            <img src='./images/case-a-cocher-selectionnee.gif'/> LILLE1<br/>
+            <img src='./images/case-a-cocher.gif'/> LILLE1<br/>
+            <img src='./images/case-a-cocher.gif'/> LILLE1<br/>
+            <img src='./images/case-a-cocher.gif'/> LILLE1
+        </td>
+
+        <td colspan=3 border=1 size=10> .................................<br/>
+            <img src='./images/case-a-cocher.gif'/> Autre organisme (présicer) :       .................<br/>
+            <img src='./images/case-a-cocher.gif'/> Autre organisme (présicer) :       .................<br/>
+            <img src='./images/case-a-cocher.gif'/> Autre organisme (présicer) :       .................<br/>
+            <img src='./images/case-a-cocher.gif'/> Autre organisme (présicer) :       .................</td>
+
+    </tr>
+
+    <tr>
+        <td colspan=6 size=10>nombre de repas compris dans l'inscription ou gratuis : 0 <br/>
+            nombre de nuit comprises dans l'inscription ou gratuites : 0 <br/>
+            nombre de repas dans un restaurant administrtatif ou assimilé : ..... <br/>
+            nombre de nuits : <b>{{ nbjours }}</b>  nombre de repas dans d'autre condition : .......
+        </td>
+    </tr>
+
+
+    <!--Imputation  -->
+
+    <tr>
+        <td align=center  bgcolor=#DAF2EF border=1 size=15><b>IMPUTATION</b></td>
+        <td colspan=6 size=10> Centre financier : <img src='./images/case-a-cocher.gif'/> 9476351  <img src='./images/case-a-cocher.gif'/> 94763511  <img src='./images/case-a-cocher.gif'/> 4554903  Domaine fonctionnel : .............. <br/>
+            Rubrique : ...................... Convention ou Action Spécifique : ........................</td>
+    </tr>
+
+
+    <tr>
+        <td colspan=2 size=7 >Le demandeur<br/>
+            Date : <b>{{ dateNow|date('d-m-Y') }}</b> <br/>
+            Signature :
+        </td>
+        <td  colspan=5 size=10> Le responsable de la ligne de crédit<br/>
+            Date : <br/>
+            Signature :
+        </td>
+    </tr>
+
+
+    <!--Enregistrement-->
+
+
+    <tr>
+        <td rowspan=5 align=center  bgcolor=#DAF2EF border=1><b>Enregistrement</b></td>
+    </tr>
+
+    <tr>
+        <td colspan=1 height=30  >  </td>
+        <td colspan=2 height=30 align=center > TRANSPORT  </td>
+        <td colspan=2 height=30 align=center> INSCRIPTION </td>
+        <td colspan=1 height=30 align=center>  SEJOUR </td>
+    </tr>
+
+    <tr>
+        <td colspan=1 height=30> Commande  </td>
+        <td colspan=2 height=30>  </td>
+        <td colspan=2 height=30>  </td>
+        <td colspan=1 height=30>  </td>
+    </tr>
+
+    <tr>
+        <td colspan=1 height=30 > Avance </td>
+        <td colspan=2 height=30>  </td>
+        <td colspan=2 height=30>  </td>
+        <td colspan=1 height=30>  </td>
+    </tr>
+
+    <tr>
+        <td colspan=1 height=30>Montant total</td>
+        <td colspan=2 height=30>  </td>
+        <td colspan=2 height=30>  </td>
+        <td colspan=1 height=30>  </td>
+    </tr>
+    </table>
+
+

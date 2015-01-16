@@ -27,6 +27,7 @@ class GeneralController extends Controller
             'name' => $name,
             'infos' => $infos,
             'role' =>$role,
+            'odm' => false,
         ));
     }
 }
