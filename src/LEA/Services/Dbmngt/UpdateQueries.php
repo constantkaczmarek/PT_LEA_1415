@@ -127,4 +127,21 @@ class UpdateQueries {
             "', remarquesTuteur='".$visiteDeux->getRemarquesTuteur()."', remarquesReferent='".$visiteDeux->getRemarquesReferent()."' ".
             "where alternanceRef LIKE '".$altCle."'");
     }
+
+    public function profUpdateMissionSoutenance($conn, $missionSoutenance, $altCle) {
+
+        $verif = $conn->fetchAll("select alternanceRef from etapemissionsout where alternanceRef='".$altCle."'");
+        if(count($verif) === 0)
+            $conn->query("insert into etapemissionsout (`alternanceRef`) values ('".$altCle."');");
+
+        $conn->query("update etapemissionsout set dateRencontre='".$missionSoutenance->getDateRencontre().
+            "', typeRencontre='".$missionSoutenance->getTypeRencontre().
+            "', dateValidation='".$missionSoutenance->getDateValidation().
+            "', missions='".$missionSoutenance->getMissions().
+            "', environnementTechnique='".$missionSoutenance->getEnvironnementTechnique().
+            "', enjeux='".$missionSoutenance->getEnjeux().
+            "', signatureTuteur='".$missionSoutenance->getSignatureTuteur()."', signatureReferent='".$missionSoutenance->getSignatureReferent().
+            "', remarquesTuteur='".$missionSoutenance->getRemarquesTuteur()."', remarquesReferent='".$missionSoutenance->getRemarquesReferent()."' ".
+            "where alternanceRef='".$altCle."'");
+    }
 }

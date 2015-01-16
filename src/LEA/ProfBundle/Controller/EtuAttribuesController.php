@@ -24,7 +24,7 @@ class EtuAttribuesController extends Controller
             "etuRencontre",
             //"majEtape1",
             "etuVisiteUn",
-            "renduEtapeMissionSoutenance_act",
+            "etuMissionSoutenance",
             "etuVisiteDeux",
             "aucune",
             "odm",

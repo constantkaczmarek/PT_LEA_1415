@@ -56,6 +56,18 @@ lea_prof_etuVisiteDeuxEdit:
     options:
         expose: true
 
+lea_prof_etuMissionSoutenance:
+    path:    /prof/etuAttribues/{name}/missionSoutenance
+    defaults: { _controller: LEAProfBundle:EtuAttriMissionSoutenance:index}
+    options:
+        expose: true
+
+lea_prof_etuMissionSoutenanceEdit:
+    path:    /prof/etuAttribues/{name}/missionSoutenanceEdit
+    defaults: { _controller: LEAProfBundle:EtuAttriMissionSoutenance:rendu}
+    options:
+        expose: true
+
 lea_prof_modifierEtuGeneral:
     path:    /prof/etuAttribues/{name}/general/modifer
     defaults: { _controller: LEAEtuBundle:Stage:index}

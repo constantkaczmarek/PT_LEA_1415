@@ -218,10 +218,10 @@ class queriesEtapes {
         etapemissionsout.signatureReferent,etapemissionsout.remarquesReferent,
         etapemissionsout.signatureTuteur,etapemissionsout.remarquesTuteur,
         etudiant.mail,
-        membre.mail,
-        referent.mail,referent.prenom,referent.nom,
-        membre.prenom,membre.nom,
-        referent2.mail,referent2.prenom,referent2.nom
+        membre.mail as mailMembre,
+        referent.mail as mailRef,referent.prenom as prenomRef,referent.nom as nomRef,
+        membre.prenom as prenomRef,membre.nom as nomRef,
+        referent2.mail as mailRef2,referent2.prenom as prenomRef2,referent2.nom as nomRef2
     from
 	(contrat inner join etudiant
 		on etudCle=etudRef inner join etudiant_groupe on etudiant_groupe.annee=contrat.anneeCle
