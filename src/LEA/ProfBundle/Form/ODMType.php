@@ -100,7 +100,7 @@ class ODMType extends AbstractType
             ))
             ->add('transportAller','choice',array(
                 'label' => 'Transport utilisé',
-                'choices' => array()
+
             ))
             ->add('escaleAller','checkbox',array(
                 'label' => false,
@@ -110,7 +110,8 @@ class ODMType extends AbstractType
             ))
             ->add('transportAllerEscale','choice',array(
                 'label' => 'Transport utilisé en deuxième',
-                'choices' => array()
+                'required'=>false,
+
             ))
             ->add('horaireDepartAllerEscale','text',array(
                 'label' => 'Heure de départ en deuxième (hh:mm)*: '
@@ -144,7 +145,7 @@ class ODMType extends AbstractType
             ))
             ->add('transportRetourEscale','choice',array(
                 'label' => 'Transport utilisé en deuxième',
-                'choices' => array()
+                'required' => false,
             ))
             ->add('horaireDepartRetourEscale','text',array(
                 'label' => 'Heure de départ en deuxième (hh:mm)*: '

@@ -1,0 +1,90 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% javascripts '@LEAProfBundle/Resources/Js/ODM.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+
+    <h1>Mission sans frais pour Lille 1 </h1>
+
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <fieldset>
+        <h2>Moyens de transports</h2>
+        <div>{{ form_row(form.transportTrain) }}</div>
+        <div id="formTrain" style="display: none">
+            <div>
+                {{ form_row(form.classe) }}
+            </div>
+            <div>
+                <span>Je bénéficie d'une réduction de {{ form_row(form.reduction) }} % au titre de {{ form_row(form.moyenReductionTrain) }}</span>
+            </div>
+        </div>
+
+        <div>{{ form_row(form.transportVoiture) }}</div>
+        <div id="formVoiture" style="display: none">
+            <span>Puissance fiscale : {{ form_row(form.CV) }} Immatriculation : {{ form_row(form.immatriculation) }}</span>
+        </div>
+        <div>{{ form_row(form.transportVoitureLocation) }}</div>
+        <div id="formLocation" style="display: none">
+            <span>Nombre de personnes :{{ form_row(form.nbPersVoitureLocation) }}</span>
+        </div>
+        <span>
+            <span>{{ form_row(form.transportAvion) }}</span>
+            <span>{{ form_row(form.transportTaxi) }}</span>
+            <span>{{ form_row(form.transportMetro) }}</span>
+            <span>{{ form_row(form.transportVelo) }}</span>
+        </span>
+
+        <h2>Détails du voyage</h2>
+        <div>{{ form_row(form.departDifferent) }}</div>
+        <div id="formDepartDifferent" style="display: none">
+            {{ form_row(form.departAller) }}
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h2>Aller</h2>
+        <div>{{ form_row(form.dateAller) }}</div>
+        <div>
+            <span> {{ form_row(form.horaireDepartAller) }}</span> <span> {{ form_row(form.horaireArriverAller) }}</span>
+        </div>
+        <div>{{ form_row(form.transportAller) }}</div>
+        <div>{{ form_row(form.escaleAller) }}</div>
+        <div id="formEscaleAller" style="display: none">
+            <div>{{ form_row(form.villeEscaleAller) }}</div>
+            <div>{{ form_row(form.transportAllerEscale) }}</div>
+            <div>{{ form_row(form.horaireDepartAllerEscale) }}</div>
+            <div>{{ form_row(form.horaireArriverAllerEscale) }}</div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <h2>Retour</h2>
+        <div>{{ form_row(form.dateRetourDifferente) }}</div>
+        <div id="formDateRetourDifferente" style="display: none">{{ form_row(form.dateRetour) }}</div>
+        <div>
+            <span> {{ form_row(form.horaireDepartRetour) }}</span> <span> {{ form_row(form.horaireArriverRetour) }}</span>
+        </div>
+        <div>{{ form_row(form.transportRetour) }}</div>
+        <div>{{ form_row(form.escaleRetour) }}</div>
+        <div id="formEscaleRetour" style="display: none">
+            <div>{{ form_row(form.villeEscaleRetour) }}</div>
+            <div>{{ form_row(form.transportRetourEscale) }}</div>
+            <div>{{ form_row(form.horaireDepartRetourEscale) }}</div>
+            <div>{{ form_row(form.horaireArriverRetourEscale) }}</div>
+        </div>
+        <div>{{ form_row(form.observations) }}</div>
+    </fieldset>
+
+    <input type="submit" value="Générer ODM" name="genererODM"/>
+
+    {{ form_end(form) }}
+
+
+
+{% endblock %}

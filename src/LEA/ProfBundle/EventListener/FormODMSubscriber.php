@@ -25,23 +25,33 @@ class FormODMSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
 
-        $form->add('transportAller','choice',array(
+        $form->setData($data);
+        $form->setData($data["transportAller"]);
+
+        $form->remove('transportAller')->remove('transportAllerEscale')->remove('transportRetour')->remove('transportRetourEscale');
+
+        $form->add('transportAller','text',array(
                     'label' => 'Transport utilisé',
-                    'data' => $data["transportAller"]
+                    'data' => $data["transportAller"],
+                    'required' => false,
             ))
-            ->add('transportAllerEscale','choice',array(
+            ->add('transportAllerEscale','text',array(
                 'label' => 'Transport utilisé en deuxième',
-                'data' => $data["transportAllerEscale"]
+                'data' => $data["transportAllerEscale"],
+                'required' => false,
             ))
-            ->add('transportRetour','choice',array(
+            ->add('transportRetour','text',array(
                 'label' => 'Transport utilisé',
-                'data' => $data["transportRetour"]
+                'data' => $data["transportRetour"],
+                'required' => false,
             ))
-            ->add('transportRetourEscale','choice',array(
+            ->add('transportRetourEscale','text',array(
                 'label' => 'Transport utilisé en deuxième',
-                'data' => $data["transportRetourEscale"]
+                'data' => $data["transportRetourEscale"],
+                'required' => false,
             ))
         ;
+
     }
 }
 
