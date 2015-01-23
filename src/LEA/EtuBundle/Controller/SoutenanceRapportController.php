@@ -26,7 +26,7 @@ class SoutenanceRapportController extends Controller
         $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
 
-        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "STUD"))
         {
             return $this->redirect(
                 $this->generateUrl('lea_role_homepage'));
