@@ -14,8 +14,17 @@ class EtuAttribuesController extends Controller
     public function indexAction()
     {
 
+        $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $name=$session->get('name');
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $name=$session->get('CK_USER');
 
         $actionCodes=array("aucune",
             "global",
@@ -50,7 +59,6 @@ class EtuAttribuesController extends Controller
 
         $form="M1MIAGEFA,M2MIAGEFA, M2IPINTFA,M1MIAGEFA,M2MIAGEFA,M2IPINTFA,M1INFOFI,M2IAGLFA,M2ESERVFA,M2TIIRFA,M2IVIFA,M2MOCADFA,M1INFOFI,M1IAGLFA,M1ESERVFA,M1TIIRFA,M1IVIFA,M1MOCADFA,M1ESERVFA,M1IAGLFA,M1IVIFA,M1MOCADFA,M1TIIRFA,M1INFOFI,M2IAGLFA,M2ESERVFA,M2TIIRFA,M2IVIFA,M2MOCADFA,M2ESERVFA,M2IAGLFA,M2IVIFA,M2MOCADFA,M2TIIRFA";
 
-        $conn = $this->get('database_connection');
         $queries = $this->get('queries');
 
         $listEtu = $queries->getEtudByTuteur($conn, $session->get("formation"), $name, 2014);

@@ -17,15 +17,19 @@ class ODMController extends Controller
     public function indexAction($name)
     {
 
+        $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        //$name = $session->get('name');
-        $role = $session->get('role');
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
 
         $odm = false;
         if($this->getRequest()->attributes->get('_route')=='lea_prof_odm');
             $odm = true;
-
-        $conn = $this->get('database_connection');
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$name);
@@ -33,22 +37,24 @@ class ODMController extends Controller
         return $this->render('LEAEtuBundle:Default:afficheInfosStage.html.twig',array(
             'name' => $name,
             'infos' => $infos,
-            'role' =>$role,
+            'role' => "prof",
             'odm' => $odm,
         ));
-
-        /*return $this->forward('LEAEtuBundle:Stage:afficherInfos',array(
-           'name'
-        ));*/
     }
 
     public function creerAction($name){
 
 
-        $session = $this->getRequest()->getSession();
         $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
         $query = $this->get('queries');
-        $tuteurRef = $session->get('name');
 
         $donneODM = $query->getDonneeODM($conn,$name,2014)[0];
 

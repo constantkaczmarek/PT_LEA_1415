@@ -1,0 +1,3 @@
+lea_role_homepage:
+    path:     /
+    defaults: { _controller: RoleBundle:Redirection:index }

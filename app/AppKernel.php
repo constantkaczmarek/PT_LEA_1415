@@ -21,7 +21,7 @@ class AppKernel extends Kernel
             new LEA\ProfBundle\LEAProfBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Ensepar\Html2pdfBundle\EnseparHtml2pdfBundle(),
-
+            new LEA\RoleBundle\RoleBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

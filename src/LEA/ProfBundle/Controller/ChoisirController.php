@@ -14,9 +14,16 @@ class ChoisirController extends Controller
     public function indexAction()
     {
 
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
 
-        $name = $session->get('name');
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $name = $session->get('CK_USER');
 
         $utils = $this->get('html_utils');
         $keysValues = $utils->getlistFormationSelect();

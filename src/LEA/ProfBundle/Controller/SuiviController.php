@@ -10,9 +10,16 @@ class SuiviController extends Controller
     public function indexAction()
     {
         $conn = $this->get('database_connection');
-
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $name=$session->get('name');
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $name = $session->get('CK_USER');
 
         $queries = $this->get('queries_tuteur');
 
@@ -26,12 +33,19 @@ class SuiviController extends Controller
 
     public function supprAction()
     {
+        $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $name=$session->get('name');
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $name = $session->get('CK_USER');
 
         $request = $this->container->get('request');
-
-        $conn = $this->get('database_connection');
 
         $queries = $this->get('queries_tuteur');
 

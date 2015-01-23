@@ -15,18 +15,21 @@ class ModifierGeneralController extends Controller
     {
 
         $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
 
-        $queryEtu = $this->get('queries_etu');
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$nameEtu);
 
-        $role = $this->getRequest()->getSession()->get('role');
-
         return $this->render('LEAProfBundle:Default:afficheInfosStage.html.twig',array(
             'name' => $name,
             'infos' => $infos,
-            'role' =>$role,
         ));
     }
 }

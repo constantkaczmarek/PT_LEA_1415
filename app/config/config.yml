@@ -148,3 +148,5 @@ services:
         class: LEA\Services\Distance\CalculDistance
     html_utils:
         class: LEA\Services\Html\Utils
+    gestion_role:
+        class: LEA\Services\Role\GestionRole

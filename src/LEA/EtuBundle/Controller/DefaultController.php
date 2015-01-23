@@ -10,12 +10,16 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
 
-        $session = new Session();
-        $session->set('role','etudiant');
-        $session->set('etudiant','m1infofi1AA72');
+        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
 
-        $nameEtu = $session->get('etudiant');
+        $nameEtu = $session->get('CK_USER');
 
         $queryEtu = $this->get('queries_etu');
         $date = new \DateTime();

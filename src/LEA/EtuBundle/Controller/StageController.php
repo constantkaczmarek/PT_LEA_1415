@@ -23,9 +23,19 @@ class StageController extends Controller
     {
 
         $conn = $this->get('database_connection');
+
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $role = $session->get('role');
-        $nameEtu = $session->get('etudiant');
+
+        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $role = "STUD";
+
+        $nameEtu = $session->get('CK_USER');
 
         $queryEtu = $this->get('queries_etu');
         $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)["alternanceCle"];
@@ -144,8 +154,17 @@ class StageController extends Controller
     public function inscrireEntrAction(){
 
         $conn = $this->get('database_connection');
+
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $nameEtu = $session->get('etudiant');
+
+        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $nameEtu = $session->get('CK_USER');
 
         $entr = new Entreprise();
         $form = $this->createForm(new EntrepriseType(),$entr);
@@ -178,8 +197,17 @@ class StageController extends Controller
     public function inscrireBureauAction($entr){
 
         $conn = $this->get('database_connection');
+
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $nameEtu = $session->get('etudiant');
+
+        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $nameEtu = $session->get('CK_USER');
 
         $bur = new Bureau();
         $form = $this->createForm(new BureauType(),$bur);
@@ -215,8 +243,17 @@ class StageController extends Controller
     public function inscrireRefAction($entr){
 
         $conn = $this->get('database_connection');
+
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $nameEtu = $session->get('etudiant');
+
+        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $nameEtu = $session->get('CK_USER');
 
         $dbQueries = $this->get('queries');
         $dbutils = $this->get('dbutils');
@@ -257,17 +294,25 @@ class StageController extends Controller
     public function afficherInfosAction(){
 
         $conn = $this->get('database_connection');
+
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $role = $session->get('role');
-        $nameEtu = $session->get('etudiant');
+
+        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $role = "STUD";
+
+        $nameEtu = $session->get('CK_USER');
 
         $queryEtu = $this->get('queries_etu');
         $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)["alternanceCle"];
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$altRef);
-
-
 
         return $this->render('LEAEtuBundle:Default:afficheInfosStage.html.twig',array(
             'name' => $nameEtu,

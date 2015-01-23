@@ -15,9 +15,16 @@ class AttributionController extends Controller
 {
     public function indexAction()
     {
-        $session =$this->getRequest()->getSession();
-        $name = $session->get('name');
-        $role = $session->get('role');
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+
+        if (!$session || !$gestionRole->hasRole($session, "RESP"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $name = $session->get('CK_USER');
 
         $selectForma = $this->get('html_utils')->getlistFormationSelect();
 

@@ -12,8 +12,17 @@ class EtuAttriRencontreController extends Controller
 {
     public function indexAction($name)
     {
-        $query = $this->get('queries_etapes');
         $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $query = $this->get('queries_etapes');
         $infos = $query->getRencontreTuteur($conn,$name);
         
         $infos['et_pn'] = $infos['prenom'] . " " . $infos['nom'];
@@ -29,8 +38,17 @@ class EtuAttriRencontreController extends Controller
 
     public function renduAction($name)
     {
-        $query = $this->get('queries_etapes');
         $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $query = $this->get('queries_etapes');
         $infos = $query->getRencontreTuteur($conn,$name);
 
         $infos['et_pn'] = $infos['prenom'] . " " . $infos['nom'];

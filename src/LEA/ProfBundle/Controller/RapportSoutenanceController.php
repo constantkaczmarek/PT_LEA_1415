@@ -14,10 +14,18 @@ class RapportSoutenanceController extends Controller
     public function indexAction()
     {
 
-        $session = $this->getRequest()->getSession();
         $conn = $this->get('database_connection');
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
         $query = $this->get('queries');
-        $tuteurRef = $session->get('name');
+        $tuteurRef = $session->get('CK_USER');
 
 
         $formationSuivi = $query->getFormationSuivieTuteur($conn, $tuteurRef, 2014,$onlyM1INFOFAnoParcours=true);

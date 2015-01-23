@@ -13,8 +13,16 @@ class VisiteDeuxController extends Controller
     {
         $conn = $this->get('database_connection');
 
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $nameEtu = $session->get('etudiant');
+
+        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $nameEtu = $session->get('CK_USER');
 
         $queryEtu = $this->get('queries_etu');
         $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)['alternanceCle'];
@@ -79,8 +87,16 @@ class VisiteDeuxController extends Controller
     public function renduAction() {
         $conn = $this->get('database_connection');
 
+        $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
-        $nameEtu = $session->get('etudiant');
+
+        if (!$session || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $nameEtu = $session->get('CK_USER');
 
         $queryEtu = $this->get('queries_etu');
         $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)['alternanceCle'];
