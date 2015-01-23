@@ -230,4 +230,18 @@ class Queries {
         return $query;
     }
 
+    function getTuteursPotentielsParEtud($conn, $etud, $yearRef=null) {
+
+        if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
+        $query =$conn->fetchAll( "SELECT distinct temp_tuteurs.tuteurRef, membre.nom, membre.prenom
+               FROM contrat inner join (
+                        temp_tuteurs inner join membre
+                            on temp_tuteurs.tuteurRef=membre.profCle)
+                    on contrat.alternanceCle=temp_tuteurs.alternanceRef
+                WHERE
+                    contrat.etudRef='" . $etud . "' and anneeCle in (".$yearRef.")
+                GROUP BY temp_tuteurs.tuteurRef, membre.nom, membre.prenom");
+        return $query;
+    }
+
 } 

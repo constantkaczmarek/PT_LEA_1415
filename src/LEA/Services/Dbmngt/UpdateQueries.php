@@ -75,11 +75,11 @@ class UpdateQueries {
         $conn->query("update etapevisite2 set signatureEtud='".$validationRencontre->getSignatureEtud()."', remarquesEtud='".$validationRencontre->getRemarquesEtud()."' where alternanceRef='".$altCle."'");
     }
 
+    /************************** Bundle Professeur **************************/
+
     public function enregChoixTuteur($conn,$choix){
 
-        print_r($choix->getAltCle());
         foreach($choix->getAltCle()[0] as $value ){
-            print_r($value);
             $conn->query("INSERT INTO `temp_tuteurs` (`etat`,`tuteurRef`,`formationRef`,`alternanceRef`) VALUES ('0','".$choix->getTuteurRef()."','".$choix->getFormationRef()."','".$value."')");
         }
     }
@@ -148,5 +148,23 @@ class UpdateQueries {
     public function profStopSuivi ($conn, $altCle) {
 
         $conn->query("update  contrat set tuteurRef=null, notifAttribTuteur=0 where alternanceCle in ('".$altCle."');");
+    }
+
+    /************************** Bundle Responsable **************************/
+
+    public function inscrireTuteur($conn, $alternanceCle,$tuteurRef)
+    {
+        $dejaAttribueQuery="select alternanceCle from contrat where
+                              alternanceCle='$alternanceCle' and tuteurRef='$tuteurRef'";
+
+        if($conn->fetchAll($dejaAttribueQuery)){
+            return 2;
+        }
+
+        if($tuteurRef === '__aucun__') {
+            $tuteurRef = "NULL";
+        }
+
+        $conn->query("update contrat Set tuteurRef='".$tuteurRef."', notifAttribTuteur=0 where alternanceCle='".$alternanceCle."';");
     }
 }

@@ -2,7 +2,14 @@ lea_resp_homepage:
     path:     /resp
     defaults: { _controller: LEARespBundle:Default:index }
 
-
 lea_resp_attribution:
     path:    /resp/attribution
     defaults: { _controller: LEARespBundle:Attribution:index }
+
+lea_resp_changeForm:
+    path:    /resp/ajax/changeForm
+    defaults: { _controller: LEARespBundle:Attribution:changeForm }
+    requirements:
+        _method: POST
+    options:
+        expose: true

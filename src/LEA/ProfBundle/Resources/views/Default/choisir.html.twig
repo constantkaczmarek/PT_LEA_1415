@@ -68,6 +68,8 @@
                         <tr>
                     {% elseif situation=="OUI" and etu.tuteurs.tuteurRef!="aucun" %}
                         <tr>
+                    {% elseif situation=="ENTR" and etu.entreprise!="__sans entreprise__" %}
+                        <tr>
                     {% else %}
                         <tr style="display: none">
                     {% endif %}
