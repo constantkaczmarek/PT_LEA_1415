@@ -73,19 +73,35 @@ class AttributionController extends Controller
 
             if($form->isValid()) {
                 $updateInfos = $this->get("update_queries");
+                $infosEtu = $this->get("queries_etapes");
                 $postData = current($request->request->all());
+                $etudiants = array();
+
 
                 foreach ($postData as $nom => $valeur){
                     if( $nom != "_token" && str_replace(CHR(32),"",$nom) != "EnregistrerChoix"){
-                        $updateInfos->InscrireTuteur($conn,$nom,$valeur);
+                        $ok = $updateInfos->InscrireTuteur($conn,$nom,$valeur);
+                        $etu = $infosEtu->getInfosEtud($conn,$nom);
+
+                        $etudiants[$nom]=array(
+                            "nom" => $etu["nom"],
+                            "prenom" => $etu["prenom"],
+                            "tuteur" => $valeur,
+                            "ok" => $ok,
+                        );
                     }
                 }
 
-                return $this->redirect(
+                return $this->render('LEARespBundle:Default:enregistrerAttribution.html.twig', array(
+                    'name' => $name,
+                    'listEtu' => $etudiants,
+                ));
+
+               /* return $this->redirect(
                     $this->generateUrl('lea_resp_homepage',array(
 
                     ))
-                );
+                );*/
 
             }
         }

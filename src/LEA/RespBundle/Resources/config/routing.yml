@@ -13,3 +13,11 @@ lea_resp_changeForm:
         _method: POST
     options:
         expose: true
+
+lea_resp_rapportSoutenance:
+    path:    /resp/soutenance
+    defaults: { _controller: LEARespBundle:Soutenance:index }
+
+lea_resp_editRapportSout:
+    path:    /resp/soutenance/{forma}
+    defaults: { _controller: LEARespBundle:Soutenance:edit }

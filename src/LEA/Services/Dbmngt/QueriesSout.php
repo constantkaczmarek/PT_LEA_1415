@@ -42,4 +42,26 @@ class QueriesSout {
 
         return $queryString;
     }
+
+    function getSoutenancesResponsable($conn,$roles,$yearRef=null)
+    {
+
+        $queryString = $conn->fetchAll("select  distinct
+                                if(f.formationCle like 'M1%FA' and
+                                   f.formationCle not like '%MIAGE%',
+                                  'M1INFOFA',
+                                  f.formationCle) as formationCle,
+                                if(f.formationCle like 'M1%FA' and
+                                   f.formationCle not like '%MIAGE%',
+                                  'M1INFOFA',
+                                  f.formationCle) as formationCle
+                          from
+                            formation f
+                          where f.formationCle in ('" . str_replace(array(" ", "_RESP"), array("','", ""), $roles) . "')");
+
+        return $queryString;
+    }
+
+
+
 } 
