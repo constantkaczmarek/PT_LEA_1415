@@ -6,6 +6,10 @@ lea_resp_attribution:
     path:    /resp/attribution
     defaults: { _controller: LEARespBundle:Attribution:index }
 
+lea_resp_affecter:
+    path:    /resp/affecter
+    defaults: { _controller: LEARespBundle:Affecter:index }
+
 lea_resp_changeForm:
     path:    /resp/ajax/changeForm
     defaults: { _controller: LEARespBundle:Attribution:changeForm }

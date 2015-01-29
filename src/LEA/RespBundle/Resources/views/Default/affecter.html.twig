@@ -1,0 +1,82 @@
+
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+
+
+    {% javascripts '@LEARespBundle/Resources/Js/choisir.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% include "LEARespBundle:Default:navbar.html.twig" %}
+
+    <span>Choisissez la formation : </span>
+
+    <form action="{{  path('lea_resp_changeForm',{'name':name}) }}" method="post">
+        <select id="formation" name="formation" class="form-control" >
+            {% for forma in selectForma.keys %}
+                {% if forma==formation %}
+                    <option value="{{ forma }}" selected="selected">{{ selectForma.values[loop.index-1] }}</option>
+                {% else %}
+                    <option value="{{ forma }}">{{ selectForma.values[loop.index-1] }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </form>
+
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <input type="submit" value="Transmettre choix" name="Transmettre Choix"/>
+
+    <table class="table table-striped">
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Formation</th>
+        <th>Tuteurs candidats</th>
+        <th>Tuteurs précédents</th>
+        <th>Ville</th>
+        <th>Entreprise</th>
+        <th>Tuteurs(potentiels)</th>
+        <th>Détails</th>
+    </tr>
+
+
+
+    {% if listEtu %}
+
+        {% for etu in listEtu %}
+        <tr>
+            <td>{{ etu.nom_etud }}</td>
+            <td>{{ etu.nom_prenom }}</td>
+            <td>{{ etu.formation }}</td>
+            <td>{{ form_row(form[etu.alternanceCle]) }}</td>
+            <td>Inconnue</td>
+            <td>{{ etu.ville }}</td>
+            <td>{{ etu.entreprise }}</td>
+            <td>{{ etu.tuteursPotentiel.tuteurRef }}</td>
+            <td onclick="showModal({{ etu.alternanceCle }})"><a href="#">Détails</a></td>
+            <td id= "{{ etu.alternanceCle }}" style="visibility: hidden" >
+                <table class="table table-default">
+                    <tr><td>Etudiant </td> <td> {{ etu.nom_etud }}</td></tr>
+                    <tr><td>Referent</td> <td> {{ etu.referent }}</td></tr>
+                    <tr><td>Missions</td><td> {{ etu.mission }}</td></tr>
+                    <tr><td>Services</td><td> {{ etu.service }}</td></tr>
+                    <tr><td>Envirnmnt Tech.</td><td> {{ etu.tech }}</td></tr>
+                    <tr><td><a onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
+                </table>
+            </td>
+        </tr>
+
+        {% endfor %}
+        </table>
+    {% endif %}
+
+    {{ form_end(form) }}
+
+
+
+{% endblock %}
