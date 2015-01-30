@@ -97,4 +97,21 @@ class Stats {
 
         return $query;
     }
+
+    function getEtudiantsParOPCAs($conn, $formation, $year)
+    {
+        $query = $conn->fetchAll("select
+                  opcaRef,
+                  count(*) as nb
+                from contrat c
+                          join etudiant_groupe eg on eg.etudRef=c.etudRef and annee=anneeCle
+                                                    and annee=".$year."
+                          join etudiant on etudCle=c.etudRef
+                          join groupe on groupeRef=groupeCle
+
+                where '$formation' like concat('%',formationRef,'%')
+                group by opcaRef order by opcaRef");
+
+        return $query;
+    }
 }

@@ -19,7 +19,6 @@ class StatsEntrepriseController extends Controller
                 $this->generateUrl('lea_role_homepage'));
         }
 
-
         $utils = $this->get('html_utils');
         $keysValues = $utils->getlistFormationSelect();
 
