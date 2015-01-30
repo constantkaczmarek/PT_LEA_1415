@@ -19,7 +19,31 @@ class StatsEntrepriseController extends Controller
                 $this->generateUrl('lea_role_homepage'));
         }
 
-        return $this->render('LEARespBundle:Stats:entreprise.html.twig');
+
+        $utils = $this->get('html_utils');
+        $keysValues = $utils->getlistFormationSelect();
+
+        $conn = $this->get('database_connection');
+        $formation = $session->get('formation');
+
+        $stats = $this->get('stats');
+        $result = $stats->getEtudiantsParEntreprises($conn, $formation, 2014);
+
+        $totalEtud = 0;
+
+        foreach($result as $res)
+        {
+            $totalEtud += $res["nb"];
+        }
+
+        return $this->render('LEARespBundle:Stats:entreprise.html.twig',
+            array(
+                'listForm'  => $keysValues,
+                'formation' => $formation,
+                'result'    => $result,
+                'totalEntr' => sizeof($result),
+                'totalEtud' => $totalEtud,
+            ));
     }
 
 }

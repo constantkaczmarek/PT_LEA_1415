@@ -19,7 +19,31 @@ class StatsBesoinsController extends Controller
                 $this->generateUrl('lea_role_homepage'));
         }
 
-        return $this->render('LEARespBundle:Stats:besoins.html.twig');
+        $utils = $this->get('html_utils');
+        $keysValues = $utils->getlistFormationSelect();
+
+        $conn = $this->get('database_connection');
+        $formation = $session->get('formation');
+
+        $stats = $this->get('stats');
+        $result = $stats->getBesoinsEncadrementEtudiants($conn, $formation, 2014);
+
+        $totalEtudSansTuteur = 0;
+        $totalEtudSansTuteurNiEntreprise = 0;
+        foreach($result as $res)
+        {
+            $totalEtudSansTuteur += $res["nb"];
+            $totalEtudSansTuteurNiEntreprise += $res["nbSans"];
+        }
+
+        return $this->render('LEARespBundle:Stats:besoins.html.twig',
+            array(
+                'listForm'  => $keysValues,
+                'formation' => $formation,
+                'result'    => $result,
+                'totalEtudSansTuteur' => $totalEtudSansTuteur,
+                'totalEtudSansTuteurNiEntreprise' => $totalEtudSansTuteurNiEntreprise,
+            ));
     }
 
 }

@@ -2,8 +2,51 @@
 
 {% block body %}
 
+    {% javascripts '@LEARespBundle/Resources/Js/choisir.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
     {% include "LEARespBundle:Default:navbar.html.twig" %}
 
     <h2>Répartition étudiants par entreprise</h2>
+
+    <form action="{{  path('lea_prof_changeForm') }}" method="post">
+        <select id="formation" name="formation" class="form-control" >
+            {% for forma in listForm.keys %}
+                {% if forma==formation %}
+                    <option value="{{ forma }}" selected="selected">{{ listForm.values[loop.index-1] }}</option>
+                {% else %}
+                    <option value="{{ forma }}">{{ listForm.values[loop.index-1] }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nom entreprise</th>
+            <th>Nombre d'étudiants</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for res in result %}
+            <tr>
+                <td>{{ res.entrepriseRef }}</td>
+                <td>{{ res.nb }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>
+                Total ({{ totalEntr }} entr.)
+            </td>
+            <td>
+                {{ totalEtud }}
+            </td>
+        </tr>
+        </tfoot>
+    </table>
 
 {% endblock %}
