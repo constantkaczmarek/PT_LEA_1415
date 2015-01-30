@@ -45,19 +45,16 @@ class GestionRole
         $user = $session->get("CK_USER");
         $roles = $session->get("CK_ROLES");
 
-        //error_log("requires role ".$role." for ".$user. " | ". $roles);
         if ((strlen($user)==0) ||
             (strlen($roles)==0)
             || ($user===null) || ($roles === null))
         {
-            //error_log("cookie does not exists");
             return FALSE;
         }
 
         if (strlen($role)==0)
             return TRUE;
 
-        //error_log("cookie exist : ".$roles);
         return (strpos($roles,$role,0)!== FALSE);
     }
 
