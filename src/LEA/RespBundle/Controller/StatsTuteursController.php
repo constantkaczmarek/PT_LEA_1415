@@ -19,7 +19,32 @@ class StatsTuteursController extends Controller
                 $this->generateUrl('lea_role_homepage'));
         }
 
-        return $this->render('LEARespBundle:Stats:tuteurs.html.twig');
+        $utils = $this->get('html_utils');
+        $keysValues = $utils->getlistFormationSelect();
+
+        $conn = $this->get('database_connection');
+        $formation = $session->get('formation');
+
+        $stats = $this->get('stats');
+        $result = $stats->getEncadrementTuteurEtudiants($conn, $formation, 2014);
+
+        $totalTuteurs = 0;
+        $totalEtud = 0;
+
+        foreach($result as $res)
+        {
+            $totalTuteurs += $res["count"];
+            $totalEtud += $res["nb"];
+        }
+
+        return $this->render('LEARespBundle:Stats:tuteurs.html.twig',
+            array(
+                'listForm'  => $keysValues,
+                'formation' => $formation,
+                'result'    => $result,
+                'totalTuteurs'  => $totalTuteurs,
+                'totalEtud'     => $totalEtud,
+            ));
     }
 
 }

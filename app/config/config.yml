@@ -150,3 +150,5 @@ services:
         class: LEA\Services\Html\Utils
     gestion_role:
         class: LEA\Services\Role\GestionRole
+    stats:
+        class: LEA\Services\Dbmngt\Stats

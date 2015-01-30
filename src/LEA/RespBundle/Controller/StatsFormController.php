@@ -19,7 +19,32 @@ class StatsFormController extends Controller
                 $this->generateUrl('lea_role_homepage'));
         }
 
-        return $this->render('LEARespBundle:Stats:form.html.twig');
+        $utils = $this->get('html_utils');
+        $keysValues = $utils->getlistFormationSelect();
+
+        $conn = $this->get('database_connection');
+        $formation = $session->get('formation');
+
+        $stats = $this->get('stats');
+        $result = $stats->getEtudiantsParFormation($conn, $formation, 2014);
+
+        $totalEtud = 0;
+        $totalEtudSansTuteur = 0;
+        foreach($result as $res)
+        {
+            $totalEtud += $res["nb"];
+            $totalEtudSansTuteur += $res["nbSans"];
+        }
+
+        return $this->render('LEARespBundle:Stats:form.html.twig',
+            array(
+                'listForm'  => $keysValues,
+                'formation' => $formation,
+                'result'    => $result,
+                'nbForm'    => sizeof($result),
+                'totalEtud' => $totalEtud,
+                'totalEtudSansTuteur' => $totalEtudSansTuteur,
+            ));
     }
 
 }
