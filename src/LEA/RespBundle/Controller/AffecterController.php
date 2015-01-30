@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class AttributionController extends Controller
+class AffecterController extends Controller
 {
     public function indexAction()
     {
@@ -37,6 +37,12 @@ class AttributionController extends Controller
 
         $dbutils = $this->get('dbutils');
 
+        $listTuteur = $queries->getListTuteurs($conn);
+
+        $listSelectTut = $dbutils->convertArrayToChoices($listTuteur,"profCle","nom","prenom");
+        $listSelectTut["aucun"] = "aucun";
+
+
         $form = $this->createFormBuilder(array('default'=>'default'));
 
         for($i = 0; $i< $taille ; $i++) {
@@ -47,23 +53,22 @@ class AttributionController extends Controller
             else {
                 $listEtu[$i]['tuteursPotentiel'] = $tuteursPotentiels[0];
             }
-            $tuteursCandidats = $queries->getTuteursPotentielsParEtud($conn,$listEtu[$i]["etudRef"],2014);
 
-            $listTuteur = $dbutils->convertArrayToChoices($tuteursCandidats,"tuteurRef","nom","prenom");
-            $listTuteur["aucun"] = "aucun";
+            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
+            $tuteur = empty($tuteur)?"aucun":$tuteur[0]["tuteurRef"];
 
             $form->add($listEtu[$i]["alternanceCle"], 'choice', array(
                 'label'=>false,
-                'choices' => $listTuteur,
-                'expanded'=>true,
+                'choices' => $listSelectTut,
+                'data' => $tuteur,
+                'expanded'=>false,
                 'multiple'=>false))
-                ;
+            ;
 
             $listAlt[$listEtu[$i]["alternanceCle"]] = $listEtu[$i]["alternanceCle"];
         }
 
         $form = $form->add('Enregistrer Choix','submit') ->getForm();
-        //$form = $form->getForm();
 
         $request = $this->getRequest();
 
@@ -76,7 +81,6 @@ class AttributionController extends Controller
                 $infosEtu = $this->get("queries_etapes");
                 $postData = current($request->request->all());
                 $etudiants = array();
-
 
                 foreach ($postData as $nom => $valeur){
                     if( $nom != "_token" && str_replace(CHR(32),"",$nom) != "EnregistrerChoix"){
@@ -97,16 +101,12 @@ class AttributionController extends Controller
                     'listEtu' => $etudiants,
                 ));
 
-               /* return $this->redirect(
-                    $this->generateUrl('lea_resp_homepage',array(
-
-                    ))
-                );*/
 
             }
+
         }
 
-        return $this->render('LEARespBundle:Default:attribution.html.twig', array(
+        return $this->render('LEARespBundle:Default:affecter.html.twig', array(
             'name' => $name,
             'selectForma' => $selectForma,
             'listEtu' => $listEtu,

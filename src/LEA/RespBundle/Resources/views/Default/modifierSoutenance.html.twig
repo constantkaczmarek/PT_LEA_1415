@@ -1,0 +1,48 @@
+
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% include "LEARespBundle:Default:navbar.html.twig" %}
+
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+        <h1>{{ forma }}</h1>
+
+        <table>
+            <tr>
+                <td>Date de remise du rapport</td>
+                <td>{{ form_row(form.dateRemise) }}</td>
+            </tr>
+            <tr>
+                <td>Dates de soutenances</td>
+                <td>{{ form_row(form.datesSoutenances) }}</td>
+            </tr>
+            <tr>
+                <td>Longueur du rapport</td>
+                <td>{{ form_row(form.longueurRapport) }}</td>
+            </tr>
+            <tr>
+                <td>Durée de la soutenance</td>
+                <td>{{ form_row(form.dureeSoutenance) }}</td>
+            </tr>
+            <tr>
+                <td>Observations (réservées aux étudiants)</td>
+                <td>{{ form_row(form.observationsTous) }}</td>
+            </tr>
+            <tr>
+                <td>Observations (réservées aux tuteurs uniquement)</td>
+                <td>{{ form_row(form.observationsTuteurs) }}</td>
+            </tr>
+            <tr>
+                <td>Lien externe</td>
+                <td>{{ form_row(form.lienExterne) }}</td>
+            </tr>
+        </table>
+
+    <input type="submit" value="Enregistrer" name="Enregistrer"/>
+    {{ form_end(form) }}
+
+{% endblock %}

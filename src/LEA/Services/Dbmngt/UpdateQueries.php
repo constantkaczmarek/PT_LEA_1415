@@ -165,6 +165,54 @@ class UpdateQueries {
             $tuteurRef = "NULL";
         }
 
-        $conn->query("update contrat Set tuteurRef='".$tuteurRef."', notifAttribTuteur=0 where alternanceCle='".$alternanceCle."';");
+        $query = $conn->query("update contrat Set tuteurRef='".$tuteurRef."', notifAttribTuteur=0 where alternanceCle='".$alternanceCle."';");
+
+        return true;
+
+    }
+
+    public function updateSoutenanceRapport($conn,$infosSout,$year){
+
+        $queryString=$conn->fetchAll("select * from soutenance where formationRef='".
+            $infosSout->getFormationRef()."' and obsolete=0 and anneeReference=".$year);
+
+        if (!empty($queryString))
+            $exists=1;
+        else
+            $exists=0;
+
+        $queryString=$exists==1?("update soutenance set dateRemise='".addslashes($infosSout->getDateRemise())."',
+                                datesSoutenances='".addslashes($infosSout->getDatesSoutenances())."',
+                                longueurRapport='".addslashes($infosSout->getLongueurRapport())."',
+                                duréeSoutenance='".addslashes($infosSout->getDureeSoutenance())."',
+                                observationsTous='".addslashes($infosSout->getObservationsTous())."',
+                                observationsTuteurs='".addslashes($infosSout->getObservationsTuteurs())."',
+                                lienExterne='".addslashes($infosSout->getLienExterne())."'
+                                where formationRef='".addslashes($infosSout->getFormationRef())."' and anneeReference<=".$year):
+                ("insert into soutenance values (".$year.",0,'".$infosSout->getFormationRef()."',
+                                                '".addslashes($infosSout->getDateRemise())."',
+                                                '".addslashes($infosSout->getDatesSoutenances())."',
+                                                '".addslashes($infosSout->getLongueurRapport())."',
+                                                '".addslashes($infosSout->getDureeSoutenance())."',
+                                                '".addslashes($infosSout->getObservationsTous())."',
+                                                '".addslashes($infosSout->getObservationsTuteurs())."',
+                                                '".addslashes($infosSout->getLienExterne())."'
+                                                )");
+            $res = $conn->query($queryString);
+
+        if ($res!=false && $exists==0)
+        {
+            $queryString="update soutenance set obsolete=1
+                                where formationRef='".$infosSout->getFormationRef()."' and anneeReference<".$year;
+            $res = $conn->query($queryString);
+        }
+
+        if ($res==false)
+        {
+
+            echo "problème";
+        }
+
+        return true;
     }
 }

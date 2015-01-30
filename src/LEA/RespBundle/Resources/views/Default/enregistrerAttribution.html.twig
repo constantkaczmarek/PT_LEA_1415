@@ -6,7 +6,31 @@
     {% include "LEARespBundle:Default:navbar.html.twig" %}
 
 
-    Hello {{ name }}!
+    <table class="table table-striped">
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>IdentifiantTuteur</th>
+            <th>Etat</th>
+        </tr>
 
+    {% if listEtu %}
+
+        {% for etu in listEtu %}
+            <tr>
+                <td>{{ etu.nom }}</td>
+                <td>{{ etu.prenom }}</td>
+                <td>{{ etu.tuteur }}</td>
+                {% if etu.ok == false %}
+                    <td>Problème</td>
+                {% else %}
+                    <td>Enregistré</td>
+                {% endif %}
+
+            </tr>
+
+        {% endfor %}
+        </table>
+    {% endif %}
 
 {% endblock %}

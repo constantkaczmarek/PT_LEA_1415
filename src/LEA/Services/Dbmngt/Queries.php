@@ -105,6 +105,20 @@ class Queries {
         return $query;
     }
 
+    function getTuteurEtud($conn, $etud, $yearRef=null) {
+        //if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
+        $queryString = $conn->fetchAll("SELECT contrat.tuteurRef, membre.nom, membre.prenom
+               FROM contrat inner join membre
+                            on contrat.tuteurRef=membre.profCle
+                WHERE
+                    contrat.etudRef like '" . $etud . "'
+                    and anneeCle in (".$yearRef.")");
+        if(empty($queryString)){
+            return false;
+        }else
+            return $queryString;
+    }
+
     function getEtudByTuteur($conn, $formation, $tuteur, $yearRef=null) {
         if ($yearRef==null) $yearRef=$_SESSION[REF_YEAR];
 
