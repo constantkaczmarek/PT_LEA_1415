@@ -31,7 +31,7 @@ class ChoixSansTuteurType extends AbstractType
                 'choices' => $this->listEtu,
                 'multiple'  => true,
                 'expanded' => true,
-                'required' =>true,
+                'required' =>false,
                 'mapped' => true,
             ))
         ;

@@ -42,84 +42,84 @@ class infosStageType extends AbstractType
 
         $builder
             ->add('tel','number',array(
-                'label' => 'Téléphone personnel :'
+                'label' => false
             ))
 
             ->add('mail','email',array(
-                'label' => 'E-mail :'
+                'label' => false
             ))
 
             ->add('mailLille1','email',array(
-                'label' => 'E-mail lille :'
+                'label' => false
             ))
 
             ->add('tuteur','choice',array(
-                'label' => 'Tuteur  :',
+                'label' => false,
                 'choices' => $this->listTuteur,
             ))
 
             ->add('entreprise','choice',array(
                 'required' => false,
-                'label' => ' L\'entreprise ',
+                'label' => false,
                 'choices' => $this->listEntr,
             ))
 
             ->add('bureau','choice',array(
                 'required' => false,
-                'label' => 'Bureau ',
+                'label' => false,
                 'choices' => $this->listBureau
             ))
 
             ->add('referent','choice',array(
                 'required' => false,
-                'label' => 'Référent 1  ',
+                'label' => false,
                 'choices' => $this->listRef
             ))
 
             ->add('referent1','choice',array(
                 'required' => false,
-                'label' => 'Référent 2 ',
+                'label' => false,
                 'choices' => $this->listRef
             ))
 
 
             ->add('datecontrat','date',array(
                 'required' => false,
-                'label' => 'Date de signature du contrat'
+                'label' => false
             ))
 
             ->add('dateDebutcontrat','date',array(
                 'required' => false,
-                'label' => 'Date de début de contrat '
+                'label' => false
             ))
 
             ->add('dateFincontrat','date',array(
                 'required' => false,
-                'label' => 'Date de fin de contrat '
+                'label' => false
             ))
 
             ->add('entrepriseAlt','choice',array(
                 'required' => false,
-                'label' => 'REGIE : ',
+                'label' => false,
                 'choices' => $this->listEntr
             ))
 
             ->add('bureauAlt','choice',array(
                 'required' => false,
-                'label' => 'Bureau ',
+                'label' => false,
                 'choices' => $this->listBureauAlt
 
             ))
 
             ->add('referentAlt','choice',array(
                 'required' => false,
-                'label' => 'Référent 1  ',
+                'label' => false,
                 'choices' => $this->listRefAlt
             ))
 
             ->add('referent1Alt','choice',array(
                 'required' => false,
-                'label' => 'Référent 1  ',
+                'label' => false,
                 'choices' => $this->listRefAlt
             ))
         ;

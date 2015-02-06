@@ -97,8 +97,10 @@ class queriesEtapes {
         where alternanceCle in ('" . $altRef . "') order by etudiant_groupe.groupeRef, prof, nom_etud, prenom_etud ;"
         );
 
-        //print_r($query);
-        return $query[0];
+        if(empty($query))
+            return false;
+        else
+            return $query[0];
 
     }
 

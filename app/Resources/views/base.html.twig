@@ -4,7 +4,9 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Menus Stages & Alternances {% endblock %}</title>
         {% block stylesheets %}
-            <link href="{{ asset('CSS/bootstrap/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('CSS/style.css') }}" type="text/css" rel="stylesheet" />
+            <link href="http://www.fil.univ-lille1.fr/portail/css/fil-screen.css" media="screen" rel="stylesheet" type="text/css" />
+
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
@@ -14,10 +16,14 @@
 
     </head>
     <body>
-        <div class="container-fluid">
-            {% block top %}{% include "::header.html.twig" %} {% endblock %}
-            {% block body %}{% endblock %}
-            {% block javascripts %}{% endblock %}
+        {% block top %}{% include "::header.html.twig" %} {% endblock %}
+            <div class="contenu">
+                <div id="cadre_0" class="contenu-item2 on">
+                    {% block body %}{% endblock %}
+                 </div>
+            </div>
         </div>
+        {% block javascripts %}{% endblock %}
+        {% block footer %}{% include "::footer.html.twig" %} {% endblock %}
     </body>
 </html>

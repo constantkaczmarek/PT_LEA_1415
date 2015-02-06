@@ -9,9 +9,11 @@
     {% include "LEAProfBundle:Default:navbar.html.twig" %}
 
     <div>
-        <span>Choisissez la formation : </span>
+        <br/>
+
 
         <form action="{{  path('lea_prof_changeForm',{'name':name}) }}" method="post">
+            <span>Choisissez la formation : </span>
             <select id="formation" name="formation" class="form-control" >
                 {% for forma in listForm.keys %}
                     {% if forma==formation %}
@@ -22,10 +24,10 @@
                 {% endfor %}
             </select>
         </form>
-
-        <span>Choisir situation : </span>
+        <br/>
 
         <form  method="post">
+            <span>Choisir situation : </span>
             <select id="situ" name="situ" class="form-control" >
                 {% for situ in choixTuteur.keys %}
                     {% if situ==situation %}
@@ -39,18 +41,20 @@
     </div>
     <br/>
 
+    <h2>Informations sur les étudiants</h2>
+    &nbsp;&nbsp;&nbsp; - cochez les cases des étudiants qui vous intéressent, puis transmettez vos choix.
+    <br/><br/>
+
 
     {{ form_start(form) }}
 
         {{ form_errors(form) }}
 
-        <input type="submit" name="Enregistrer" value="Transmettre vos choix" class="btn btn-primary"/>
-        <br/>
-        <br/>
 
-        <table class="table table-striped">
-                <tr>
-                <th>#</th>
+        <table class="table">
+        <thead>
+                <tr class="entete">
+                <th> </th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Formation</th>
@@ -59,6 +63,7 @@
                 <th>Tuteurs(potentiels)</th>
                 <th>Détails</th>
             </tr>
+    </thead>
 
         {% if listEtu %}
 
@@ -80,9 +85,9 @@
                             <td>{{ etu.formation }}</td>
                             <td>{{ etu.ville }}/<a href="{{ etu.lienDistance }}">{{ etu.distance }}</a></td>
                             <td>{{ etu.entreprise }}</td>
-                            <td>{{ etu.tuteurs.tuteurRef }}</td>
+                            <td align="center"><b>{{ etu.tuteurs.tuteurRef }}</b></td>
                             <td onclick="showModal({{ etu.alternanceCle }})"><a href="#">Détails</a></td>
-                            <td id= "{{ etu.alternanceCle }}" style="visibility: hidden" >
+                            <td id= "{{ etu.alternanceCle }}" style="display: none" >
                                 <table class="table table-default">
                                     <tr><td>Etudiant </td> <td> {{ etu.nom_etud }}</td></tr>
                                     <tr><td>Referent</td> <td> {{ etu.referent }}</td></tr>
@@ -93,12 +98,13 @@
                                 </table>
                             </td>
                         </tr>
-                    </div>
 
                 {% endfor %}
         </table>
 
         {% endif %}
+
+    <input type="submit" name="Enregistrer" value="Transmettre vos choix" class="btn btn-primary"/>
 
     {{ form_end(form) }}
 

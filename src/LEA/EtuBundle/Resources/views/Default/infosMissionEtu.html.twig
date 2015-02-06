@@ -2,16 +2,34 @@
 
 {% block body %}
     <div class="container-fluid">
-        <form action="{{ path("lea_etu_infosMission") }}" method="post">
-            {{ form_widget(form) }}
-            <input type="submit" name="Enregistrer" value="Enregistrer"/>
+        <h2><b>Mission(s)</b></h2>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
             <div>
-                <a href="{{ path('lea_etu_homepage') }}">Revenir</a>
+                Service/projet :
+                {{ form_row(form.service,{ 'attr': {'size': '40'}}) }}
             </div>
-        </form>
-        <div>
-            C'est ca : {{ altref }} et {{ infosMissions.service }}
-        </div>
+            <div>
+                (éventuellement client) :
+                {{ form_row(form.client, { 'attr': {'size': '40'}}) }}
+            </div>
+            <div>
+                Quels sont (ou seront) les missions confiées ?
+                {{ form_row(form.missions,{ 'attr': {'cols': '70','rows':'5'}} ) }}
+            </div>
+            <div>
+                Dans quel environnement technique ?
+                {{ form_row(form.technos,{ 'attr': {'cols': '70','rows':'5'}}) }}
+            </div>
+            <div>
+                Mots clés ?
+                {{ form_row(form.motscles,{ 'attr': {'size': '40'}}) }}
+            </div>
+
+            <a href="{{ path('lea_etu_homepage') }}">Revenir</a>
+            <input type="submit" name="Enregistrer" value="Enregistrer"/>
+        {{ form_end(form) }}
 
     </div>
 

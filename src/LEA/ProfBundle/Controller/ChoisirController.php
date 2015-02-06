@@ -128,6 +128,7 @@ class ChoisirController extends Controller
             'formation' => $session->get('formation'),
             'choixTuteur' => $sanstuteur,
             'situation' => $session->get('sanstuteur'),
+            'page'=>'choisir'
         ));
     }
 

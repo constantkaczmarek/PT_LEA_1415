@@ -2,8 +2,6 @@
 
 {% block body %}
 
-
-
     {% if role=='prof' %}
         {% include "LEAProfBundle:Default:navbar.html.twig" %}
         <div class="container-fluid">
@@ -20,6 +18,7 @@
         </div>
     {% endif %}
 
+    {% if infos %}
     <div class="container-fluid">
 
         <div class="row">
@@ -37,7 +36,9 @@
             <strong>Référent: </strong>
             <span>{{ infos.refPre }} {{ infos.refNom }}</span>
             {% set refs = infos.ref1Cle  |split('_')  %}
+            {% if refs[0]  %}
             <span>{{ refs[0] }} {{ refs[1] }}</span>
+            {% endif %}
         </div>
         <div class="row">
             <strong>Télephone référent: </strong>
@@ -51,9 +52,13 @@
             <span> {{ infos.regieEntrCle | upper }} </span>
             <strong>Référents: </strong>
             {% set refs = infos.regieReferentRef  |split('_')  %}
+            {% if refs[0]  %}
             <span>{{ refs[0] }} {{ refs[1] }}</span>
+            {% endif %}
             {% set refs = infos.regieReferent1Ref  |split('_')  %}
-            <span>{{ refs[0] }} {{ refs[1] }}</span>
+            {% if refs[0]  %}
+                <span>{{ refs[0] }} {{ refs[1] }}</span>
+            {% endif %}
         </div>
         <div class="row">
             <strong>Coordonnées: </strong>
@@ -79,4 +84,5 @@
         </div>
 
     </div>
+        {% endif %}
 {% endblock %}

@@ -1,10 +1,37 @@
 
-<nav class="navbar navbar-default">
-    <ul class="nav navbar-nav">
-        <li><a href="{{ path('lea_prof_homepage') }}">Accueil</a></li>
-        <li><a href="{{ path('lea_prof_choisir') }}">Choisir étudiant</a></li>
-        <li><a href="{{ path('lea_prof_suivi') }}">Suivre mes choix</a></li>
-        <li><a href="{{ path('lea_prof_etuAttribues') }}">Etudiants attribués</a></li>
-        <li><a href="{{ path('lea_prof_rapportSoutenance') }}">Rapport et soutenance</a></li>
-    </ul>
-</nav>
+<div class="menuligne3">
+
+            {% if page == "index" %}
+                <a class="highlight" href="{{ path('lea_prof_homepage') }}">Accueil</a>
+            {% else %}
+                <a href="{{ path('lea_prof_homepage') }}">Accueil</a>
+            {% endif %}
+            :
+
+            {% if page == "choisir" %}
+                <a class="highlight" href="{{ path('lea_prof_choisir') }}">Choisir étudiant</a>
+            {% else %}
+            <a href="{{ path('lea_prof_choisir') }}">Choisir étudiant</a>
+            {% endif %}
+    :
+
+            {% if page == "suivi" %}
+                <a class="highlight" href="{{ path('lea_prof_suivi') }}">Suivre mes choix</a>
+            {% else %}
+                <a href="{{ path('lea_prof_suivi') }}">Suivre mes choix</a>
+            {% endif %}
+    :
+            {% if page == "etu_attribues" %}
+            <a class="highlight" href="{{ path('lea_prof_etuAttribues') }}">Etudiants attribués</a>
+            {% else %}
+            <a href="{{ path('lea_prof_etuAttribues') }}">Etudiants attribués</a>
+            {% endif %}
+    :
+            {% if page == "soutenanceProf" %}
+            <a class="highlight" href="{{ path('lea_prof_rapportSoutenance') }}">Rapport et soutenance</a>
+            {% else %}
+            <a href="{{ path('lea_prof_rapportSoutenance') }}">Rapport et soutenance</a>
+            {% endif %}
+
+</div>
+<div class="menuligne4"></div>

@@ -22,21 +22,21 @@ class infosMissionsType extends AbstractType
     {
         $builder
             ->add('service','text',array(
-                'label' => 'Services :'
+                'label' => false
             ))
             ->add('client','text',array(
-                'label' => 'Clients :  :'
+                'label' => false
             ))
             ->add('missions','textarea',array(
                 'required' => false,
-                'label' => 'Quelles sont les missions confiées ? ',
+                'label' => false,
             ))
             ->add('technos','textarea',array(
                 'required' => false,
-                'label' => 'Dans quel domaine technologique ? '
+                'label' => false
             ))
             ->add('motscles','text',array(
-                'label' => 'Mots-clés : '
+                'label' => false
             ))
 /*            ->add('Revenir','button')
             ->add('Enregistrer','button')*/

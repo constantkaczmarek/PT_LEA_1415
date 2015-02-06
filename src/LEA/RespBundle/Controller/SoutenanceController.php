@@ -57,7 +57,8 @@ class SoutenanceController extends Controller
         return $this->render('LEARespBundle:Default:soutenance.html.twig', array(
             'name' => $name,
             'infosSoutenance' => $infosSoutenance,
-            'role' => $role
+            'role' => $role,
+            
         ));
 
     }

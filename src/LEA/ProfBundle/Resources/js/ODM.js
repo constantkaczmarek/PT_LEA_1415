@@ -35,7 +35,6 @@ $(document).ready(function () {
     changeTransport("Metro");
     changeTransport("Velo");
 
-
     $("#ODMType_departDifferent").change(function () {
         if(this.checked)
             document.getElementById("formDepartDifferent").style.display = "block";
@@ -55,6 +54,13 @@ $(document).ready(function () {
             document.getElementById("formEscaleRetour").style.display = "block";
         else
             document.getElementById("formEscaleRetour").style.display = "none";
+    });
+
+    $("#ODMType_dateRetourDifferente").change(function () {
+        if(this.checked)
+            document.getElementById("formDateRetourDifferente").style.display = "block";
+        else
+            document.getElementById("formDateRetourDifferente").style.display = "none";
     });
 
 });

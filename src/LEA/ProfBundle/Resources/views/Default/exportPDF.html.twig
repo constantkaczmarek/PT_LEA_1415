@@ -66,10 +66,10 @@
         <td size=10 colspan=6 >
             {% if donneODM.transportTrain %}
                 <img src='./images/case-a-cocher-selectionnee.gif'/> Train
-                {% if donneODM.premiere %}
-                    <img src='./images/case-a-cocher-selectionnee.gif'/> 1ére <img src='./images/case-a-cocher.gif'/> 2ème Je bénéficie d'une réduction de <b>{{ donneODM.reductionTrain }}</b> % au titre de <b>{{ donneODM.moyenReductionTrain }}</b>
+                {% if donneODM.classe == "premiere" %}
+                    <img src='./images/case-a-cocher-selectionnee.gif'/> 1ére <img src='./images/case-a-cocher.gif'/> 2ème Je bénéficie d'une réduction de <b>{{ donneODM.reduction }}</b> % au titre de <b>{{ donneODM.moyenReductionTrain }}</b>
                 {% else %}
-                <img src='./images/case-a-cocher.gif'/> 1ére <img src='images/case-a-cocher-selectionnee.gif'/> 2ème Je bénéficie d'une réduction de <b>{{ donneODM.reductionTrain }}</b> % au titre de <b>{{ donneODM.moyenReductionTrain }}</b>
+                <img src='./images/case-a-cocher.gif'/> 1ére <img src='images/case-a-cocher-selectionnee.gif'/> 2ème Je bénéficie d'une réduction de <b>{{ donneODM.reduction }}</b> % au titre de <b>{{ donneODM.moyenReductionTrain }}</b>
                {% endif %}
             {% else %}
                 <img src='./images/case-a-cocher.gif'/> Train <img src='./images/case-a-cocher.gif'/> 1ére <img src='./images/case-a-cocher.gif'/> 2ème Je bénéficie d'une réduction de.......... % au titre de .........
@@ -136,7 +136,7 @@
             {% elseif not donneODM.escaleAller and donneODM.escaleRetour %}
                 {{ donneODM.dateRetour|date('d-m-Y') }}<br/>{{ donneODM.dateRetour|date('d-m-Y') }}</td>
                 <td height=130>{{ donneODM.departAller }}<br/>{{ donneODM.departRetour }}<br/>{{ donneODM.villeEscaleRetour }}</td>
-                <td height=130>{{ donneODM.horaireDepartAller }}<br/>{{ donneODM.horaireDepartRetour }}<br/>{{ donne.horaireDepartRetourEscale }}</td>
+                <td height=130>{{ donneODM.horaireDepartAller }}<br/>{{ donneODM.horaireDepartRetour }}<br/>{{ donneODM.horaireDepartRetourEscale }}</td>
                 <td height=130>{{ donneODM.arriverAller }}<br/>{{ donneODM.villeEscaleRetour }}<br/>{{ donneODM.departAller }}</td>
                 <td height=130>{{ donneODM.horaireArriverAller }}<br/>{{ donneODM.horaireArriverRetour }}<br/>{{ donneODM.horaireArriverRetourEscale }}</td>
 

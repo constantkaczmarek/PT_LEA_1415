@@ -38,7 +38,8 @@ class RapportSoutenanceController extends Controller
         return $this->render('LEAProfBundle:Default:rapportSoutenance.html.twig',array(
             'name' => $tuteurRef,
             'infosSoutenance' => $infosSoutenance,
-            'formation' => $formationSuivi[0]['nom']
+            'formation' => $formationSuivi[0]['nom'],
+            'page' => 'soutenanceProf'
         ));
     }
 }

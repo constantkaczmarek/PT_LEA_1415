@@ -6,7 +6,6 @@
 
     {% if role=='prof' %}
         {% include "LEAProfBundle:Default:navbar.html.twig" %}
-        <div class="container-fluid">
     {% endif %}
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
@@ -15,107 +14,194 @@
     <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
     {% javascripts '@LEAEtuBundle/Resources/Js/infosStage.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+    <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-
-    <div class="container-fluid">
+    <table align='center' class='edt' style='font-size:11px'>
 
         {{ form_start(form) }}
 
-            <div>
+        <tr>
+            <td>
                 {{ form_errors(form) }}
-            </div>
+            </td>
+        </tr>
 
-            <div>
+        <tr class='entete'>
+            <td colspan='2' style='border-width: 1px;border-style:solid;text-align:left'>
+                L'ETUDIANT
+                {{ prenom }} {{ nom }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                téléphone perso
+            </td>
+            <td>
                 {{ form_row(form.tel) }}
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                e-mail
+            </td>
+            <td>
                 {{ form_row(form.mail) }}
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                e-mail lille1
+            </td>
+            <td>
                 {{ form_row(form.mailLille1) }}
-            </div>
+            </td>
+        </tr>
 
-            {% if role == "prof" %}
-            <div>
-                {{ form_row(form.tuteur) }}
-            </div>
-            {% else %}
-                <div>
-                    <b>Tuteur</b> : {{ infosStage.tuteur }}
-                </div>
-            {% endif %}
-            <div>
-                {{ form_row(form.entreprise) }}
-                <a href="{{ path('lea_etu_inscrireEntr') }}">
-                    ---- Nouvelle entreprise
-                </a>
-            </div>
-            <div>
+        {% if role == "prof" %}
+            <tr class='entete'>
+                <td colspan='2' style='border-width: 1px;border-style:solid;text-align:left'>
+                    LE TUTEUR : {{ form_row(form.tuteur) }}
+                </td>
+            </tr>
+        {% else %}
+            <tr class='entete'>
+                <td colspan='2' style='border-width: 1px;border-style:solid;text-align:left'>
+                    LE TUTEUR : {{ infosStage.tuteur }}
+                </td>
+            </tr>
+        {% endif %}
+        <tr class='entete' >
+            <td style="border-width: 1px;border-style:solid;text-align:left" colspan="2">
+                <span>
+                    L'ENTREPRISE
+                </span>
+                <span>
+                    {{ form_row(form.entreprise) }}
+                </span>
+                <span>
+                    <a href="{{ path('lea_etu_inscrireEntr') }}">
+                        ---- Nouvelle entreprise
+                    </a>
+                </span>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Bureau
+            </td>
+            <td>
                 {{ form_row(form.bureau) }}
-                <a id="insBur" >
+                <a href="#" id="insBur" >
                     ---- Nouveau Bureau
                 </a>
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Referent
+            </td>
+            <td>
                 {{ form_row(form.referent) }}
-                <a id="insRef">
+                <a href="#" id="insRef">
                     ---- Nouveau Référent
                 </a>
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Referent 2
+            </td>
+            <td>
                 {{ form_row(form.referent1) }}
-                <a id="insRef">
+                <a href="#" id="insRef">
                     ---- Nouveau Référent
                 </a>
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date début de signature du contrat
+            </td>
+            <td>
                 {{ form_row(form.datecontrat) }}
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date début du contrat
+            </td>
+            <td>
                 {{ form_row(form.dateDebutcontrat) }}
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date fin du contrat
+            </td>
+            <td>
                 {{ form_row(form.dateFincontrat) }}
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr class='entete'>
+            <td style='border-width: 1px;border-style:solid;text-align:left' colspan="2">
+                REGIE
+
                 {{ form_row(form.entrepriseAlt) }}
                 <a href="{{ path('lea_etu_inscrireEntr') }}">
                     ---- Nouvelle entreprise Regie
                 </a>
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Bureau
+            </td>
+            <td>
                 {{ form_row(form.bureauAlt) }}
-                <a id="insBurAlt" >
+                <a href="#" id="insBurAlt" >
                     ---- Nouveau Bureau Regie
                 </a>
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Referent
+            </td>
+            <td>
                 {{ form_row(form.referentAlt) }}
-                <a id="insRefAlt">
+                <a href="#" id="insRefAlt">
                     ---- Nouveau Référent Regie
                 </a>
-            </div>
-            <div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Referent 2
+            </td>
+            <td>
                 {{ form_row(form.referent1Alt) }}
-                <a id="insRefAlt">
+                <a href="#" id="insRefAlt">
                     ---- Nouveau Référent Regie
                 </a>
-            </div>
+            </td>
+        </tr>
 
-            <input type="submit" name="Enregistrer" value="Enregistrer"/>
-        
+        <tr>
+            <td>
+                {% if role=="prof" %}
+                    <a href="{{ path('lea_prof_etuGeneral') }}">Revenir</a>
+                {% else %}
+                    <a href="{{ path('lea_etu_homepage') }}">Revenir</a>
+                {% endif %}
+                <input type="submit" name="Enregistrer" value="Enregistrer"/>
+            </td>
+
+        </tr>
+
         {{ form_end(form) }}
-        
 
-        <div>
-            {% if role=="prof" %}
-                <a href="{{ path('lea_prof_etuGeneral') }}">Revenir</a>
-            {% else %}
-                <a href="{{ path('lea_etu_homepage') }}">Revenir</a>
-            {% endif %}
-        </div>
-    </div>
+    </table>
 
 {% endblock %}

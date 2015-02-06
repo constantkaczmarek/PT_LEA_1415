@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class StageController extends Controller
 {
 
-    public function indexAction()
+    public function indexAction($name=null)
     {
 
         $conn = $this->get('database_connection');
@@ -27,7 +27,7 @@ class StageController extends Controller
         $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
 
-        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "STUD"))
+        if (!$session || !$session->has('CK_ROLES'))
         {
             return $this->redirect(
                 $this->generateUrl('lea_role_homepage'));
@@ -35,10 +35,13 @@ class StageController extends Controller
 
         $role = "STUD";
 
-        $nameEtu = $session->get('CK_USER');
-
-        $queryEtu = $this->get('queries_etu');
-        $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)["alternanceCle"];
+        if($gestionRole->hasRole($session, "PROF")){
+            $altRef = $name;
+        }else{
+            $nameEtu = $session->get('CK_USER');
+            $queryEtu = $this->get('queries_etu');
+            $altRef = $queryEtu->doGetAltRefForStudent($conn,$nameEtu)["alternanceCle"];
+        }
 
         $query = $this->get('queries_etapes');
         $infos = $query->getInfosStage($conn,$altRef);
@@ -55,6 +58,9 @@ class StageController extends Controller
 
         $listBureauAlt = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$infos["regieEntrCle"]),"bureauCle","ad");
         $listReferentAlt = $dbutils->convertArrayToChoices($dbQueries->getListeReferent($conn,$infos["regieEntrCle"]),"keyRef","sans referent");
+
+        $prenom_etud = $infos["prenom_etud"];
+        $nom_etud = $infos["nom_etud"];
 
         $infosStage = new infosStage();
 
@@ -112,6 +118,8 @@ class StageController extends Controller
             'altref' => $altRef,
             'name' => $altRef,
             'role' => $role,
+            'nom' => $nom_etud,
+            'prenom' => $prenom_etud
         ));
     }
 

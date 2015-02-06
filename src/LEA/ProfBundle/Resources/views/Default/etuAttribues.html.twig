@@ -12,9 +12,16 @@
 
     {% include "LEAProfBundle:Default:navbar.html.twig" %}
 
+
+    <div class="menuitem2-current" id="item_0"><a href="#">Vos étudiants</a></div>
+
+    <div id="cadre_0" class="contenu-item2 on">
+
+
     <div>
-        <span>Choisissez la formation : </span>
+        <br/>
         <form action="{{  path('lea_prof_changeForm',{'name':name}) }}" method="post">
+            <span>Choisissez la formation : </span>
             <select id="formation" name="formation" class="form-control">
                 <option value="{{ aucune }}">aucune</option>
                 {% for forma in listForm %}
@@ -30,9 +37,9 @@
     <br/>
 
 
-    <table class="table table-striped">
-        <tr>
-            <th>#</th>
+    <table class="edt" style="font-size:9pt">
+        <thead>
+        <tr class="entete">
             <th>Nom</th>
             <th>Formation</th>
             <th>Ville</th>
@@ -40,11 +47,13 @@
             <th>Référent</th>
             <th>Actions</th>
         </tr>
+        </thead>
 
-    {% if listEtu %}
+        <tbody>
+
+        {% if listEtu %}
         {% for etu in listEtu %}
-            <tr>
-                <td></td>
+            <tr class="cours">
                 <td>{{ etu.nom_etud }} {{ etu.prenom_etud }}</td>
                 <td>{{ etu.formation }}</td>
                 <td>{{ etu.ville }}</td>
@@ -61,8 +70,11 @@
                 </td>
             </tr>
         {% endfor %}
+        </tbody>
     </table>
 
     {% endif %}
+    </div>
+
 
 {% endblock %}

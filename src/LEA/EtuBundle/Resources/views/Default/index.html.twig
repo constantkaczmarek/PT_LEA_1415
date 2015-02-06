@@ -1,15 +1,14 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="row">
+        <div>
             <h2>Bienvenue à toi jeune étudiant du nom de  {{ name }} ! </h2>
         </div>
-        <div class="row">
+        <div>
             <h3>Informations</h3>
             <p> - Votre tuteur : {{ tuteur }} </p>
         </div>
-        <div class="row">
+        <div>
             <h3>Opérations</h3>
             <a href="{{ path('lea_etu_infosStage') }}">
                 <button>Mise à jour information stage</button>
@@ -19,7 +18,7 @@
                 <button>Mise à jour mission stage</button>
             </a>
         </div>
-        <div class="row">
+        <div>
             <h3>Livret Stage</h3>
             <a href="{{ path('lea_etu_rencontreTuteur') }}">
                 <button>Rencontre avec tuteur</button>
@@ -40,13 +39,13 @@
             </a>
             {% endif %}
         </div>
-        <div class="row">
+        <div>
             <h3>Rapport et soutenance</h3>
             <a href="{{ path('lea_etu_soutenanceRapport') }}">
                 <button>Dates & consignes générales</button>
             </a>
         </div>
-        <div class="row">
+        <div>
             <a href="">
                 <h3>Déconnexion</h3>
             </a>

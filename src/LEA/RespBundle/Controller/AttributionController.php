@@ -49,6 +49,7 @@ class AttributionController extends Controller
             }
             $tuteursCandidats = $queries->getTuteursPotentielsParEtud($conn,$listEtu[$i]["etudRef"],2014);
 
+
             $listTuteur = $dbutils->convertArrayToChoices($tuteursCandidats,"tuteurRef","nom","prenom");
             $listTuteur["aucun"] = "aucun";
 
@@ -58,8 +59,11 @@ class AttributionController extends Controller
                 'expanded'=>true,
                 'multiple'=>false))
                 ;
-
-            $listAlt[$listEtu[$i]["alternanceCle"]] = $listEtu[$i]["alternanceCle"];
+            if(!empty($tuteursCandidats)) {
+                $listEtu[$i]["nb_prof"] = count($tuteursCandidats[0]);
+            }else{
+                $listEtu[$i]["nb_prof"] = 0;
+            }
         }
 
         $form = $form->add('Enregistrer Choix','submit') ->getForm();
@@ -111,7 +115,8 @@ class AttributionController extends Controller
             'selectForma' => $selectForma,
             'listEtu' => $listEtu,
             'formation' => $formation,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'page' => 'attribution'
         ));
 
     }

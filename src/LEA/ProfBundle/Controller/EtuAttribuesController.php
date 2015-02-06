@@ -70,7 +70,8 @@ class EtuAttribuesController extends Controller
             'formation' => $session->get('formation'),
             'listForm' => $formation,
             'aucune' => $form,
-            'actions' => $actions
+            'actions' => $actions,
+            'page'=> 'etu_attribues'
         ));
     }
 

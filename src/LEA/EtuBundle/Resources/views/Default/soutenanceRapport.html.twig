@@ -1,31 +1,39 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <div class="container-fluid">
-        <h2>Informations de rapport et de soutenance</h2>
-        <div class="row">
-            <span> Date et remise du rapport : </span>
-            <span> {{ infos[0].dateRemise }} </span>
-        </div>
-        <div class="row">
-            <span> Dates de soutenance : </span>
-            <span> {{ infos[0].datesSoutenances }}</span>
-        </div>
-        <div class="row">
-            <span> Longueur du rapport </span>
-            <span>{{ infos[0].longueurRapport }} </span>
-        </div>
-        <div class="row">
-            <span> Durée de la soutenance </span>
-            <span> {{ infos[0].duréeSoutenance }}</span>
-        </div>
-        <div class="row">
-            <span> Observations </span>
-            <span>{{ infos[0].observationsTous }} </span>
-        </div>
-        <div>
-            <a href="{{ path('lea_etu_homepage') }}">Revenir</a>
-        </div>
+    <div class="menuitem2" id="item_0">Informations concernant le rapport et la soutenance</div>
+
+    <div id="cadre_0" class="contenu-item2 on">
+
+    <table style="font-size:9pt">
+
+        <tr>
+            <td> <b>Date et remise du rapport : </b></td>
+            <td> {{ infos[0].dateRemise }} </td>
+        </tr>
+        <tr>
+            <td><b>Dates de soutenance : </b> </td>
+            <td> {{ infos[0].datesSoutenances }}</td>
+        </tr>
+        <tr>
+            <td> <b>Longueur du rapport </b></td>
+            <td>{{ infos[0].longueurRapport }} </td>
+        </tr>
+        <tr>
+            <td> <b> Durée de la soutenance </b></td>
+            <td> {{ infos[0].duréeSoutenance }}</td>
+        </tr>
+        <tr>
+            <td><b>Observations</b>  </td>
+            <td>{{ infos[0].observationsTous }} </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ path('lea_etu_homepage') }}">Revenir</a>
+            </td>
+        </tr>
+    </table>
     </div>
+
 
 {% endblock %}
