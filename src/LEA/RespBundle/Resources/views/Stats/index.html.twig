@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% include "LEARespBundle:Default:navbar.html.twig" %}
+
+    <h2>Statistiques / Formations</h2>
+
+    <p><a href="{{ path('lea_resp_stats_form') }}">Nombre d'étudiants par formation</a></p>
+
+    <h2>Statistiques / Encadrement</h2>
+
+    <p><a href="{{ path('lea_resp_stats_tuteurs') }}">Répartition de l'encadrement étudiants par tuteurs</a></p>
+    <p><a href="{{ path('lea_resp_stats_besoins') }}">Besoins en termes d'encadrement</a></p>
+
+    <h2>Statistiques / Entreprises</h2>
+
+    <p><a href="{{ path('lea_resp_stats_entreprise') }}">Répartition étudiants par entreprise</a></p>
+
+    <h2>Statistiques / OPCAs</h2>
+
+    <p><a href="{{ path('lea_resp_stats_opca') }}">Répartition étudiants par OPCA</a></p>
+
+{% endblock %}

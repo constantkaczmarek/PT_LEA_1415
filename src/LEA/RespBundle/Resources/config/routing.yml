@@ -25,3 +25,27 @@ lea_resp_rapportSoutenance:
 lea_resp_editRapportSout:
     path:    /resp/soutenance/{forma}
     defaults: { _controller: LEARespBundle:Soutenance:edit }
+
+lea_resp_stats_index:
+    path:    /resp/stats
+    defaults: { _controller: LEARespBundle:Stats:index }
+
+lea_resp_stats_form:
+    path:    /resp/stats/form
+    defaults: { _controller: LEARespBundle:StatsForm:index }
+
+lea_resp_stats_tuteurs:
+    path:    /resp/stats/tuteurs
+    defaults: { _controller: LEARespBundle:StatsTuteurs:index }
+
+lea_resp_stats_besoins:
+    path:    /resp/stats/besoins
+    defaults: { _controller: LEARespBundle:StatsBesoins:index }
+
+lea_resp_stats_entreprise:
+    path:    /resp/stats/entreprise
+    defaults: { _controller: LEARespBundle:StatsEntreprise:index }
+
+lea_resp_stats_opca:
+    path:    /resp/stats/opca
+    defaults: { _controller: LEARespBundle:StatsOpca:index }

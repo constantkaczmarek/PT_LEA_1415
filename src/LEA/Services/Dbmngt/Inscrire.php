@@ -8,7 +8,7 @@
 
 namespace LEA\Services\Dbmngt;
 
-use LEA\EtuBundle\Distance\CalculDistance;
+use LEA\Services\Distance\CalculDistance;
 
 class Inscrire {
 

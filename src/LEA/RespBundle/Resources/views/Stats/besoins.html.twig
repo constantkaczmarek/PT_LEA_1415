@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% javascripts '@LEARespBundle/Resources/Js/choisir.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% include "LEARespBundle:Default:navbar.html.twig" %}
+
+    <h2>Besoins en termes d'encadrement</h2>
+
+    <form action="{{  path('lea_prof_changeForm') }}" method="post">
+        <select id="formation" name="formation" class="form-control" >
+            {% for forma in listForm.keys %}
+                {% if forma==formation %}
+                    <option value="{{ forma }}" selected="selected">{{ listForm.values[loop.index-1] }}</option>
+                {% else %}
+                    <option value="{{ forma }}">{{ listForm.values[loop.index-1] }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Sans tuteur</th>
+            <th>Sans tuteur ni entreprise</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for res in result %}
+            <tr>
+                <td>{{ res.formationRef }}</td>
+                <td>{{ res.nb }}</td>
+                <td>{{ res.nbSans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>
+                Total
+            </td>
+            <td>
+                {{ totalEtudSansTuteur }}
+            </td>
+            <td>
+                {{ totalEtudSansTuteurNiEntreprise }}
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}
