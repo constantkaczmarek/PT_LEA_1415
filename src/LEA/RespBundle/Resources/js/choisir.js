@@ -1,9 +1,9 @@
 function showModal(ele){
-    ele.style.visibility = "visible";
+    ele.style.display = "block";
 }
 
 function hideModal(ele){
-    ele.style.visibility = "hidden";
+    ele.style.display = "none";
 }
 
 

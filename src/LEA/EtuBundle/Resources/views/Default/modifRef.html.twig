@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>{{ entr }}</h1>
+        <form action="{{ path("lea_etu_modifRef",{'entr':entr,'referent':ref}) }}" method="post">
+            {{ form_widget(form) }}
+            <input type="submit" name="Modifier" value="modifier"/>
+        </form>
+        <a href="{{ path("lea_etu_infosStage") }}">
+            <button>Annuler</button>
+        </a>
+    </div>
+
+{% endblock %}

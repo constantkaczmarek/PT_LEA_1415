@@ -98,4 +98,12 @@ class Utils
 
         return $keysValues;
     }
+
+    function getAvailableYears() {
+        $years=array();
+        for ($i=2014+1;$i>2008;$i--) {
+            $years[$i]= $i. "/" .($i+ 1);
+        }
+        return $years;
+    }
 }

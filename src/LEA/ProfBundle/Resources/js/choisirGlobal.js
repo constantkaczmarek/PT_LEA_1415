@@ -1,15 +1,7 @@
-function showModal(ele){
-    ele.style.display = "block";
-}
-
-function hideModal(ele){
-    ele.style.display = "none";
-}
-
 $(document).ready(function () {
 
 
-    var formation = $("#formation");
+    var formation = $("#formationGlobal");
 
     formation.change(function(){
 
@@ -24,14 +16,14 @@ $(document).ready(function () {
         return false;
     });
 
-    var situ = $("#situ");
+    var year = $("#yearGlobal");
 
-    situ.change(function(){
+    year.change(function(){
 
-        situ = $(this).val();
+        year = $(this).val();
         $.ajax({
             type: "POST",
-            url: Routing.generate('lea_prof_changeForm',{"situ":situ}),
+            url: Routing.generate('lea_prof_changeForm',{year:year}),
             success:function(data){
                 location.reload();
             }

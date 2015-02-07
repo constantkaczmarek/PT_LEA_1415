@@ -23,6 +23,16 @@ class Queries {
         return $query;
     }
 
+    function getInfosBureau($conn,$burCle) {
+        $query = $conn ->fetchAll("select bureauCle, adresse, ville, tel, codePostal as cp from bureau where bureauCle='".$burCle."';");
+        return $query;
+    }
+
+    function getInfosReferent($conn, $referent){
+        $query = $conn ->fetchAll("select nom,prenom,tel,mail,fonction from referent where referentCle='".$referent."';");
+        return $query;
+    }
+
     function getListeReferent($conn, $entrepriseCle) {
         $query = $conn ->fetchAll("(select '__sans referent___".strtoupper($entrepriseCle)."' as keyRef,'sans referent') union ".
             "(select referentCle,concat(prenom,' ',nom,' - ',mail) from referent ".

@@ -15,7 +15,7 @@
     {{ form_errors(form) }}
 
     <fieldset>
-        <h2>Moyens de transports</h2>
+        <legend>Moyen de transport</legend>
         <div>{{ form_row(form.transportTrain) }}</div>
         <div id="formTrain" style="display: none">
             <div>
@@ -49,7 +49,7 @@
     </fieldset>
 
     <fieldset>
-        <h2>Aller</h2>
+        <legend>Aller</legend>
         <div>{{ form_row(form.dateAller) }}</div>
         <div>
             <span> {{ form_row(form.horaireDepartAller) }}</span> <span> {{ form_row(form.horaireArriverAller) }}</span>
@@ -64,7 +64,7 @@
         </div>
     </fieldset>
     <fieldset>
-        <h2>Retour</h2>
+        <legend>Retour</legend>
         <div>{{ form_row(form.dateRetourDifferente) }}</div>
         <div id="formDateRetourDifferente" style="display: none">{{ form_row(form.dateRetour) }}</div>
         <div>

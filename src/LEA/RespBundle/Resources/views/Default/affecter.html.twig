@@ -51,10 +51,10 @@
     {% if listEtu %}
 
         {% for etu in listEtu %}
-            {% if etu.nb_prof > 1 %}
-                <tr bgcolor='#d0d0d0' style='border-bottom:1pt solid grey;'>
+            {% if etu.tuteursPotentiel.tuteurRef == "aucun"  %}
+                <tr style='border-bottom:1pt solid grey;'>
             {% else %}
-                <tr  bgcolor="#f69a83" style='border-bottom:1pt solid grey;'>
+                <tr bgcolor='#d0d0d0' style='border-bottom:1pt solid grey;'>
             {% endif %}
             <td>{{ etu.nom_etud }}</td>
             <td>{{ etu.nom_prenom }}</td>

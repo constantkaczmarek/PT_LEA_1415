@@ -32,6 +32,7 @@ class GeneralController extends Controller
             'infos' => $infos,
             'role' => "prof",
             'odm' => false,
+            'page' => 'etu_attribues'
         ));
     }
 }

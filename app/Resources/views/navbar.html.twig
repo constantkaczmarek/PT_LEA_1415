@@ -1,0 +1,80 @@
+{% if role == "RESP" %}
+    <div class="menuligne3" style="background-color:orange">
+        |
+        {% if page == "index_resp" %}
+            <a class="highlight" href="{{ path('lea_resp_homepage') }}">Accueil Resp.</a>
+        {% else %}
+            <a href="{{ path('lea_resp_homepage') }}">Accueil Resp.</a>
+        {% endif %}
+        |
+        <a href="">Encadrement par etud.</a>
+        |
+        <a href="">Encadrement par tuteur</a>
+        |
+        <a href="">Actions</a>
+        |
+        {% if page == "attribution" %}
+            <a class="highlight" href="{{ path('lea_resp_attribution') }}">Attribution</a>
+        {% else %}
+            <a href="{{ path('lea_resp_attribution') }}">Attribution</a>
+        {% endif %}
+        |
+        {% if page == "affecter" %}
+            <a class="highlight" href="{{ path('lea_resp_affecter') }}">Affecter</a>
+        {% else %}
+            <a href="{{ path('lea_resp_affecter') }}">Affecter</a>
+        {% endif %}
+        |
+        {% if page == "soutenanceResp" %}
+            <a class="highlight" href="{{ path('lea_resp_rapportSoutenance') }}">Rap. & Sout.</a>
+        {% else %}
+            <a href="{{ path('lea_resp_rapportSoutenance') }}">Rap. & Sout.</a>
+        {% endif %}
+        |
+        {% if page == "stats" %}
+            <a class="highlight" href="{{ path('lea_resp_stats_index') }}">Stats</a>
+        {% else %}
+            <a href="{{ path('lea_resp_stats_index') }}">Stats</a>
+        {% endif %}
+        |<a href="">Inscire Etud</a>
+        |<a href="">Admin</a>
+    </div>
+{% endif %}
+
+<div class="menuligne3">
+
+    {% if page == "index" %}
+        <a class="highlight" href="{{ path('lea_prof_homepage') }}">Accueil</a>
+    {% else %}
+        <a href="{{ path('lea_prof_homepage') }}">Accueil</a>
+    {% endif %}
+    :
+
+    {% if page == "choisir" %}
+        <a class="highlight" href="{{ path('lea_prof_choisir') }}">Choisir étudiant</a>
+    {% else %}
+        <a href="{{ path('lea_prof_choisir') }}">Choisir étudiant</a>
+    {% endif %}
+    :
+
+    {% if page == "suivi" %}
+        <a class="highlight" href="{{ path('lea_prof_suivi') }}">Suivre mes choix</a>
+    {% else %}
+        <a href="{{ path('lea_prof_suivi') }}">Suivre mes choix</a>
+    {% endif %}
+    :
+    {% if page == "etu_attribues" %}
+        <a class="highlight" href="{{ path('lea_prof_etuAttribues') }}">Etudiants attribués</a>
+    {% else %}
+        <a href="{{ path('lea_prof_etuAttribues') }}">Etudiants attribués</a>
+    {% endif %}
+    :
+    {% if page == "soutenanceProf" %}
+        <a class="highlight" href="{{ path('lea_prof_rapportSoutenance') }}">Rapport et soutenance</a>
+    {% else %}
+        <a href="{{ path('lea_prof_rapportSoutenance') }}">Rapport et soutenance</a>
+    {% endif %}
+
+</div>
+<div class="menuligne4"></div>
+

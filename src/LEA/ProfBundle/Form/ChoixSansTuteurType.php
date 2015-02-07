@@ -32,7 +32,6 @@ class ChoixSansTuteurType extends AbstractType
                 'multiple'  => true,
                 'expanded' => true,
                 'required' =>false,
-                'mapped' => true,
             ))
         ;
     }

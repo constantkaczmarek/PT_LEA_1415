@@ -5,42 +5,45 @@
 
     {% include "LEARespBundle:Default:navbar.html.twig" %}
 
+    <div class="menuitem2" id="item_0">Informations concernant le rapport et la soutenance</div>
+
+    <div id="cadre_0" class="contenu-item2 on">
 
     {% for info in infosSoutenance %}
-        <h1>{{ info.formationRef }}</h1>
-        {% if role == "resp" %}
-            <a href="{{ path('lea_resp_editRapportSout',{forma:info.formationRef}) }}">Modifier</a>
-        {% endif %}
-        <table>
+        <h2>{{ info.formationRef }}</h2>
+        <table width='95%' style='font-size:9pt;border:1px solid #000000;padding:3px 7px 2px 7px;'>
+            <tr align="right">
+                <td colspan="2"><a href="{{ path('lea_resp_editRapportSout',{forma:info.formationRef}) }}"><input type="submit" value="Modifier"/></a></td>
+            </tr>
             <tr>
-                <td>Date de remise du rapport</td>
+                <td><b>Date de remise du rapport</b></td>
                 <td>{{ info.dateRemise }}</td>
             </tr>
             <tr>
-                <td>Dates de soutenances</td>
+                <td><b>Dates de soutenances</b></td>
                 <td>{{ info.datesSoutenances }}</td>
             </tr>
             <tr>
-                <td>Longueur du rapport</td>
+                <td><b>Longueur du rapport</b></td>
                 <td>{{ info.longueurRapport }}</td>
             </tr>
             <tr>
-                <td>Durée de la soutenance</td>
+                <td><b>Durée de la soutenance</b></td>
                 <td>{{ info.dureeSoutenance }}</td>
             </tr>
             <tr>
-                <td>Observations (réservées aux étudiants)</td>
+                <td><b>Observations (réservées aux étudiants)</b></td>
                 <td>{{ info.observationsTous }}</td>
             </tr>
             <tr>
-                <td>Observations (réservées aux tuteurs uniquement)</td>
+                <td><b>Observations (réservées aux tuteurs uniquement)</b></td>
                 <td>{{ info.observationsTuteurs }}</td>
             </tr>
             <tr>
-                <td>Lien externe</td>
+                <td><b>Lien externe</b></td>
                 <td><a href="{{ info.lienExterne }}">{{ info.lienExterne }}</a></td>
             </tr>
         </table>
     {% endfor %}
-
+    </div>
 {% endblock %}

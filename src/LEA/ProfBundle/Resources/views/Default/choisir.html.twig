@@ -11,7 +11,6 @@
     <div>
         <br/>
 
-
         <form action="{{  path('lea_prof_changeForm',{'name':name}) }}" method="post">
             <span>Choisissez la formation : </span>
             <select id="formation" name="formation" class="form-control" >
@@ -75,7 +74,7 @@
                         <tr>
                     {% elseif situation=="ENTR" and etu.entreprise!="__sans entreprise__" %}
                         <tr>
-                    {% else %}
+                    {% elseif situation=="OUI" %}
                         <tr style="display: none">
                     {% endif %}
 

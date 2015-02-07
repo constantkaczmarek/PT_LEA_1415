@@ -52,16 +52,17 @@
 
             {% if etu.nb_prof > 1 %}
                 <tr bgcolor='#d0d0d0' style='border-bottom:1pt solid grey;'>
-            {% else %}
+            {% elseif etu.tuteursPotentiel.tuteurRef == "aucun"  %}
                 <tr  bgcolor="#f69a83" style='border-bottom:1pt solid grey;'>
+            {% else %}
+                <tr style='border-bottom:1pt solid grey;'>
             {% endif %}
 
             <td>{{ etu.nom_etud }}</td>
             <td>{{ etu.nom_prenom }}</td>
             <td>{{ etu.formation }}</td>
             <td>
-                {{ form_row(form[etu.alternanceCle]) }}
-
+                {{ form_row(form[etu.alternanceCle],{'attr':{'style':'display:block'}}) }}
             </td>
             <td>Inconnue</td>
             <td>{{ etu.ville }}</td>

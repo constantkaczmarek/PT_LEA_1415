@@ -5,44 +5,53 @@
 
     {% include "LEARespBundle:Default:navbar.html.twig" %}
 
+    <div class="menuitem2" id="item_0">Informations concernant le rapport et la soutenance</div>
+
+    <div id="cadre_0" class="contenu-item2 on">
 
     {{ form_start(form) }}
     {{ form_errors(form) }}
 
-        <h1>{{ forma }}</h1>
+        <h2>{{ forma }}</h2>
 
-        <table>
+        <table width='95%' style='font-size:9pt;border:1px solid #000000;padding:3px 7px 2px 7px;'>
             <tr>
-                <td>Date de remise du rapport</td>
-                <td>{{ form_row(form.dateRemise) }}</td>
+                <td><b>Date de remise du rapport</b></td>
+                <td>{{ form_row(form.dateRemise,{'attr':{'size':'60'}}) }}</td>
             </tr>
             <tr>
-                <td>Dates de soutenances</td>
-                <td>{{ form_row(form.datesSoutenances) }}</td>
+                <td><b>Dates de soutenances</b></td>
+                <td>{{ form_row(form.datesSoutenances,{'attr':{'size':'60'}}) }}</td>
             </tr>
             <tr>
-                <td>Longueur du rapport</td>
-                <td>{{ form_row(form.longueurRapport) }}</td>
+                <td><b>Longueur du rapport</b></td>
+                <td>{{ form_row(form.longueurRapport,{'attr':{'size':'60'}}) }}</td>
             </tr>
             <tr>
-                <td>Durée de la soutenance</td>
-                <td>{{ form_row(form.dureeSoutenance) }}</td>
+                <td><b>Durée de la soutenance</b></td>
+                <td>{{ form_row(form.dureeSoutenance,{'attr':{'size':'60'}}) }}</td>
             </tr>
             <tr>
-                <td>Observations (réservées aux étudiants)</td>
-                <td>{{ form_row(form.observationsTous) }}</td>
+                <td><b>Observations (réservées aux étudiants)</b></td>
+                <td>{{ form_row(form.observationsTous,{'attr':{'cols':'60','rows':'6'}}) }}</td>
             </tr>
             <tr>
-                <td>Observations (réservées aux tuteurs uniquement)</td>
-                <td>{{ form_row(form.observationsTuteurs) }}</td>
+                <td><b>Observations (réservées aux tuteurs uniquement)</b></td>
+                <td>{{ form_row(form.observationsTuteurs,{'attr':{'cols':'60','rows':'6'}}) }}</td>
             </tr>
             <tr>
-                <td>Lien externe</td>
-                <td>{{ form_row(form.lienExterne) }}</td>
+                <td><b>Lien externe</b></td>
+                <td>{{ form_row(form.lienExterne,{'attr':{'cols':'60','rows':'2'}}) }}</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{{ path('lea_resp_rapportSoutenance') }}">Revenir</a>
+                    <input type="submit" value="Enregistrer" name="Enregistrer"/>
+                </td>
             </tr>
         </table>
 
-    <input type="submit" value="Enregistrer" name="Enregistrer"/>
     {{ form_end(form) }}
+    </div>
 
 {% endblock %}

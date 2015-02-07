@@ -1,4 +1,29 @@
 
+
+<ul id="nav">
+    <a name="menuprincipal"></a>
+    <div id="home"><a href="" title="suivi"></a></div>
+
+    <li class="menuHorizontal">
+       Hey {{ name }}
+    </li>
+
+    <li class="menuHorizontal">
+
+        &nbsp; <b>Type de suivi&nbsp;:</b> &nbsp;
+            <select name="suiviGlobal" id="suiviGlobal"></select>
+        <b>&nbsp;année&nbsp;:&nbsp;</b>
+        <form action="" class="menuHorizontal">
+            <select name="yearGlobal" id="yearGlobal"></select>
+        </form>
+
+        <b>&nbsp;formation&nbsp;:&nbsp;</b>
+        <form action="" >
+            <select name="formationGlobal" id="formationGlobal"></select>
+        </form>
+    </li>
+
+</ul>
 <div class="menuligne3">
 
             {% if page == "index" %}
@@ -35,3 +60,4 @@
 
 </div>
 <div class="menuligne4"></div>
+</div>

@@ -43,6 +43,7 @@ class StatsBesoinsController extends Controller
                 'result'    => $result,
                 'totalEtudSansTuteur' => $totalEtudSansTuteur,
                 'totalEtudSansTuteurNiEntreprise' => $totalEtudSansTuteurNiEntreprise,
+                'page' => 'stats'
             ));
     }
 

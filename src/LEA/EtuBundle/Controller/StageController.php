@@ -248,6 +248,59 @@ class StageController extends Controller
         ));
     }
 
+    public function modifBureauAction($entr,$bureau){
+
+        $conn = $this->get('database_connection');
+
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $nameEtu = $session->get('CK_USER');
+
+        $infos = $this->get('queries')->getInfosBureau($conn,$bureau);
+        $bur = new Bureau();
+        $bur->setAdresse($infos[0]["adresse"]);
+        $bur->setVille($infos[0]["ville"]);
+        if(!empty($infos[0]["tel"])){
+            $bur->setTel($infos[0]["tel"]);
+        }
+        $bur->setCp($infos[0]["cp"]);
+
+        $form = $this->createForm(new BureauType(),$bur);
+        $request = $this->getRequest();
+
+        if($request->isMethod('POST')){
+
+            $form->bind($request);
+
+            if($form->isValid()) {
+
+                $infosBur = $form->getData();
+                $dist = $this->get("distance");
+                $norm = $this->get("normaliser");
+                $inscr = $this->get("update_queries");
+                $inscr->updateBureau($conn,$infosBur,$dist,$bureau);
+
+                return $this->redirect(
+                    $this->generateUrl('lea_etu_infosStage')
+                );
+            }
+        }
+
+        return $this->render('LEAEtuBundle:Default:modifBureau.html.twig',array(
+            'form'=> $form->createView(),
+            'entr'=> $entr,
+            'bureau'=> $bureau,
+            'name' => $nameEtu
+        ));
+    }
+
     public function inscrireRefAction($entr){
 
         $conn = $this->get('database_connection');
@@ -298,6 +351,66 @@ class StageController extends Controller
             'name' => $nameEtu
         ));
     }
+
+    public function modifRefAction($entr,$referent){
+
+        $conn = $this->get('database_connection');
+
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "STUD"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $nameEtu = $session->get('CK_USER');
+
+        $dbQueries = $this->get('queries');
+        $dbutils = $this->get('dbutils');
+        $norm = $this->get("normaliser");
+
+
+        $listBureau = $dbutils->convertArrayToChoices($dbQueries->getBureauEntreprise($conn,$norm->genererCleEntrepriseAPartirDeNom($entr)),"bureauCle","ad");
+
+        $infos = $dbQueries->getInfosReferent($conn,$referent);
+        $ref = new Referent();
+        $ref->setTel($infos[0]["tel"]);
+        $ref->setNom($infos[0]["nom"]);
+        $ref->setPrenom($infos[0]["prenom"]);
+        $ref->setMail($infos[0]["mail"]);
+        $ref->setFonction($infos[0]["fonction"]);
+
+        $form = $this->createForm(new ReferentType($listBureau),$ref);
+
+        $request = $this->getRequest();
+
+        if($request->isMethod('POST')){
+
+            $form->bind($request);
+
+            if($form->isValid()) {
+
+                $infosRef = $form->getData();
+                $dist = $this->get("distance");
+                $inscr = $this->get("update_queries");
+                $inscr->updateRef($conn,$infosRef,$referent);
+
+                return $this->redirect(
+                    $this->generateUrl('lea_etu_infosStage')
+                );
+            }
+        }
+
+        return $this->render('LEAEtuBundle:Default:modifRef.html.twig',array(
+            'form'=> $form->createView(),
+            'entr' => $entr,
+            'ref' => $referent,
+            'name' => $nameEtu
+        ));
+    }
+
 
     public function afficherInfosAction(){
 

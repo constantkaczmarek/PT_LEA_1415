@@ -42,6 +42,7 @@ class StatsOpcaController extends Controller
                 'result'    => $result,
                 'totalOpca' => sizeof($result),
                 'totalEtud' => $totalEtud,
+                'page' => 'stats'
             ));
     }
 

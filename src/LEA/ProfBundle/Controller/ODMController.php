@@ -28,7 +28,7 @@ class ODMController extends Controller
         }
 
         $odm = false;
-        if($this->getRequest()->attributes->get('_route')=='lea_prof_odm');
+        if($this->getRequest()->attributes->get('_route')=='lea_prof_odm')
             $odm = true;
 
         $query = $this->get('queries_etapes');
@@ -39,6 +39,7 @@ class ODMController extends Controller
             'infos' => $infos,
             'role' => "prof",
             'odm' => $odm,
+            'page' => 'etu_attribues'
         ));
     }
 
@@ -108,7 +109,7 @@ class ODMController extends Controller
 
                 $html2pdf = $this->get('html2pdf_factory')->create('P','A4','fr');
                 $html2pdf->writeHTML($html);
-                $html2pdf->Output('ODM.pdf');
+                $html2pdf->Output('Facture.pdf');
 
 
                 /*
@@ -117,34 +118,16 @@ class ODMController extends Controller
                 $html2pdf->writeHTML($html);
                 $html2pdf->Output('Facture.pdf');*/
                 return new Response();
-
-                /*return $this->redirect(
-                    $this->generateUrl('lea_prof_exportPDF',array(
-                        'name' => $name,
-                        'donneODM' => $donneODM,
-                    ))
-                );*/
             }
         }
         return $this->render('LEAProfBundle:Default:creerODM.html.twig',array(
             'name' => $name,
             'form' => $form->createView(),
+            'page' => 'etu_attribues'
         ));
 
     }
 
-    public function exportPDFAction($name){
-
-        /*$request = $this->getRequest();
-
-        $donneODM = $request->get('donneODM');
-
-        return $this->render('LEAProfBundle:Default:creer')*/
-
-
-
-
-    }
 
 }
 

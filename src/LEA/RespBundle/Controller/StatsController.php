@@ -18,6 +18,6 @@ class StatsController extends Controller
                 $this->generateUrl('lea_role_homepage'));
         }
 
-        return $this->render('LEARespBundle:Stats:index.html.twig');
+        return $this->render('LEARespBundle:Stats:index.html.twig',array('page' => 'stats'));
     }
 }

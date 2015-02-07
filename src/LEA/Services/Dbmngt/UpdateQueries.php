@@ -215,4 +215,65 @@ class UpdateQueries {
 
         return true;
     }
+
+    function updateBureau($conn,$bur,$distance,$bureauCle) {
+        $updateString="";
+        $recalcul=false;
+        if (strlen($bur->getAdresse()) != 0) {
+            $updateString.=",adresse='".$bur->getAdresse()."'";
+            $recalcul=true;
+        }
+        if (strlen($bur->getVille()) != 0) {
+            $updateString.=",ville='".$bur->getVille()."'";
+            $recalcul=true;
+        }
+        if (strlen($bur->getTel()) != 0)
+            $updateString.=",tel='".$bur->getTel()."'";
+        if (strlen($bur->getCp()) != 0)
+            $updateString.=",codePostal='".$bur->getCp()."'";
+
+        if ($recalcul) {
+            $distanceTmp = $distance->getDistance($bur->getAdresse()." ".$bur->getCp()." ".$bur->getVille());
+            $updateString.=",distance='".$distanceTmp."'";
+        }
+
+        $updateString = "update bureau set ".substr($updateString,1)." where bureauCle='".$bureauCle."';";
+        $res =$conn->query($updateString);
+
+        if ($res == FALSE) {
+            return "NOK : Problème avec la requête: $updateString<br/>Raison : " . mysql_error($conn);
+        }
+        //$res = mysql_query("select adresse,ville from bureau where bureauCle='".$bur->getBurCle()."'", $conn);
+
+        return true;
+        //return "OK : SIEGE : ".$result[0]." - ".$result[1];
+    }
+
+    function updateRef($conn,$ref,$refCle) {
+
+        $updateString="";
+        if (strlen($ref->getMail()) != 0) {
+            $updateString.=",mail='".$ref->getMail()."'";
+        }
+        if (strlen($ref->getTel()) != 0) {
+            $updateString.=",tel='".$ref->getTel()."'";
+        }
+        if (strlen($ref->getFonction()) != 0){
+            $updateString.=",tel='".$ref->getFonction()."'";
+        }
+        if (strlen($ref->getBureau()) != 0) {
+            $updateString .= ",bureauRef='" . $ref->getBureau() . "'";
+        }
+
+        $updateString = "update referent set ".substr($updateString,1)." where referentCle='".$refCle."';";
+        $res = $conn->query($updateString);
+
+        if ($res == FALSE) {
+            return "NOK : Problème avec la requête: $updateString<br/>Raison : " . mysql_error($conn);
+        }
+        //$res = mysql_query("select concat(prenom,' ',nom,' - ',mail) from referent where referentCle='".getRefCle()."'", $conn);
+        //$result=mysql_fetch_row($res);
+        return true;
+    }
+
 }

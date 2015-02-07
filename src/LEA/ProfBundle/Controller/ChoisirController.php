@@ -17,6 +17,7 @@ class ChoisirController extends Controller
         $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
 
+
         if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
         {
             return $this->redirect(
@@ -39,18 +40,10 @@ class ChoisirController extends Controller
             'values'=> $valuesSansTuteur
         );
 
-        //print_r($sanstuteur);
-
-        //print_r($keysValues);
-
-        //$form["keys"][]
-        //$form="M1MIAGEFA,M2MIAGEFA, M2IPINTFA,M1MIAGEFA,M2MIAGEFA,M2IPINTFA,M1INFOFI,M2IAGLFA,M2ESERVFA,M2TIIRFA,M2IVIFA,M2MOCADFA,M1INFOFI,M1IAGLFA,M1ESERVFA,M1TIIRFA,M1IVIFA,M1MOCADFA,M1ESERVFA,M1IAGLFA,M1IVIFA,M1MOCADFA,M1TIIRFA,M1INFOFI,M2IAGLFA,M2ESERVFA,M2TIIRFA,M2IVIFA,M2MOCADFA,M2ESERVFA,M2IAGLFA,M2IVIFA,M2MOCADFA,M2TIIRFA";
-
         $conn = $this->get('database_connection');
         $queries = $this->get('queries');
         $distance = $this->get('distance');
 
-        //print_r($session->get("formation"));
         $listEtu = $queries->getEtudiantFormation($conn,$session->get("formation"),2014);
         $taille = count($listEtu);
         $listAlt=array();
@@ -67,32 +60,6 @@ class ChoisirController extends Controller
             }
             $listAlt[$listEtu[$i]["alternanceCle"]] = $listEtu[$i]["alternanceCle"];
         }
-
-       /* $listExcl = array();
-
-        for($i = 0; $i< $taille ; $i++) {
-            $tuteurs = $queries->getTuteursPotentiels($conn, $session->get("formation"),  $listEtu[$i]['alternanceCle'], 2014);
-            if(empty ($tuteurs)){
-                $listEtu[$i]['tuteurs']['tuteurRef'] = "aucun";
-                if($session->get("sanstuteur")=="EXCL"){
-                    array_push($listExcl,$listEtu[$i]);
-                }
-            }
-            else {
-                $listEtu[$i]['tuteurs'] = $tuteurs[0];
-            }
-        }
-
-        $listAlt=array();
-        if($session->get("sanstuteur")=="EXCL"){
-            $listTri = $listExcl;
-        }else
-            $listTri = $listEtu;
-
-        $taille = count($listTri);
-        for($i = 0; $i< $taille ; $i++){
-            $listAlt[$listTri[$i]["alternanceCle"]] = $listTri[$i]["alternanceCle"];
-        }*/
 
         $choix = new ChoixSansTuteur();
         $choix->setTuteurRef($name);

@@ -44,6 +44,7 @@ class StatsFormController extends Controller
                 'nbForm'    => sizeof($result),
                 'totalEtud' => $totalEtud,
                 'totalEtudSansTuteur' => $totalEtudSansTuteur,
+                'page' => 'stats'
             ));
     }
 

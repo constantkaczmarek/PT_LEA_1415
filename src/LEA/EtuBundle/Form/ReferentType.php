@@ -15,10 +15,12 @@ class ReferentType extends AbstractType
 {
 
     private $listBureau;
+    private $burSelected;
 
-    public function __construct($listBureau)
+    public function __construct($listBureau,$burSelected=null)
     {
         $this->listBureau = $listBureau;
+        $this->burSelected = $burSelected;
     }
 
     /**
@@ -52,6 +54,7 @@ class ReferentType extends AbstractType
             ->add('bureau','choice',array(
                 'required' => false,
                 'label' => 'Bureau ',
+                'data' => $this->burSelected,
                 'choices' => $this->listBureau
             ))
         ;

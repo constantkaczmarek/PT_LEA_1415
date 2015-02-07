@@ -20,9 +20,21 @@ lea_etu_inscrireBureau:
     options:
         expose: true
 
+lea_etu_modifBureau:
+    path:    /etudiant/infosStage/{entr}/modifBureau/{bureau}
+    defaults: { _controller: LEAEtuBundle:Stage:modifBureau }
+    options:
+        expose: true
+
 lea_etu_inscrireRef:
     path:    /etudiant/infosStage/{entr}/inscrireRef
     defaults: { _controller: LEAEtuBundle:Stage:inscrireRef }
+    options:
+         expose: true
+
+lea_etu_modifRef:
+    path:    /etudiant/infosStage/{entr}/modifRef/{referent}
+    defaults: { _controller: LEAEtuBundle:Stage:modifRef }
     options:
          expose: true
 

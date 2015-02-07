@@ -58,7 +58,7 @@ class SoutenanceController extends Controller
             'name' => $name,
             'infosSoutenance' => $infosSoutenance,
             'role' => $role,
-            
+            'page' => 'soutenanceResp'
         ));
 
     }
@@ -107,7 +107,8 @@ class SoutenanceController extends Controller
             'name' => $name,
             'forma' => $forma,
             'form' => $form->createView(),
-            'role' => $role
+            'role' => $role,
+            'page' => 'soutenanceResp'
         ));
 
 

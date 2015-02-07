@@ -42,6 +42,7 @@ class StatsEntrepriseController extends Controller
                 'result'    => $result,
                 'totalEntr' => sizeof($result),
                 'totalEtud' => $totalEtud,
+                'page' => 'stats'
             ));
     }
 

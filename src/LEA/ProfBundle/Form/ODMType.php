@@ -103,7 +103,7 @@ class ODMType extends AbstractType
 
             ))
             ->add('escaleAller','checkbox',array(
-                'label' => false,
+                'label' => 'Vous changez de moyen de transport pendant le voyage',
             ))
             ->add('villeEscaleAller','text',array(
                 'label' => 'Ville de l\'escale *: '
@@ -138,7 +138,7 @@ class ODMType extends AbstractType
                 'choices' => array()
             ))
             ->add('escaleRetour','checkbox',array(
-                'label' => false,
+                'label' => 'Vous changez de moyen de transport pendant le voyage',
             ))
             ->add('villeEscaleRetour','text',array(
                 'label' => 'Ville de l\'escale *: '
