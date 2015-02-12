@@ -1,8 +1,12 @@
-Symfony Standard Edition
+PT_LEA_1415
 ========================
 
 Welcome to the Symfony Standard Edition - a fully-functional Symfony2
 application that you can use as the skeleton for your new applications.
+
+Bienvenue sur notre projet technique de frameworkisation du livret electronique de suivi de stage et d'alternance.
+
+Ce document contient des informations sur comment installer symfony et commencer à utiliser notre projet. Pour une explication plus détaillée, veuillez vous référer à [Installation][1], chapitre d'installatin de la documentation Symfony.
 
 This document contains information on how to download, install, and start
 using Symfony. For a more detailed explanation, see the [Installation][1]
