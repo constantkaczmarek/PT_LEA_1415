@@ -1,0 +1,106 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {% if infoExist %}
+        <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
+        {% if rendu == false %}
+            <form action="{{ path("lea_etu_missionSoutenance") }}" method="post">
+        {% endif %}
+        <table align="center" style="font-size:11px">
+            <tr>
+                <td style="border-width: 1px; border-style:solid;" width="95%">
+                    Date rencontre (aaaa-mm-jj) : {{ infos.dateRencontre }}<br/>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-width: 1px; border-style:solid;" width="95%">Type rencontre : {{ infos.typeRencontre }}</td>
+            </tr>
+            <tr>
+                <td style="border-width: 1px; border-style:solid;" width="95%">Date validation (aaaa-mm-jj) : {{ infos.dateValidation }}</td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="border-width: 1px; border-style:solid;" width="95%">
+                        <b>Quelle est la mission (ou partie de mission) choisie ?</b><br/>
+                        <div width="95%">
+                            <p style="text-align:left; margin-top:0">{{ infos.missions }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="border-width: 1px; border-style:solid;" width="95%">
+                        <b>Dans quel environnement technique ?</b><br/>
+                        <div width="95%">
+                            <p style="text-align:left; margin-top:0">{{ infos.environnementTechnique }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="border-width: 1px; border-style:solid;" width="95%">
+                        <b>Avec quels enjeux pour l'entreprise et/ou le client ?</b><br/>
+                        <div width="95%">
+                            <p style="text-align:left; margin-top:0">{{ infos.enjeux }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="border-width: 1px; border-style:solid;" width="95%">
+                        {% if rendu %}
+                            <b>Validation de l'étudiant </b>{{ infos.signatureEtud }}. (remarques éventuelles)<br/>
+                            <div width="95%">
+                                <p style="text-align:left; margin-top:0">{{ infos.remarquesEtud }}</p>
+                            </div>
+                        {%  else %}
+                            {{ form_start(form) }}
+                            <b>Validation de l'étudiant </b>{{ form_row(form.signatureEtud) }} (remarques éventuelles)<br/>
+                            <div width="95%">
+                                <p style="text-align:left; margin-top:0">{{ form_row(form.remarquesEtud,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                            </div>
+                            {{ form_end(form) }}
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="border-width: 1px; border-style:solid;" width="95%">
+                        <b>Validation du référent </b>{{ infos.signatureReferent }}. (remarques éventuelles)<br/>
+                        <div width="95%">
+                            <p style="text-align:left; margin-top:0">{{ infos.remarquesReferent }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="border-width: 1px; border-style:solid;" width="95%">
+                        <b>Validation du tuteur </b>{{ infos.signatureTuteur }}. (remarques éventuelles)<br/>
+                        <div width="95%">
+                            <p style="text-align:left; margin-top:0">{{ infos.remarquesTuteur }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{{ path("lea_etu_homepage") }}">Retour à l'accueil</a>
+                    {% if rendu == false %}
+                        <input type="submit" name="Enregistrer" value="Enregistrer"/>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    {% else %}
+        <p>Il n'y a aucune informations à afficher pour le moment</p>
+        <a href="{{ path("lea_etu_homepage") }}">Retour à l'accueil</a>
+    {% endif %}
+
+{% endblock %}
