@@ -19,11 +19,13 @@ class SignatureEtudiantType extends AbstractType
 
         $builder
             ->add('signatureEtud', 'checkbox', array(
-                'label'     => 'Validation de l étudiant',
+                //'label'     => 'Validation de l étudiant',
+                'label'     => false,
                 'required'  => false,
             ))
-            ->add('remarquesEtud', 'text',array(
-                'label' => 'Remarques éventuelles :'
+            ->add('remarquesEtud', 'textarea',array(
+                //'label' => 'Remarques éventuelles :'
+                'label'     => false,
             ))
         ;
 

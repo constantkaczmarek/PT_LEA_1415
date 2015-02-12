@@ -13,9 +13,10 @@ class RedirectionController extends Controller
 
         $session = new Session();
         $session->start();
-        //$session->set('CK_USER','m1infofi1AA72');
+        $session->set('CK_USER','m1infofi1AA72');
         //$session->set('CK_USER','marvie');
-        $session->set('CK_USER','bilasco');
+        //$session->set('CK_USER','bilasco');
+        //$session->set('CK_USER','marquet');
 
         $gestionRole = $this->get('gestion_role');
 

@@ -9,7 +9,6 @@ class GestionRole
 
     function checkAllRoles($session, $conn) {
 
-        //$session = $this->getRequest()->getSession();
         $session->set("CK_ROLES","");
 
         $this->checkStudentRole($session, $conn);
@@ -83,7 +82,8 @@ class GestionRole
             ." and anneeReference<=".$session->get("REF_YEAR")." and obsolete=0;");
 
         for ($i = 0; $i < count($query); $i++)
+        {
             $this->checkRoles($session, $conn, $query[$i]["roleRef"]);
-
+        }
     }
 }
