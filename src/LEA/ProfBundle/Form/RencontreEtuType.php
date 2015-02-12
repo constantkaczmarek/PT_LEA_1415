@@ -19,34 +19,43 @@ class RencontreEtuType extends AbstractType
 
         $builder
             ->add('dateRencontre','date',array(
-                'label' => 'Date rencontre (jj-mm-aaaa): ',
+                //'label' => 'Date rencontre (jj-mm-aaaa): ',
+                'label' => false,
                 'input' => 'string',
                 'format'=> 'dd-MM-yyyy'
             ))
             ->add('service', 'text', array(
-                'label' => 'Service/Projet: '
+                //'label' => 'Service/Projet: '
+                'label' => false,
             ))
             ->add('client', 'text', array(
-                'label' => 'Eventuellement client: '
+                //'label' => 'Eventuellement client: '
+                'label' => false,
             ))
-            ->add('missions', 'text', array(
-                'label' => 'Quelles sont (ou seront) les missions confiées? '
+            ->add('missions', 'textarea', array(
+                //'label' => 'Quelles sont (ou seront) les missions confiées? '
+                'label' => false,
             ))
-            ->add('environnementTechnique', 'text', array(
-                'label' => 'Dans quel environnement technique? '
+            ->add('environnementTechnique', 'textarea', array(
+                //'label' => 'Dans quel environnement technique? '
+                'label' => false,
             ))
-            ->add('integrationEntreprise', 'text', array(
-                'label' => "Comment se passe l'intégration dans l'entreprise? "
+            ->add('integrationEntreprise', 'textarea', array(
+                //'label' => "Comment se passe l'intégration dans l'entreprise? "
+                'label' => false,
             ))
-            ->add('motscles', 'text', array(
-                'label' => 'Mots-clés: '
+            ->add('motscles', 'textarea', array(
+                //'label' => 'Mots-clés: '
+                'label' => false,
             ))
             ->add('signatureTuteur', 'checkbox', array(
-                'label'     => 'Validation du tuteur',
+                //'label'     => 'Validation du tuteur',
+                'label' => false,
                 'required'  => false,
             ))
-            ->add('remarquesTuteur', 'text',array(
-                'label' => 'Remarques éventuelles :'
+            ->add('remarquesTuteur', 'textarea',array(
+                //'label' => 'Remarques éventuelles :'
+                'label' => false,
             ))
         ;
 

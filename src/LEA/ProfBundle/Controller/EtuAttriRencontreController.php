@@ -92,6 +92,7 @@ class EtuAttriRencontreController extends Controller
                     'name'  => $name,
                     'post' => true,
                     'page'=> 'etu_attribues',
+                    'resp'=> $gestionRole->hasRole($session, "RESP"),
                 ));
             }
         }
@@ -100,7 +101,7 @@ class EtuAttriRencontreController extends Controller
             'name'  => $name,
             'form'  => $form->createView(),
             'resp'=> $gestionRole->hasRole($session, "RESP"),
-            'page'=> 'etu_attribues',
+            'page'=>"etu_attribuees"
         ));
     }
 
