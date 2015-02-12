@@ -1,11 +1,10 @@
 {% extends "::base.html.twig" %}
 
-{% block body %}
-
+{% block top %}
+    {{ parent() }}
     {% include "LEAProfBundle:Default:navbar.html.twig" %}
-
-
-
+{% endblock %}
+{% block body %}
 
         <div id="cadre_0" class="contenu-item2 on">
             <h1>Bienvenue!</h1>

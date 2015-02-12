@@ -1,8 +1,10 @@
 {% extends "::base.html.twig" %}
+{% block top %}
+    {{ parent() }}
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+{% endblock %}
 
 {% block body %}
-
-    {% include "LEAProfBundle:Default:navbar.html.twig" %}
 
     {% if post %}
         <p>Informations de mission soutenance mises à jour!</p>

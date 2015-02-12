@@ -1,12 +1,14 @@
 {% extends "::base.html.twig" %}
-
+{% block top %}
+    {{ parent() }}
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+{% endblock %}
 {% block body %}
 
     {% javascripts '@LEAProfBundle/Resources/Js/choisir.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    {% include "LEAProfBundle:Default:navbar.html.twig" %}
     <div class="menuitem2" id="item_0">Informations concernant le rapport et la soutenance</div>
 
     <div id="cadre_0" class="contenu-item2 on">

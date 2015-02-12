@@ -1,8 +1,9 @@
 {% extends "::base.html.twig" %}
-
-{% block body %}
-
+{% block top %}
+    {{ parent() }}
     {% include "LEAProfBundle:Default:navbar.html.twig" %}
+{% endblock %}
+{% block body %}
 
     {% if post %}
         <p>Informations de deuxième visite mises à jour!</p>

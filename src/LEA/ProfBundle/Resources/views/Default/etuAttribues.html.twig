@@ -1,5 +1,8 @@
 {% extends "::base.html.twig" %}
-
+{% block top %}
+    {{ parent() }}
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+{% endblock %}
 {% block body %}
 
     {% javascripts '@LEAProfBundle/Resources/Js/choisir.js' %}
@@ -9,9 +12,6 @@
     {% javascripts '@LEAProfBundle/Resources/Js/choisirAction.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    {% include "LEAProfBundle:Default:navbar.html.twig" %}
-
 
     <div class="menuitem2-current" id="item_0"><a href="#">Vos étudiants</a></div>
 

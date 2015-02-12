@@ -1,8 +1,9 @@
 {% extends "::base.html.twig" %}
-
-{% block body %}
-
+{% block top %}
+    {{ parent() }}
     {% include "LEAProfBundle:Default:navbar.html.twig" %}
+{% endblock %}
+{% block body %}
 
     <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
     <form action="{{ path("lea_prof_etuVisiteDeuxEdit",{ 'name': name}) }}" method="post">

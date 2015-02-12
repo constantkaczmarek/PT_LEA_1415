@@ -1,12 +1,14 @@
 {% extends "::base.html.twig" %}
-
+{% block top %}
+    {{ parent() }}
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+{% endblock %}
 {% block body %}
 
     {% javascripts '@LEAProfBundle/Resources/Js/ODM.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    {% include "LEAProfBundle:Default:navbar.html.twig" %}
 
     <h1>Mission sans frais pour Lille 1 </h1>
 

@@ -1,8 +1,9 @@
 {% extends "::base.html.twig" %}
-
-{% block body %}
-
+{% block top %}
+    {{ parent() }}
     {% include "LEAProfBundle:Default:navbar.html.twig" %}
+{% endblock %}
+{% block body %}
 
     <p>Cet étudiant n'aura plus de tuteur associé dans l'appli pour l'année **** : {{ infos.et_pn }}</p>
     <br>

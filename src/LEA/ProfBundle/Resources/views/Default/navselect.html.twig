@@ -2,40 +2,43 @@
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
-<ul id="nav">
+<div id="menu">
     <a name="menuprincipal"></a>
     <div id="home"><a href="" title="suivi"></a></div>
+    <ul id="nav" >
 
-    <li class="menuHorizontal">
-        Hey {{ name }}
-    </li>
+        <li class="menuHorizontal">
+            <b>Hey {{ name }}</b>
+        </li>
 
-    <li class="menuHorizontal">
+        <li class="menuHorizontal">
 
-        &nbsp; <b>Type de suivi&nbsp;:</b> &nbsp;
-            <select name="suiviGlobal" id="suiviGlobal">
-                {% for t in typeSelect.keys %}
-                    {% if t==type %}
-                        <option value="{{ t }}" selected="selected">{{ typeSelect.values[loop.index-1] }}</option>
-                    {% else %}
-                        <option value="{{ t }}">{{ typeSelect.values[loop.index-1] }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
-
-        <b>&nbsp;année&nbsp;:&nbsp;</b>
-            <select name="anneeGlobal" id="suiviGlobal">
-            {% for k,v in listYears %}
-                {% if k==year %}
-                    <option value="{{ k }}" selected="selected">{{ v }}</option>
-                {% else %}
-                    <option value="{{ k }}">{{ v }}</option>
-                {% endif %}
-            {% endfor %}
+            &nbsp; <b>Type de suivi&nbsp;:</b> &nbsp;
+                <select name="suiviGlobal" id="suiviGlobal">
+                    {% for t in typeSelect.keys %}
+                        {% if t==type %}
+                            <option value="{{ t }}" selected="selected">{{ typeSelect.values[loop.index-1] }}</option>
+                        {% else %}
+                            <option value="{{ t }}">{{ typeSelect.values[loop.index-1] }}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
 
-        <b>&nbsp;formation&nbsp;:&nbsp;</b>
-            <select name="formationGlobal" id="formationGlobal"></select>
-    </li>
+            <b>&nbsp;année&nbsp;:&nbsp;</b>
+                <select name="anneeGlobal" id="suiviGlobal">
+                {% for k,v in listYears %}
+                    {% if k==year %}
+                        <option value="{{ k }}" selected="selected">{{ v }}</option>
+                    {% else %}
+                        <option value="{{ k }}">{{ v }}</option>
+                    {% endif %}
+                {% endfor %}
+                    </select>
 
-</ul>
+            <b>&nbsp;formation&nbsp;:&nbsp;</b>
+                <select name="formationGlobal" id="formationGlobal"></select>
+        </li>
+
+    </ul>
+</div>
+</div>

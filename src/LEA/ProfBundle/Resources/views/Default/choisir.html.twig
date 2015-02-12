@@ -1,12 +1,13 @@
 {% extends "::base.html.twig" %}
-
+{% block top %}
+    {{ parent() }}
+    {% include "LEAProfBundle:Default:navbar.html.twig" %}
+{% endblock %}
 {% block body %}
 
     {% javascripts '@LEAProfBundle/Resources/Js/choisir.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    {% include "LEAProfBundle:Default:navbar.html.twig" %}
 
     <div>
         <br/>
