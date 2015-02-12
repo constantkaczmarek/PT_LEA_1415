@@ -17,12 +17,6 @@ class NavSelectController extends Controller
         $session->set('typeSuivi','FA_FI');
         $session->set('year','2014');
 
-        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
-        {
-            return $this->redirect(
-                $this->generateUrl('lea_role_homepage'));
-        }
-
         $name = $session->get('CK_USER');
 
         $keys = array("FA","FI","FA_FI");
@@ -44,6 +38,7 @@ class NavSelectController extends Controller
             'listYears' =>$listYears,
             'year' => $session->get('year'),
             'resp'=> $gestionRole->hasRole($session, "RESP"),
+            'etu' => $gestionRole->hasRole($session, "STUD")
             ));
     }
 

@@ -13,6 +13,7 @@
 
         <li class="menuHorizontal">
 
+            {% if etu == 0 %}
             &nbsp; <b>Type de suivi&nbsp;:</b> &nbsp;
                 <select name="suiviGlobal" id="suiviGlobal">
                     {% for t in typeSelect.keys %}
@@ -23,6 +24,7 @@
                         {% endif %}
                     {% endfor %}
                 </select>
+            {% endif %}
 
             <b>&nbsp;année&nbsp;:&nbsp;</b>
                 <select name="anneeGlobal" id="suiviGlobal">
@@ -35,8 +37,10 @@
                 {% endfor %}
                     </select>
 
+            {% if etu == 0 %}
             <b>&nbsp;formation&nbsp;:&nbsp;</b>
                 <select name="formationGlobal" id="formationGlobal"></select>
+            {% endif %}
         </li>
 
     </ul>

@@ -42,6 +42,7 @@ class DefaultController extends Controller
             'tuteur' => $tuteur,
             'missionSoutenance' => $missionSoutenance,
             'deuxiemeVisite' => $deuxiemeVisite,
+            'resp' => 0
         ));
     }
 }
