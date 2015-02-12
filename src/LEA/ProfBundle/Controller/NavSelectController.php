@@ -1,0 +1,62 @@
+<?php
+
+namespace LEA\ProfBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+
+class NavSelectController extends Controller
+{
+    public function indexAction()
+    {
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+        $session->set('typeSuivi','FA_FI');
+        $session->set('year','2014');
+
+        if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $name = $session->get('CK_USER');
+
+        $keys = array("FA","FI","FA_FI");
+        $values = array("Alternance","Stages","Alt./Stages");
+
+        $formation = $session->get('formation');
+
+        $types = array(
+            'keys' =>$keys,
+            'values'=> $values
+        );
+
+        $listYears = $this->get('html_utils')->getAvailableYears();
+
+        return $this->render('LEAProfBundle:Default:navselect.html.twig', array(
+            'name' => $name,
+            'typeSelect'=>$types,
+            'type'=>$session->get('typeSuivi'),
+            'listYears' =>$listYears,
+            'year' => $session->get('year')
+            ));
+    }
+
+    public function changeFormGlobalAction(){
+        $request = $this->container->get('request');
+        $session = $this->getRequest()->getSession();
+
+        if(!empty($request->query->get('suivi'))){
+            $session->set("suivi",$request->query->get('suivi'));
+        }else if(!empty($request->query->get('formation'))){
+            $session->set("formation",$request->query->get('formation'));
+        }else{
+            $session->set("year",$request->query->get('year'));
+        }
+        return new JsonResponse(array("formation"=>$session->get('formation')));
+    }
+
+}

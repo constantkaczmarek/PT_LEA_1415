@@ -112,6 +112,14 @@ lea_prof_changeForm:
     options:
         expose: true
 
+lea_prof_changeFormGlobal:
+    path:    /prof/ajax/changeFormGlobal
+    defaults: { _controller: LEAProfBundle:NavSelect:changeFormGlobal }
+    requirements:
+        _method: POST
+    options:
+        expose: true
+
 lea_prof_changeAction:
     path:    /prof/ajax/changeAction
     defaults: { _controller: LEAProfBundle:EtuAttribues:changeActionProf }

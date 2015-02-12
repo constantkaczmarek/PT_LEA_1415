@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     var formation = $("#formationGlobal");
 
     formation.change(function(){
@@ -8,7 +7,7 @@ $(document).ready(function () {
         formation = $(this).val();
         $.ajax({
             type: "POST",
-            url: Routing.generate('lea_prof_changeForm',{formation:formation}),
+            url: Routing.generate('lea_prof_changeFormGlobal',{formation:formation}),
             success:function(data){
                 location.reload();
             }
@@ -23,7 +22,22 @@ $(document).ready(function () {
         year = $(this).val();
         $.ajax({
             type: "POST",
-            url: Routing.generate('lea_prof_changeForm',{year:year}),
+            url: Routing.generate('lea_prof_changeFormGlobal',{year:year}),
+            success:function(data){
+                location.reload();
+            }
+        });
+        return false;
+    });
+
+    var suivi = $("#suiviGlobal");
+
+    suivi.change(function(){
+
+        suivi = $(this).val();
+        $.ajax({
+            type: "POST",
+            url: Routing.generate('lea_prof_changeFormGlobal',{suivi:suivi}),
             success:function(data){
                 location.reload();
             }

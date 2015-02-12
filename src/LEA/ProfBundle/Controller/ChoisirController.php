@@ -17,7 +17,6 @@ class ChoisirController extends Controller
         $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
 
-
         if (!$session || !$session->has('CK_ROLES') || !$gestionRole->hasRole($session, "PROF"))
         {
             return $this->redirect(
