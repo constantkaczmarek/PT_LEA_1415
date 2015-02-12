@@ -39,7 +39,8 @@ class RapportSoutenanceController extends Controller
             'name' => $tuteurRef,
             'infosSoutenance' => $infosSoutenance,
             'formation' => $formationSuivi[0]['nom'],
-            'page' => 'soutenanceProf'
+            'page' => 'soutenanceProf',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 }

@@ -1,5 +1,9 @@
 
 {% extends "::base.html.twig" %}
+{% block top %}
+    {{ parent() }}
+    {% include "::navbar.html.twig" %}
+{% endblock %}
 
 {% block body %}
 
@@ -8,8 +12,6 @@
     {% javascripts '@LEARespBundle/Resources/Js/choisir.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    {% include "LEARespBundle:Default:navbar.html.twig" %}
 
     <div class="menuitem2-current" id="item_0"><a href="#">Attribution tutuers aux étudiants</a></div>
 

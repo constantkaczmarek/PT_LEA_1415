@@ -1,8 +1,9 @@
 {% extends "::base.html.twig" %}
-
+{% block top %}
+    {{ parent() }}
+    {% include "::navbar.html.twig" %}
+{% endblock %}
 {% block body %}
-
-    {% include "LEARespBundle:Default:navbar.html.twig" %}
 
     <h2>Statistiques / Formations</h2>
 

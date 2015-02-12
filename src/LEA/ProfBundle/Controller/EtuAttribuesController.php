@@ -71,7 +71,8 @@ class EtuAttribuesController extends Controller
             'listForm' => $formation,
             'aucune' => $form,
             'actions' => $actions,
-            'page'=> 'etu_attribues'
+            'page'=> 'etu_attribues',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 

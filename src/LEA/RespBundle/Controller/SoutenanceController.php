@@ -17,8 +17,16 @@ class SoutenanceController extends Controller
 {
     public function indexAction()
     {
-        $session =$this->getRequest()->getSession();
-        $name = $session->get('name');
+        $gestionRole = $this->get('gestion_role');
+        $session = $this->getRequest()->getSession();
+
+        if (!$session || !$gestionRole->hasRole($session, "RESP"))
+        {
+            return $this->redirect(
+                $this->generateUrl('lea_role_homepage'));
+        }
+
+        $name = $session->get('CK_USER');
         $role = $session->get('role');
         $formation = $session->get('formation');
 
@@ -58,7 +66,8 @@ class SoutenanceController extends Controller
             'name' => $name,
             'infosSoutenance' => $infosSoutenance,
             'role' => $role,
-            'page' => 'soutenanceResp'
+            'page' => 'soutenanceResp',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
 
     }
@@ -108,7 +117,8 @@ class SoutenanceController extends Controller
             'forma' => $forma,
             'form' => $form->createView(),
             'role' => $role,
-            'page' => 'soutenanceResp'
+            'page' => 'soutenanceResp',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
 
 

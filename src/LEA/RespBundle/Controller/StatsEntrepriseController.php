@@ -42,7 +42,8 @@ class StatsEntrepriseController extends Controller
                 'result'    => $result,
                 'totalEntr' => sizeof($result),
                 'totalEtud' => $totalEtud,
-                'page' => 'stats'
+                'page' => 'stats',
+                'resp'=> $gestionRole->hasRole($session, "RESP"),
             ));
     }
 

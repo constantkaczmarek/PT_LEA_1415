@@ -44,6 +44,8 @@ class StatsTuteursController extends Controller
                 'result'    => $result,
                 'totalTuteurs'  => $totalTuteurs,
                 'totalEtud'     => $totalEtud,
+                'page' => 'stats',
+                'resp'=> $gestionRole->hasRole($session, "RESP"),
             ));
     }
 

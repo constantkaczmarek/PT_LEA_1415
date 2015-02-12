@@ -1,9 +1,11 @@
 
 {% extends "::base.html.twig" %}
+{% block top %}
+    {{ parent() }}
+    {% include "::navbar.html.twig" %}
+{% endblock %}
 
 {% block body %}
-
-    {% include "LEARespBundle:Default:navbar.html.twig" %}
 
     <div class="menuitem2" id="item_0">Informations concernant le rapport et la soutenance</div>
 

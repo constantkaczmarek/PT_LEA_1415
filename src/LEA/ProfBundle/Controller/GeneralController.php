@@ -32,7 +32,8 @@ class GeneralController extends Controller
             'infos' => $infos,
             'role' => "prof",
             'odm' => false,
-            'page' => 'etu_attribues'
+            'page' => 'etu_attribues',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 }

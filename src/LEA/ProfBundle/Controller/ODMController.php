@@ -39,7 +39,8 @@ class ODMController extends Controller
             'infos' => $infos,
             'role' => "prof",
             'odm' => $odm,
-            'page' => 'etu_attribues'
+            'page' => 'etu_attribues',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 
@@ -123,7 +124,8 @@ class ODMController extends Controller
         return $this->render('LEAProfBundle:Default:creerODM.html.twig',array(
             'name' => $name,
             'form' => $form->createView(),
-            'page' => 'etu_attribues'
+            'page' => 'etu_attribues',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
 
     }

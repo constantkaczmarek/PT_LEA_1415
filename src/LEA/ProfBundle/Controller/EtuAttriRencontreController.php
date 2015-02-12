@@ -33,6 +33,7 @@ class EtuAttriRencontreController extends Controller
             'infos' => $infos,
             'name'  => $name,
             'post' => false,
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 
@@ -96,6 +97,7 @@ class EtuAttriRencontreController extends Controller
             'infos' => $infos,
             'name'  => $name,
             'form'  => $form->createView(),
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 

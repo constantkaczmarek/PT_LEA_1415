@@ -22,6 +22,7 @@ class DefaultController extends Controller
         $session->set('name',$session->get('CK_USER'));
         $session->set('sanstuteur','EXCL');
 
-        return $this->render('LEARespBundle:Default:index.html.twig', array('name' => $session->get('CK_USER'),'page'=>'index_resp'));
+        return $this->render('LEARespBundle:Default:index.html.twig', array('name' => $session->get('CK_USER'),'page'=>'index_resp',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),));
     }
 }

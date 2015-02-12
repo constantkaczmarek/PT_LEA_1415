@@ -44,7 +44,8 @@ class StatsFormController extends Controller
                 'nbForm'    => sizeof($result),
                 'totalEtud' => $totalEtud,
                 'totalEtudSansTuteur' => $totalEtudSansTuteur,
-                'page' => 'stats'
+                'page' => 'stats',
+                'resp'=> $gestionRole->hasRole($session, "RESP"),
             ));
     }
 

@@ -29,6 +29,7 @@ class EtuAttriSupprController extends Controller
             'infos' => $infos,
             'name'  => $name,
             'post' => false,
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
 
     }

@@ -13,6 +13,7 @@ class NavSelectController extends Controller
     {
         $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
+
         $session->set('typeSuivi','FA_FI');
         $session->set('year','2014');
 
@@ -41,7 +42,8 @@ class NavSelectController extends Controller
             'typeSelect'=>$types,
             'type'=>$session->get('typeSuivi'),
             'listYears' =>$listYears,
-            'year' => $session->get('year')
+            'year' => $session->get('year'),
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
             ));
     }
 

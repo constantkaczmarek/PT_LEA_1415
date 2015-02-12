@@ -34,6 +34,7 @@ class EtuAttriVisiteUnController extends Controller
             'infos' => $infos,
             'name'  => $name,
             'post' => false,
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
 
     }
@@ -90,6 +91,7 @@ class EtuAttriVisiteUnController extends Controller
                     'infos' => $infos,
                     'name'  => $name,
                     'post' => true,
+                    'resp'=> $gestionRole->hasRole($session, "PROF"),
                 ));
             }
         }
@@ -97,6 +99,7 @@ class EtuAttriVisiteUnController extends Controller
             'infos' => $infos,
             'name'  => $name,
             'form'  => $form->createView(),
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 

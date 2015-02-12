@@ -1,12 +1,13 @@
 {% extends "::base.html.twig" %}
-
+{% block top %}
+    {{ parent() }}
+    {% include "::navbar.html.twig" %}
+{% endblock %}
 {% block body %}
 
     {% javascripts '@LEARespBundle/Resources/Js/choisir.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    {% include "LEARespBundle:Default:navbar.html.twig" %}
 
     <h2>Répartition étudiants par OPCA</h2>
 

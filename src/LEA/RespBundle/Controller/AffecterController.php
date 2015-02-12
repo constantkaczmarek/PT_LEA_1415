@@ -116,7 +116,8 @@ class AffecterController extends Controller
             'listEtu' => $listEtu,
             'formation' => $formation,
             'form' => $form->createView(),
-            'page' => 'affecter'
+            'page' => 'affecter',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
 
     }

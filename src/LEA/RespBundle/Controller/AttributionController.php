@@ -120,7 +120,8 @@ class AttributionController extends Controller
             'listEtu' => $listEtu,
             'formation' => $formation,
             'form' => $form->createView(),
-            'page' => 'attribution'
+            'page' => 'attribution',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
 
     }

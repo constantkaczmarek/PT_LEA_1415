@@ -28,7 +28,8 @@ class SuiviController extends Controller
         return $this->render('LEAProfBundle:Default:suivi.html.twig', array(
             'name' => $name,
             'etudiants' => $etudiants,
-            'page' => 'suivi'
+            'page' => 'suivi',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 
