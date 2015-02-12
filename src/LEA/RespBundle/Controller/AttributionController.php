@@ -54,15 +54,20 @@ class AttributionController extends Controller
             $listTuteur["aucun"] = "aucun";
 
             $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
-            $tuteur = empty($tuteur)?"aucun":$tuteur[0]["tuteurRef"];
+            $tuteur = empty($tuteur)?null:$tuteur[0]["tuteurRef"];
+            $listEtu[$i]["tuteurSelectionne"] = $tuteur;
 
-            $form->add($listEtu[$i]["alternanceCle"], 'choice', array(
-                'label'=>false,
-                'choices' => $listTuteur,
-                'data' => $tuteur,
-                'expanded'=>true,
-                'multiple'=>false))
-                ;
+
+            if(count($listTuteur)>1) {
+
+
+                $form->add($listEtu[$i]["alternanceCle"], 'choice', array(
+                    'label' => false,
+                    'choices' => $listTuteur,
+                    'data' => $tuteur,
+                    'expanded' => true,
+                    'multiple' => false));
+            }
             if(!empty($tuteursCandidats)) {
                 $listEtu[$i]["nb_prof"] = count($tuteursCandidats[0]);
             }else{
@@ -71,7 +76,6 @@ class AttributionController extends Controller
         }
 
         $form = $form->add('Enregistrer Choix','submit') ->getForm();
-        //$form = $form->getForm();
 
         $request = $this->getRequest();
 
@@ -103,14 +107,10 @@ class AttributionController extends Controller
                 return $this->render('LEARespBundle:Default:enregistrerAttribution.html.twig', array(
                     'name' => $name,
                     'listEtu' => $etudiants,
+                    'page' => 'attribution',
+                    'resp'=> $gestionRole->hasRole($session, "RESP"),
+
                 ));
-
-               /* return $this->redirect(
-                    $this->generateUrl('lea_resp_homepage',array(
-
-                    ))
-                );*/
-
             }
         }
 

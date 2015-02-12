@@ -19,6 +19,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class StageController extends Controller
 {
 
+    /**
+     * @param null $name
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction($name=null)
     {
 
@@ -108,8 +112,10 @@ class StageController extends Controller
             }
         }
 
-        if($role!='prof'){
+        if(!$gestionRole->hasRole($session, "RESP") || !$gestionRole->hasRole($session, "PROF")){
             $form->remove('tuteur');
+        }else{
+            $role = "prof";
         }
 
         return $this->render('LEAEtuBundle:Default:infosStage.html.twig',array(
@@ -119,7 +125,9 @@ class StageController extends Controller
             'name' => $altRef,
             'role' => $role,
             'nom' => $nom_etud,
-            'prenom' => $prenom_etud
+            'prenom' => $prenom_etud,
+            'page' => 'etu_attribues',
+            'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
 

@@ -35,10 +35,14 @@ class RapportSoutenanceController extends Controller
             array_push($infosSoutenance,$query->getDetailSoutenance($conn,$formation["formationCle"],2014)[0]);
         }
 
+        if(!empty($formationSuivi)){
+            $formationSuivi = $formationSuivi[0]['nom'];
+        }
+
         return $this->render('LEAProfBundle:Default:rapportSoutenance.html.twig',array(
             'name' => $tuteurRef,
             'infosSoutenance' => $infosSoutenance,
-            'formation' => $formationSuivi[0]['nom'],
+            'formation' => $formationSuivi,
             'page' => 'soutenanceProf',
             'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));

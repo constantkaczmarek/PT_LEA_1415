@@ -26,6 +26,7 @@
                 </select>
             {% endif %}
 
+
             <b>&nbsp;année&nbsp;:&nbsp;</b>
                 <select name="anneeGlobal" id="suiviGlobal">
                 {% for k,v in listYears %}
@@ -37,7 +38,7 @@
                 {% endfor %}
                     </select>
 
-            {% if etu == 0 %}
+            {% if etu == 0 and resp == 1 %}
             <b>&nbsp;formation&nbsp;:&nbsp;</b>
                 <select name="formationGlobal" id="formationGlobal"></select>
             {% endif %}

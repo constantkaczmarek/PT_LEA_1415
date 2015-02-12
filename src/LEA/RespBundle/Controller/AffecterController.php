@@ -56,6 +56,7 @@ class AffecterController extends Controller
 
             $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
             $tuteur = empty($tuteur)?"aucun":$tuteur[0]["tuteurRef"];
+            $listEtu[$i]["tuteurSelectionne"] = $tuteur;
 
             $form->add($listEtu[$i]["alternanceCle"], 'choice', array(
                 'label'=>false,

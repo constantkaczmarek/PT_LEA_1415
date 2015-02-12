@@ -56,7 +56,7 @@
                 <tr bgcolor='#d0d0d0' style='border-bottom:1pt solid grey;'>
             {% elseif etu.tuteursPotentiel.tuteurRef == "aucun"  %}
                 <tr  bgcolor="#f69a83" style='border-bottom:1pt solid grey;'>
-            {% else %}
+            {% elseif  etu.tuteurSelectionne == "aucun" and etu.tuteursPotentiel.tuteurRef != "aucun" %}
                 <tr style='border-bottom:1pt solid grey;'>
             {% endif %}
 
@@ -64,21 +64,23 @@
             <td>{{ etu.nom_prenom }}</td>
             <td>{{ etu.formation }}</td>
             <td>
-                {{ form_row(form[etu.alternanceCle],{'attr':{'style':'display:block'}}) }}
+                {% if etu.tuteursPotentiel.tuteurRef != "aucun" %}
+                    {{ form_row(form[etu.alternanceCle],{'attr':{'style':'display:block'}}) }}
+                {% endif %}
             </td>
             <td>Inconnue</td>
             <td>{{ etu.ville }}</td>
             <td>{{ etu.entreprise }}</td>
             <td>{{ etu.tuteursPotentiel.tuteurRef }}</td>
             <td onclick="showModal({{ etu.alternanceCle }})"><a href="#">Détails</a></td>
-            <td id= "{{ etu.alternanceCle }}" style="display: none" >
-                <table class="table table-default">
+            <td id= "{{ etu.alternanceCle }}" style="display: none;border:3px solid black;background-color:rgba(100,100,100,1);" >
+                <table border='1' bgcolor='#aaaaaa'>
                     <tr><td>Etudiant </td> <td> {{ etu.nom_etud }}</td></tr>
                     <tr><td>Referent</td> <td> {{ etu.referent }}</td></tr>
                     <tr><td>Missions</td><td> {{ etu.mission }}</td></tr>
                     <tr><td>Services</td><td> {{ etu.service }}</td></tr>
                     <tr><td>Envirnmnt Tech.</td><td> {{ etu.tech }}</td></tr>
-                    <tr><td><a onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
+                    <tr><td><a href="#" onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
                 </table>
             </td>
         </tr>

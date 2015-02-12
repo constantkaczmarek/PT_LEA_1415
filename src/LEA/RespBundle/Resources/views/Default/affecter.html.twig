@@ -52,7 +52,7 @@
     {% if listEtu %}
 
         {% for etu in listEtu %}
-            {% if etu.tuteursPotentiel.tuteurRef == "aucun"  %}
+            {% if etu.tuteurSelectionne == "aucun"  %}
                 <tr style='border-bottom:1pt solid grey;'>
             {% else %}
                 <tr bgcolor='#d0d0d0' style='border-bottom:1pt solid grey;'>
@@ -66,14 +66,14 @@
             <td>{{ etu.entreprise }}</td>
             <td>{{ etu.tuteursPotentiel.tuteurRef }}</td>
             <td onclick="showModal({{ etu.alternanceCle }})"><a href="#">Détails</a></td>
-            <td id= "{{ etu.alternanceCle }}" style="display: none" >
-                <table class="table table-default">
+            <td id= "{{ etu.alternanceCle }}" style="display: none;border:3px solid black;background-color:rgba(100,100,100,1);" >
+                <table border='1' bgcolor='#aaaaaa'>
                     <tr><td>Etudiant </td> <td> {{ etu.nom_etud }}</td></tr>
                     <tr><td>Referent</td> <td> {{ etu.referent }}</td></tr>
                     <tr><td>Missions</td><td> {{ etu.mission }}</td></tr>
                     <tr><td>Services</td><td> {{ etu.service }}</td></tr>
                     <tr><td>Envirnmnt Tech.</td><td> {{ etu.tech }}</td></tr>
-                    <tr><td><a onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
+                    <tr><td><a href="#" onclick="hideModal({{ etu.alternanceCle }})">Cacher </a></td><td></td></tr>
                 </table>
             </td>
         </tr>

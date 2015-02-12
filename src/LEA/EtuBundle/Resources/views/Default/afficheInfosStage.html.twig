@@ -1,9 +1,15 @@
 {% extends "::base.html.twig" %}
 
+{% if role=='prof' %}
+    {% block top %}
+            {{ parent() }}
+            {% include "::navbar.html.twig" %}
+    {% endblock %}
+{% endif %}
+
 {% block body %}
 
     {% if role=='prof' %}
-        {% include "LEAProfBundle:Default:navbar.html.twig" %}
         <div class="container-fluid">
         {% if odm== false %}
             <a href="{{ path('lea_prof_modifierEtuGeneral',{'name':name}) }}">Modifier</a>

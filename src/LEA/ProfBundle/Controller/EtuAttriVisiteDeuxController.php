@@ -35,6 +35,7 @@ class EtuAttriVisiteDeuxController extends Controller
             'name'  => $name,
             'post' => false,
             'resp'=> $gestionRole->hasRole($session, "RESP"),
+            'page'=> 'etu_attribues',
         ));
 
     }
@@ -93,6 +94,8 @@ class EtuAttriVisiteDeuxController extends Controller
                     'infos' => $infos,
                     'name'  => $name,
                     'post' => true,
+                    'resp'=> $gestionRole->hasRole($session, "RESP"),
+                    'page'=> 'etu_attribues',
                 ));
             }
         }
@@ -101,6 +104,7 @@ class EtuAttriVisiteDeuxController extends Controller
             'name'  => $name,
             'form'  => $form->createView(),
             'resp'=> $gestionRole->hasRole($session, "RESP"),
+            'page'=> 'etu_attribues',
         ));
     }
 

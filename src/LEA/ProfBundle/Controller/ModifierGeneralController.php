@@ -30,6 +30,7 @@ class ModifierGeneralController extends Controller
         return $this->render('LEAProfBundle:Default:afficheInfosStage.html.twig',array(
             'name' => $name,
             'infos' => $infos,
+            'page' => 'etu_attribues',
             'resp'=> $gestionRole->hasRole($session, "RESP"),
         ));
     }
