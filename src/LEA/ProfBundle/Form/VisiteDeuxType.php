@@ -23,37 +23,46 @@ class VisiteDeuxType extends AbstractType
     {
         $builder
             ->add('dateRencontre','date',array(
-                'label' => 'Date rencontre (jj-mm-aaaa): ',
+                //'label' => 'Date rencontre (jj-mm-aaaa): ',
+                'label' => false,
                 'input' => 'string',
                 'format'=> 'dd-MM-yyyy'
             ))
-            ->add('pointsPositifs', 'text', array(
-                'label' => 'Quels sont les points positifs ? '
+            ->add('pointsPositifs', 'textarea', array(
+                //'label' => 'Quels sont les points positifs ? '
+                'label' => false,
             ))
-            ->add('pointsProgres', 'text', array(
-                'label' => "Quels sont les points de progrès ? "
+            ->add('pointsProgres', 'textarea', array(
+                //'label' => "Quels sont les points de progrès ? "
+                'label' => false,
             ))
-            ->add('avancementProjet', 'text', array(
-                'label' => "Quel est l'avancement du projet ? "
+            ->add('avancementProjet', 'textarea', array(
+                //'label' => "Quel est l'avancement du projet ? "
+                'label' => false,
             ))
             ->add('dateProbableSoutenance','date',array(
-                'label' => 'Date probable de soutenance  (jj-mm-aaaa): ',
+                //'label' => 'Date probable de soutenance  (jj-mm-aaaa): ',
+                'label' => false,
                 'input' => 'string',
                 'format'=> 'dd-MM-yyyy'
             ))
             ->add('signatureTuteur', 'checkbox', array(
-                'label'     => 'Validation du tuteur',
+                //'label'     => 'Validation du tuteur',
+                'label' => false,
                 'required'  => false,
             ))
-            ->add('remarquesTuteur', 'text',array(
-                'label' => 'Remarques éventuelles :'
+            ->add('remarquesTuteur', 'textarea',array(
+                //'label' => 'Remarques éventuelles :'
+                'label' => false,
             ))
             ->add('signatureReferent', 'checkbox', array(
-                'label'     => 'Validation du référent',
+                //'label'     => 'Validation du référent',
+                'label' => false,
                 'required'  => false,
             ))
-            ->add('remarquesReferent', 'text',array(
-                'label' => 'Remarques éventuelles :'
+            ->add('remarquesReferent', 'textarea',array(
+                //'label' => 'Remarques éventuelles :'
+                'label' => false,
             ))
         ;
     }

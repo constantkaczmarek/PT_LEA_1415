@@ -4,10 +4,66 @@
     {% include "::navbar.html.twig" %}
 {% endblock %}
 {% block body %}
-
-    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
     <form action="{{ path("lea_prof_etuVisiteUnEdit",{ 'name': name}) }}" method="post">
-        {{ form_widget(form) }}
-        <input type="submit" name="Enregistrer" value="Enregistrer"/>
+        <table align='center' style='border-width: 0px;border-style:solid;font-size:11px' width='95%'>
+            <tr class='entete'>
+                <td>
+                    {{ infos.et_pn }}
+                </td>
+            </tr>
+            {{ form_start(form) }}
+            <tr>
+                <td style="border-width: 1px; border-style:solid;" width="95%">
+                    <b>Date rencontre (jj-mm-aaaa) : </b>{{ form_row(form.dateRencontre) }}<br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Le travail est-il en adéquation avec la mission confiée ?</b><br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.adequationMission,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Comment s'est passé l'intégration dans l'entreprise ?</b><br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.integrationEtudiant,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Validation du référent</b> {{ form_row(form.signatureReferent) }} (remarques éventuelles)<br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.remarquesReferent,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Validation du tuteur </b>{{ form_row(form.signatureTuteur) }} (remarques éventuelles)<br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.remarquesTuteur,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{{ path("lea_prof_etuVisiteUn",{ 'name': name}) }}"><button class="button">Retour</button></a>
+                    <input type="submit" name="Enregistrer" value="Enregistrer"/>
+                </td>
+            </tr>
+        </table>
+        {{ form_end(form) }}
     </form>
 {% endblock %}

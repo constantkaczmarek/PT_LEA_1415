@@ -5,9 +5,76 @@
 {% endblock %}
 {% block body %}
 
-    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
     <form action="{{ path("lea_prof_etuMissionSoutenanceEdit",{ 'name': name}) }}" method="post">
-        {{ form_widget(form) }}
-        <input type="submit" name="Enregistrer" value="Enregistrer"/>
+        {{ form_start(form) }}
+        <table align='center' style='border-width: 0px;border-style:solid;font-size:11px' width='95%'>
+            <tr class="entete">
+                <td>
+                    {{ infos.et_pn }}
+                </td>
+            </tr>
+            <tr>
+                <td style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Date rencontre : </b>  {{ form_row(form.dateRencontre) }}<br/>
+                    <b>Type rencontre : </b>  {{ form_row(form.typeRencontre) }}<br/>
+                    <b>Date validation : </b> {{ form_row(form.dateValidation) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Quelle est la mission (ou partie de mission) choisie ?</b><br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.missions,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Dans quel environnement technique ?</b><br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.environnementTechnique,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div></td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Avec quels enjeux pour l'entreprise et/ou le client ?</b><br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.enjeux,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Validation du référent </b>{{ form_row(form.signatureReferent) }}(remarques éventuelles)<br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.remarquesReferent,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Validation du tuteur </b>{{ form_row(form.signatureTuteur) }}(remarques éventuelles)<br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.remarquesTuteur,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{{ path("lea_prof_etuMissionSoutenance",{ 'name': name}) }}"><button class="button">Retour</button></a>
+                    <input type="submit" name="Enregistrer" value="Enregistrer"/>
+                </td>
+            </tr>
+        </table>
+        {{ form_end(form) }}
     </form>
 {% endblock %}

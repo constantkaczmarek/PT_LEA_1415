@@ -24,29 +24,36 @@ class VisiteUnType extends AbstractType
 
         $builder
             ->add('dateRencontre','date',array(
-                'label' => 'Date rencontre (jj-mm-aaaa): ',
+                //'label' => 'Date rencontre (jj-mm-aaaa): ',
+                'label' => false,
                 'input' => 'string',
                 'format'=> 'dd-MM-yyyy'
             ))
-            ->add('adequationMission', 'text', array(
-                'label' => 'Le travail est-il en adéquation avec la mission confiée ? '
+            ->add('adequationMission', 'textarea', array(
+                //'label' => 'Le travail est-il en adéquation avec la mission confiée ? '
+                'label' => false,
             ))
-            ->add('integrationEtudiant', 'text', array(
-                'label' => "Comment s'est passé l'intégration de l'étudiant ? "
+            ->add('integrationEtudiant', 'textarea', array(
+                //'label' => "Comment s'est passé l'intégration de l'étudiant ? "
+                'label' => false,
             ))
             ->add('signatureTuteur', 'checkbox', array(
-                'label'     => 'Validation du tuteur',
+                //'label'     => 'Validation du tuteur',
+                'label' => false,
                 'required'  => false,
             ))
-            ->add('remarquesTuteur', 'text',array(
-                'label' => 'Remarques éventuelles :'
+            ->add('remarquesTuteur', 'textarea',array(
+                //'label' => 'Remarques éventuelles :'
+                'label' => false,
             ))
             ->add('signatureReferent', 'checkbox', array(
-                'label'     => 'Validation du référent',
+                //'label'     => 'Validation du référent',
+                'label' => false,
                 'required'  => false,
             ))
-            ->add('remarquesReferent', 'text',array(
-                'label' => 'Remarques éventuelles :'
+            ->add('remarquesReferent', 'textarea',array(
+                //'label' => 'Remarques éventuelles :'
+                'label' => false,
             ))
         ;
 

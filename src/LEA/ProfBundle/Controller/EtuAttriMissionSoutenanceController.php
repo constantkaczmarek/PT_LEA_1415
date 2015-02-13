@@ -96,6 +96,7 @@ class EtuAttriMissionSoutenanceController extends Controller
                     'name'  => $name,
                     'post' => true,
                     'page'=> 'etu_attribues',
+                    'resp'=> $gestionRole->hasRole($session, "RESP"),
                 ));
             }
         }

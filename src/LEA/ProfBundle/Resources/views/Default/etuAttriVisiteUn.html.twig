@@ -8,45 +8,68 @@
     {% if post %}
         <p>Informations de première visite mises à jour!</p>
     {% endif %}
-    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
-    <table>
-        <tr>
-            <td>Date rencontre (aaaa-mm-jj)</td>
-            <td>{{ infos.dateRencontre }}</td>
+    <table align='center' style='border-width: 0px;border-style:solid;font-size:11px' width='95%'>
+        <tr class='entete'>
+            <td>
+                {{ infos.et_pn }}
+            </td>
         </tr>
         <tr>
-            <td>Le travail est-il en adéquation avec la mission confiée ?</td>
-            <td>{{ infos.adequationMission }}</td>
+            <td style="border-width: 1px; border-style:solid;" width="95%">
+                <b>Date rencontre (aaaa-mm-jj) : </b>{{ infos.dateRencontre }}<br/>
+            </td>
         </tr>
         <tr>
-            <td>Comment s'est passé l'intégration de l'étudiant ?</td>
-            <td>{{ infos.integrationEtudiant }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Le travail est-il en adéquation avec la mission confiée ?</b><br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.adequationMission }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Validation de l'étudiant</td>
-            <td>{{ infos.signatureEtud }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Comment s'est passé l'intégration dans l'entreprise ?</b><br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.integrationEtudiant }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Remarques éventuelles</td>
-            <td>{{ infos.remarquesEtud }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Validation de l'étudiant </b>{{ infos.signatureEtud }}. (remarques éventuelles)<br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.remarquesEtud }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Validation du référent</td>
-            <td>{{ infos.signatureReferent }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Validation du référent</b> {{ infos.signatureReferent }}. (remarques éventuelles)<br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.remarquesReferent }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Remarques éventuelles)</td>
-            <td>{{ infos.remarquesReferent }}</td>
-        </tr>
-        <tr>
-            <td>Validation du tuteur</td>
-            <td>{{ infos.signatureTuteur }}</td>
-        </tr>
-            <td>Remarques éventuelles</td>
-            <td>{{ infos.remarquesTuteur }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Validation du tuteur </b>{{ infos.signatureTuteur }}. (remarques éventuelles)<br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.remarquesTuteur }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
     </table>
-    <br>
-    <a href="{{ path("lea_prof_etuVisiteUnEdit",{ 'name': name}) }}"><button class="button">Modifier</button></a>
-
+    <br/>
+    <a href="{{ path("lea_prof_etuAttribues") }}"><button class="button">Retour</button></a><a href="{{ path("lea_prof_etuVisiteUnEdit",{ 'name': name}) }}"><button class="button">Modifier</button></a>
 {% endblock %}

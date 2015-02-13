@@ -8,53 +8,84 @@
     {% if post %}
         <p>Informations de deuxième visite mises à jour!</p>
     {% endif %}
-    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
-    <table>
-        <tr>
-            <td>Date rencontre (aaaa-mm-jj)</td>
-            <td>{{ infos.dateRencontre }}</td>
+    <table align='center' style='border-width: 0px;border-style:solid;font-size:11px' width='95%'>
+        <tr class="entete">
+            <td>
+                {{ infos.et_pn }}
+            </td>
         </tr>
         <tr>
-            <td>Quels sont les points positifs ?</td>
-            <td>{{ infos.pointsPositifs }}</td>
+            <td style='border-width: 1px;border-style:solid' width='95%'>
+                <b>Date rencontre (aaaa-mm-jj): </b>{{ infos.dateRencontre }}
+            </td>
         </tr>
         <tr>
-            <td>Quels sont les points de progrès ?</td>
-            <td>{{ infos.pointsProgres }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Quels sont les points positifs ?</b><br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.pointsPositifs }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Quel est l'avancement du projet ?</td>
-            <td>{{ infos.avancementProjet }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Quels sont les points de progrès ?</b><br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.pointsProgres }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Date probable de soutenance (aaaa-mm-jj)</td>
-            <td>{{ infos.dateProbableSoutenance }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Quel est l'avancement du projet ?</b><br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.avancementProjet }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Validation de l'étudiant</td>
-            <td>{{ infos.signatureEtud }}</td>
+            <td style='border-width: 1px;border-style:solid' width='95%'>
+                <b>Date probable de soutenance (aaaa-mm-jj) :</b> {{ infos.dateProbableSoutenance }}
+            </td>
         </tr>
         <tr>
-            <td>Remarques éventuelles</td>
-            <td>{{ infos.remarquesEtud }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Validation de l'étudiant </b> {{ infos.signatureEtud }}. (remarques éventuelles)<br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.remarquesEtud }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Validation du référent</td>
-            <td>{{ infos.signatureReferent }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Validation du référent </b> {{ infos.signatureReferent }}. (remarques éventuelles)<br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.remarquesReferent }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Remarques éventuelles</td>
-            <td>{{ infos.remarquesReferent }}</td>
-        </tr>
-        <tr>
-            <td>Validation du tuteur</td>
-            <td>{{ infos.signatureTuteur }}</td>
-        </tr>
-            <td>Remarques éventuelles</td>
-            <td>{{ infos.remarquesTuteur }}</td>
+            <td>
+                <div style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Validation du tuteur MIAGE </b> {{ infos.signatureTuteur }}. (remarques éventuelles)<br/>
+                    <div style='width:95%'>
+                        <p>{{ infos.remarquesTuteur }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
     </table>
-    <br>
-    <a href="{{ path("lea_prof_etuVisiteDeuxEdit",{ 'name': name}) }}"><button class="button">Modifier</button></a>
+    <br/>
+    <a href="{{ path("lea_prof_etuAttribues") }}"><button class="button">Retour</button></a><a href="{{ path("lea_prof_etuVisiteDeuxEdit",{ 'name': name}) }}"><button class="button">Modifier</button></a>
 
 {% endblock %}

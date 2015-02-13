@@ -12,19 +12,17 @@
                 </td>
             </tr>
             {{ form_start(form) }}
-
-
             <tr>
                 <td style='border-width: 1px;border-style:solid' width='95%'>
-                    Date rencontre (jj-mm-aaaa) : {{ form_row(form.dateRencontre) }}<br/>
-                    Service/Projet : {{ form_row(form.service) }} <br/>
-                    (éventuellement client) : {{ form_row(form.client) }}
+                    <b>Date rencontre (jj-mm-aaaa) :</b> {{ form_row(form.dateRencontre) }}<br/>
+                    <b>Service/Projet : </b>{{ form_row(form.service) }} <br/>
+                    <b>(éventuellement client) :</b> {{ form_row(form.client) }}
                 </td>
             </tr>
             <tr>
                 <td>
                     <div style='border-width: 1px;border-style:solid' width='95%'>
-                        Quels sont (ou seront) les missions confiées ?<br/>
+                        <b>Quels sont (ou seront) les missions confiées ?</b><br/>
                         <div style='width:95%'>
                             {{ form_row(form.missions,{ 'attr': {'cols': '70','rows':'5'}} ) }}
                         </div>
@@ -34,7 +32,7 @@
             <tr>
                 <td>
                     <div style='border-width: 1px;border-style:solid' width='95%'>
-                        Dans quel environnement technique ?<br/>
+                        <b>Dans quel environnement technique ?</b><br/>
                         <div style='width:95%'>
                             {{ form_row(form.environnementTechnique,{ 'attr': {'cols': '70','rows':'5'}} ) }}
                         </div>
@@ -44,7 +42,7 @@
             <tr>
                 <td>
                     <div style='border-width: 1px;border-style:solid' width='95%'>
-                        Comment se passe l'intégration dans l'entreprise ?<br/>
+                        <b>Comment se passe l'intégration dans l'entreprise ?</b><br/>
                         <div style='width:95%'>
                             {{ form_row(form.integrationEntreprise,{ 'attr': {'cols': '70','rows':'5'}} ) }}
                         </div>
@@ -54,7 +52,7 @@
             <tr>
                 <td>
                     <div style='border-width: 1px;border-style:solid' width='95%'>
-                        Mots clés ?<br/>
+                        <b>Mots clés ?</b><br/>
                         <div style='width:95%'>
                             {{ form_row(form.motscles,{ 'attr': {'cols': '70','rows':'1'}} ) }}
                         </div>
@@ -64,7 +62,7 @@
             <tr>
                 <td>
                     <div style='border-width: 1px;border-style:solid' width='95%'>
-                        Validation du tuteur {{ form_row(form.signatureTuteur) }}(remarques éventuelles)<br/>
+                        <b>Validation du tuteur</b> {{ form_row(form.signatureTuteur) }}(remarques éventuelles)<br/>
                         <div style='width:95%'>
                             {{ form_row(form.remarquesTuteur,{ 'attr': {'cols': '70','rows':'5'}} ) }}
                         </div>
@@ -73,10 +71,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="{{ path("lea_prof_etuRencontre",{ 'name': name}) }}"><button class="button">Retour</button></a>
                     <input type="submit" name="Enregistrer" value="Enregistrer"/>
                 </td>
             </tr>
-            {{ form_end(form) }}
         </table>
+        {{ form_end(form) }}
     </form>
 {% endblock %}

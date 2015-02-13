@@ -5,9 +5,81 @@
 {% endblock %}
 {% block body %}
 
-    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
     <form action="{{ path("lea_prof_etuVisiteDeuxEdit",{ 'name': name}) }}" method="post">
-        {{ form_widget(form) }}
-        <input type="submit" name="Enregistrer" value="Enregistrer"/>
+        {{ form_start(form) }}
+        <table align='center' style='border-width: 0px;border-style:solid;font-size:11px' width='95%'>
+            <tr class="entete">
+                <td>
+                    {{ infos.et_pn }}
+                </td>
+            </tr>
+            <tr>
+                <td style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Date rencontre (jj-mm-aaaa): </b>{{ form_row(form.dateRencontre) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Quels sont les points positifs ?</b><br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.pointsPositifs,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Quels sont les points de progrès ?</b><br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.pointsProgres,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Quel est l'avancement du projet ?</b><br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.avancementProjet,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style='border-width: 1px;border-style:solid' width='95%'>
+                    <b>Date probable de soutenance (jj-mm-aaaa) :</b> {{ form_row(form.dateProbableSoutenance) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Validation du référent </b> {{ form_row(form.signatureReferent) }}(remarques éventuelles)<br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.remarquesReferent,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        <b>Validation du tuteur MIAGE </b> {{ form_row(form.signatureTuteur) }}(remarques éventuelles)<br/>
+                        <div style='width:95%'>
+                            <p>{{ form_row(form.remarquesTuteur,{ 'attr': {'cols': '70','rows':'5'}} ) }}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{{ path("lea_prof_etuVisiteDeux",{ 'name': name}) }}"><button class="button">Retour</button></a>
+                    <input type="submit" name="Enregistrer" value="Enregistrer"/>
+                </td>
+            </tr>
+        </table>
+        {{ form_end(form) }}
     </form>
 {% endblock %}
