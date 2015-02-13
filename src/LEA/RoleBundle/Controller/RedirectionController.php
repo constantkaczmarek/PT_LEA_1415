@@ -13,10 +13,10 @@ class RedirectionController extends Controller
 
         $session = new Session();
         $session->start();
-        //$session->set('CK_USER','m1infofi1AE16_2014');
+        $session->set('CK_USER','m1infofi1AE16');
         //$session->set('CK_USER','marvie');
+        //$session->set('CK_USER','marquet');
         //$session->set('CK_USER','bilasco');
-        $session->set('CK_USER','bilasco');
 
         $session->set('year', "2014");
         $session->set('typeSuivi','FA_FI');
@@ -41,6 +41,5 @@ class RedirectionController extends Controller
             return $this->redirect(
                 $this->generateUrl('lea_etu_homepage'));
     }
-
 
 }
