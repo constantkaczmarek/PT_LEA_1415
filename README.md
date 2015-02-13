@@ -21,26 +21,24 @@ Si vous n'avez pas encore composer, utilisez les commandes suivantes pour l'inst
     curl -s http://getcomposer.org/installer | php
     sudo mv composer.phar /usr/local/bin/composer
 
-Composer va installer Symfony et toutes ses dépendances dans le dossier `path/to/install`.
+Composer va installer Symfony et toutes ses dépendances dans le dossier `path/to/install`, en utilisant à la racine du projet, la commande :
 
-2) Checking your System Configuration
+    composer install
+    
+A la fin de l'installation, il vous sera demandé de configurer votre accès à la base de donnée. Les configurations de base qui vous sont proposées entre parenthèses sont les notres. Si les autres sont identiques, vous n'avez qu'à appuyer sur la touche entrée, sinon vous pouvez les adapter à votre propre machine.
+
+2) Tester le projet
 -------------------------------------
 
-Before starting coding, make sure that your local system is properly
-configured for Symfony.
+Pour lancer, et donc tester le projet, vous pouvez vous rendre sur la page suivante :
 
-Execute the `check.php` script from the command line:
+    http://localhost:8888/PT_LEA_1415/app_dev
 
-    php app/check.php
+Vous serez redirigé automatiquement vers la page d'accueil selon le rôle attribué. Le rôle par défaut est "bilasco". Vous pouvez modifié le rôle dans le bundle RoleBundle, dans le RedirectionController à la ligne : 
 
-The script returns a status code of `0` if all mandatory requirements are met,
-`1` otherwise.
+    $session->set('CK_USER','bilasco');
 
-Access the `config.php` script from a browser:
-
-    http://localhost/path-to-project/web/config.php
-
-If you get any warnings or recommendations, fix them before moving on.
+Quelques exemples de rôle sont disponibles au dessus de celle-ci.
 
 3) Browsing the Demo Application
 --------------------------------
