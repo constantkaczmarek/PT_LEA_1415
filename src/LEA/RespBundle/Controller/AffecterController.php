@@ -26,7 +26,8 @@ class AffecterController extends Controller
 
         $name = $session->get('CK_USER');
 
-        $selectForma = $this->get('html_utils')->getlistFormationSelect();
+        //$selectForma = $this->get('html_utils')->getlistFormationSelect();
+        $selectForma = $session->get("FORMATIONS");
 
         $conn = $this->get('database_connection');
         $formation = $session->get('formation');

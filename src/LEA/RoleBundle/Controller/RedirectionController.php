@@ -16,16 +16,22 @@ class RedirectionController extends Controller
         //$session->set('CK_USER','m1infofi1AA72');
         //$session->set('CK_USER','marvie');
         $session->set('CK_USER','bilasco');
-        //$session->set('CK_USER','marvie');
         //$session->set('CK_USER','marquet');
+
+        $session->set('year', "2014");
+        $session->set('typeSuivi','FA_FI');
 
         $gestionRole = $this->get('gestion_role');
 
         $gestionRole->checkAllRoles($session, $conn);
 
         if($gestionRole->hasRole($session, "RESP"))
+        {
+            // si c'est un responsable, on construit la liste des formations qu'il est autorisé à consulter
+            $session->set('FORMATIONS', $gestionRole->constructGrantedGroupesKeys($session));
             return $this->redirect(
                 $this->generateUrl('lea_resp_homepage'));
+        }
 
         if($gestionRole->hasRole($session, "PROF"))
             return $this->redirect(

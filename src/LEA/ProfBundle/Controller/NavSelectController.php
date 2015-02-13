@@ -14,9 +14,6 @@ class NavSelectController extends Controller
         $gestionRole = $this->get('gestion_role');
         $session = $this->getRequest()->getSession();
 
-        $session->set('typeSuivi','FA_FI');
-        $session->set('year','2014');
-
         $name = $session->get('CK_USER');
 
         $keys = array("FA","FI","FA_FI");
