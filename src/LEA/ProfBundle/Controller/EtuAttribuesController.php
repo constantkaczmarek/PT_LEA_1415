@@ -27,7 +27,7 @@ class EtuAttribuesController extends Controller
         $name=$session->get('CK_USER');
 
         $actionCodes=array("aucune",
-            "global",
+            //"global",
             "etuGeneral",
             //"majEtape0",
             "etuRencontre",
@@ -40,7 +40,7 @@ class EtuAttribuesController extends Controller
             "aucune",
             "etuSuppr");
         $actionLabels=array("aucune",
-            "Dossier global",
+            //"Dossier global",
             "Informations générales",
             "Rencontre etudiant tuteur",
             "1ère visite pédagogique",
@@ -61,8 +61,8 @@ class EtuAttribuesController extends Controller
 
         $queries = $this->get('queries');
 
-        $listEtu = $queries->getEtudByTuteur($conn, $session->get("formation"), $name, 2014);
-        $formation = $queries->getTuteurFormationSuivi($conn,$name,2014);
+        $listEtu = $queries->getEtudByTuteur($conn, $session->get("formation"), $name,  $session->get('year'));
+        $formation = $queries->getTuteurFormationSuivi($conn,$name, $session->get('year'));
 
         return $this->render('LEAProfBundle:Default:etuAttribues.html.twig', array(
             'name' => $name,

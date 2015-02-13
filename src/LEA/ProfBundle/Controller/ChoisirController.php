@@ -44,16 +44,16 @@ class ChoisirController extends Controller
         $distance = $this->get('distance');
 
 
-        $listEtu = $queries->getEtudiantFormation($conn,$session->get("formation"),2014);
+        $listEtu = $queries->getEtudiantFormation($conn,$session->get("formation"), $session->get('year'));
         $taille = count($listEtu);
         $listAlt=array();
 
 
         for($i = 0; $i< $taille ; $i++) {
             $listEtu[$i]['lienDistance'] = $distance->getLien($listEtu[$i]["bureauAd"]." ".$listEtu[$i]["bureauCod"]." ".$listEtu[$i]["ville"]);
-            $tuteurs = $queries->getTuteursPotentiels($conn, $session->get("formation"),  $listEtu[$i]['alternanceCle'], 2014);
+            $tuteurs = $queries->getTuteursPotentiels($conn, $session->get("formation"),  $listEtu[$i]['alternanceCle'],  $session->get('year'));
 
-            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
+            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"],  $session->get('year'));
             $tuteur = empty($tuteur)?"aucun":$tuteur[0]["tuteurRef"];
             $listEtu[$i]["tuteurSelectionne"] = $tuteur;
 

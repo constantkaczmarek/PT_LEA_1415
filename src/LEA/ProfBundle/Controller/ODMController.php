@@ -58,7 +58,7 @@ class ODMController extends Controller
         }
         $query = $this->get('queries');
 
-        $donneODM = $query->getDonneeODM($conn,$name,2014)[0];
+        $donneODM = $query->getDonneeODM($conn,$name, $session->get('year'))[0];
 
         $ODM = new ODM();
         $ODM->setNom($donneODM["membreNom"]);

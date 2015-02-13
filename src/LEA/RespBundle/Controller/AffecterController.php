@@ -28,12 +28,13 @@ class AffecterController extends Controller
 
         //$selectForma = $this->get('html_utils')->getlistFormationSelect();
         $selectForma = $session->get("FORMATIONS");
+        $toutes = count($selectForma["keys"])-1;
 
         $conn = $this->get('database_connection');
         $formation = $session->get('formation');
 
         $queries = $this->get('queries');
-        $listEtu = $queries->getEtudiantFormation($conn, $formation, 2014);
+        $listEtu = $queries->getEtudiantFormation($conn, $formation, $session->get('year'));
         $taille = count($listEtu);
 
         $dbutils = $this->get('dbutils');
@@ -55,7 +56,7 @@ class AffecterController extends Controller
                 $listEtu[$i]['tuteursPotentiel'] = $tuteursPotentiels[0];
             }
 
-            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
+            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], $session->get('year'));
             $tuteur = empty($tuteur)?"aucun":$tuteur[0]["tuteurRef"];
             $listEtu[$i]["tuteurSelectionne"] = $tuteur;
 
@@ -106,8 +107,6 @@ class AffecterController extends Controller
                     'name' => $name,
                     'listEtu' => $etudiants,
                 ));
-
-
             }
 
         }
@@ -120,6 +119,7 @@ class AffecterController extends Controller
             'form' => $form->createView(),
             'page' => 'affecter',
             'resp'=> $gestionRole->hasRole($session, "RESP"),
+            'toutes' => $toutes
         ));
 
     }

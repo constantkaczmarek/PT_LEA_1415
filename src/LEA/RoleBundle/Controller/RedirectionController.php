@@ -15,8 +15,8 @@ class RedirectionController extends Controller
         $session->start();
         //$session->set('CK_USER','m1infofi1AA72');
         //$session->set('CK_USER','marvie');
+        //$session->set('CK_USER','bilasco');
         $session->set('CK_USER','bilasco');
-        //$session->set('CK_USER','marquet');
 
         $session->set('year', "2014");
         $session->set('typeSuivi','FA_FI');

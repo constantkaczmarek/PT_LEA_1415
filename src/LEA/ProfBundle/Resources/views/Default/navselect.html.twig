@@ -28,7 +28,7 @@
 
 
             <b>&nbsp;année&nbsp;:&nbsp;</b>
-                <select name="anneeGlobal" id="suiviGlobal">
+                <select name="anneeGlobal" id="yearGlobal">
                 {% for k,v in listYears %}
                     {% if k==year %}
                         <option value="{{ k }}" selected="selected">{{ v }}</option>
@@ -39,8 +39,22 @@
                     </select>
 
             {% if etu == 0 and resp == 1 %}
-            <b>&nbsp;formation&nbsp;:&nbsp;</b>
-                <select name="formationGlobal" id="formationGlobal"></select>
+            <b> - </b>
+                <select name="formationGlobal" id="formationGlobal">
+                    {% if selectForma.keys[toutes]==formation %}
+                        <option value="{{ selectForma.keys[0] }}" selected="selected">{{ selectForma.values[0] }}</option>
+                    {% else %}
+                        <option value="{{ selectForma.keys[0] }}">{{ selectForma.values[0] }}</option>
+                    {% endif %}
+
+                    {% for i in 1..toutes %}
+                        {% if selectForma.keys[i]==formation %}
+                            <option value="{{ selectForma.keys[i] }}" selected="selected">{{ selectForma.values[i] }}</option>
+                        {% else %}
+                            <option value="{{ selectForma.keys[i] }}">{{ selectForma.values[i] }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
             {% endif %}
         </li>
 

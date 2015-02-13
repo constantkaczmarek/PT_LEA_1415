@@ -28,11 +28,11 @@ class RapportSoutenanceController extends Controller
         $tuteurRef = $session->get('CK_USER');
 
 
-        $formationSuivi = $query->getFormationSuivieTuteur($conn, $tuteurRef, 2014,$onlyM1INFOFAnoParcours=true);
+        $formationSuivi = $query->getFormationSuivieTuteur($conn, $tuteurRef,  $session->get('year'),$onlyM1INFOFAnoParcours=true);
 
         $infosSoutenance = array();
         foreach($formationSuivi as $formation){
-            array_push($infosSoutenance,$query->getDetailSoutenance($conn,$formation["formationCle"],2014)[0]);
+            array_push($infosSoutenance,$query->getDetailSoutenance($conn,$formation["formationCle"], $session->get('year'))[0]);
         }
 
         if(!empty($formationSuivi)){

@@ -26,13 +26,14 @@ class AttributionController extends Controller
 
         $name = $session->get('CK_USER');
 
-        $selectForma = $this->get('html_utils')->getlistFormationSelect();
+        $selectForma = $session->get("FORMATIONS");
+        $toutes = count($selectForma["keys"])-1;
 
         $conn = $this->get('database_connection');
         $formation = $session->get('formation');
 
         $queries = $this->get('queries');
-        $listEtu = $queries->getEtudiantFormation($conn, $formation, 2014);
+        $listEtu = $queries->getEtudiantFormation($conn, $formation, $session->get('year'));
         $taille = count($listEtu);
 
         $dbutils = $this->get('dbutils');
@@ -40,7 +41,7 @@ class AttributionController extends Controller
         $form = $this->createFormBuilder(array('default'=>'default'));
 
         for($i = 0; $i< $taille ; $i++) {
-            $tuteursPotentiels = $queries->getTuteursPotentiels($conn, $session->get("formation"),  $listEtu[$i]['alternanceCle'], 2014);
+            $tuteursPotentiels = $queries->getTuteursPotentiels($conn, $session->get("formation"),  $listEtu[$i]['alternanceCle'],  $session->get('year'));
             if(empty ($tuteursPotentiels)){
                 $listEtu[$i]['tuteursPotentiel']['tuteurRef'] = "aucun";
             }
@@ -49,7 +50,7 @@ class AttributionController extends Controller
             }
             $tuteursCandidats = $queries->getTuteursPotentielsParEtud($conn,$listEtu[$i]["etudRef"],2014);
 
-            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
+            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"],  $session->get('year'));
             $tuteurName = empty($tuteur)?null:$tuteur[0]["tuteurRef"];
             $listEtu[$i]["tuteurSelectionne"] = $tuteurName;
 
@@ -122,6 +123,7 @@ class AttributionController extends Controller
             'form' => $form->createView(),
             'page' => 'attribution',
             'resp'=> $gestionRole->hasRole($session, "RESP"),
+            'toutes' => $toutes
         ));
 
     }

@@ -19,16 +19,23 @@
     <form action="{{  path('lea_resp_changeForm',{'name':name}) }}" method="post">
         <span>Choisissez la formation : </span>
         <select id="formation" name="formation" class="form-control" >
-            {% for forma in selectForma.keys %}
-                {% if forma==formation %}
-                    <option value="{{ forma }}" selected="selected">{{ selectForma.values[loop.index-1] }}</option>
+            {% if selectForma.keys[toutes]==formation %}
+                <option value="{{ selectForma.keys[0] }}" selected="selected">{{ selectForma.values[0] }}</option>
+            {% else %}
+                <option value="{{ selectForma.keys[0] }}">{{ selectForma.values[0] }}</option>
+            {% endif %}
+
+            {% for i in 1..toutes %}
+                {% if selectForma.keys[i]==formation %}
+                    <option value="{{ selectForma.keys[i] }}" selected="selected">{{ selectForma.values[i] }}</option>
                 {% else %}
-                    <option value="{{ forma }}">{{ selectForma.values[loop.index-1] }}</option>
+                    <option value="{{ selectForma.keys[i] }}">{{ selectForma.values[i] }}</option>
                 {% endif %}
             {% endfor %}
         </select>
     </form>
-
+    <br/>
+    <br/>
 
     {{ form_start(form) }}
     {{ form_errors(form) }}

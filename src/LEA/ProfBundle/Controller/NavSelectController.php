@@ -20,6 +20,8 @@ class NavSelectController extends Controller
         $values = array("Alternance","Stages","Alt./Stages");
 
         $formation = $session->get('formation');
+        $selectForma = $session->get("FORMATIONS");
+        $toutes = count($selectForma["keys"])-1;
 
         $types = array(
             'keys' =>$keys,
@@ -33,6 +35,9 @@ class NavSelectController extends Controller
             'typeSelect'=>$types,
             'type'=>$session->get('typeSuivi'),
             'listYears' =>$listYears,
+            'formation' => $formation,
+            'selectForma' => $selectForma,
+            'toutes' => $toutes,
             'year' => $session->get('year'),
             'resp'=> $gestionRole->hasRole($session, "RESP"),
             'etu' => $gestionRole->hasRole($session, "STUD")

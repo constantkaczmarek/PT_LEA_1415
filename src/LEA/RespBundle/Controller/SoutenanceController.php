@@ -35,17 +35,15 @@ class SoutenanceController extends Controller
         $dbutils = $this->get('dbutils');
         $query = $this->get('queries');
 
-        //$formationSuivi = $query->getFormationSuivieTuteur($conn, $name, 2014,$onlyM1INFOFAnoParcours=true);
-
         $queriesSout = $this->get('queries_sout');
-        $all = "M1MIAGEFA M2MIAGEFA M2IPINTFA M1INFOFA M2IAGLFA M2ESERVFA M2TIIRFA M2IVIFA M2MOCADFA M1MIAGEFI M2MIAGEFI M1INFOFI M2IAGLFI M2ESERVFI M2TIIRFI M2IVIFI M2MOCADFI";
-        $listFormation =  $queriesSout->getSoutenancesResponsable($conn,$all,2014);
 
-        //print_r($listFormation);
+        $all = "M1MIAGEFA M2MIAGEFA M2IPINTFA M1INFOFA M2IAGLFA M2ESERVFA M2TIIRFA M2IVIFA M2MOCADFA M1MIAGEFI M2MIAGEFI M1INFOFI M2IAGLFI M2ESERVFI M2TIIRFI M2IVIFI M2MOCADFI";
+        $listFormation =  $queriesSout->getSoutenancesResponsable($conn,$session->get('CK_ROLES'), $session->get('year'));
+
         $infosSoutenance = array();
 
         foreach($listFormation as $formation){
-            $detailSout = $query->getDetailSoutenance($conn,$formation["formationCle"],2014);
+            $detailSout = $query->getDetailSoutenance($conn,$formation["formationCle"], $session->get('year'));
             if(!empty($detailSout)) {
                 array_push($infosSoutenance, $detailSout[0]);
             }else {
@@ -75,6 +73,8 @@ class SoutenanceController extends Controller
     public function editAction($forma)
     {
         $session =$this->getRequest()->getSession();
+        $gestionRole = $this->get('gestion_role');
+
         $name = $session->get('name');
         $role = $session->get('role');
         $formation = $session->get('formation');
@@ -107,7 +107,7 @@ class SoutenanceController extends Controller
 
                 $infosSout = $form->getData();
                 $updateInfos = $this->get("update_queries");
-                $updateInfos->updateSoutenanceRapport($conn,$infosSout,2014);
+                $updateInfos->updateSoutenanceRapport($conn,$infosSout, $session->get('year'));
 
             }
         }
