@@ -49,14 +49,12 @@ class AttributionController extends Controller
             }
             $tuteursCandidats = $queries->getTuteursPotentielsParEtud($conn,$listEtu[$i]["etudRef"],2014);
 
-
             $listTuteur = $dbutils->convertArrayToChoices($tuteursCandidats,"tuteurRef","nom","prenom");
             $listTuteur["aucun"] = "aucun";
 
             $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
             $tuteur = empty($tuteur)?null:$tuteur[0]["tuteurRef"];
             $listEtu[$i]["tuteurSelectionne"] = $tuteur;
-
 
             if(count($listTuteur)>1) {
 

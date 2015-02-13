@@ -42,7 +42,7 @@
     <br/>
 
     <h2>Informations sur les étudiants</h2>
-    &nbsp;&nbsp;&nbsp; - cochez les cases des étudiants qui vous intéressent, puis transmettez vos choix.
+    &nbsp;&nbsp;&nbsp; - cochez les cases des étudiants qui vous intéressent, puis transmettez vos choix.  d
     <br/><br/>
 
 
@@ -53,7 +53,7 @@
 
         <table class="table">
         <thead>
-                <tr class="entete">
+            <tr class="entete">
                 <th> </th>
                 <th>Nom</th>
                 <th>Prénom</th>
@@ -63,13 +63,15 @@
                 <th>Tuteurs(potentiels)</th>
                 <th>Détails</th>
             </tr>
-    </thead>
+        </thead>
 
         {% if listEtu %}
 
                 {% for etu in listEtu %}
 
-                    {% if (situation=="EXCL" or situation=="NON") and etu.tuteurs.tuteurRef=="aucun" %}
+                    {% if (situation=="EXCL") and etu.tuteurSelectionne=="aucun" %}
+                        <tr>
+                    {% elseif situation=="NON" and etu.tuteurSelectionne=="aucun" and etu.tuteurs.tuteurRef == "aucun" %}
                         <tr>
                     {% elseif situation=="OUI" %}
                         <tr>
