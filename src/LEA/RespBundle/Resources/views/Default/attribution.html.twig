@@ -52,11 +52,11 @@
 
         {% for etu in listEtu %}
 
-            {% if etu.nb_prof > 1 %}
+            {% if etu.nb_prof > 1 and etu.tuteurSelectionne != null %}
                 <tr bgcolor='#d0d0d0' style='border-bottom:1pt solid grey;'>
             {% elseif etu.tuteursPotentiel.tuteurRef == "aucun"  %}
                 <tr  bgcolor="#f69a83" style='border-bottom:1pt solid grey;'>
-            {% elseif  etu.tuteurSelectionne == "aucun" and etu.tuteursPotentiel.tuteurRef != "aucun" %}
+            {% elseif  etu.tuteurSelectionne == null %}
                 <tr style='border-bottom:1pt solid grey;'>
             {% endif %}
 
@@ -64,7 +64,7 @@
             <td>{{ etu.nom_prenom }}</td>
             <td>{{ etu.formation }}</td>
             <td>
-                {% if etu.tuteursPotentiel.tuteurRef != "aucun" %}
+                {% if etu.tuteursPotentiel.tuteurRef != "aucun" or etu.tuteurSelectionne != null %}
                     {{ form_row(form[etu.alternanceCle],{'attr':{'style':'display:block'}}) }}
                 {% endif %}
             </td>

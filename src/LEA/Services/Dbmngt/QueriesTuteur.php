@@ -20,7 +20,7 @@ class QueriesTuteur {
 
     function doTuteurQueryListChoices($conn,$tuteurRef,$yearRef)
     {
-        $query = $conn->fetchAll("select distinct contrat.alternanceCle, etudiant.nom,etudiant.prenom,formation.nom as nomFormation ,bureau.ville,entreprise.nom as nomEntreprise,bureau.distance,bureau.adresse,bureau.codePostal from
+        $query = $conn->fetchAll("select distinct contrat.alternanceCle, etudiant.nom,etudiant.prenom,formation.nom as nomFormation ,bureau.ville as ville,entreprise.nom as nomEntreprise,bureau.distance,bureau.adresse as bureauAd,bureau.codePostal as bureauCod from
                     membre inner join temp_tuteurs on membre.profCle=temp_tuteurs.tuteurRef
                     inner join contrat on contrat.alternanceCle = temp_tuteurs.alternanceRef
                     inner join etudiant on contrat.etudRef=etudiant.etudCle

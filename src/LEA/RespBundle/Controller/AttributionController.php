@@ -49,20 +49,22 @@ class AttributionController extends Controller
             }
             $tuteursCandidats = $queries->getTuteursPotentielsParEtud($conn,$listEtu[$i]["etudRef"],2014);
 
+            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
+            $tuteurName = empty($tuteur)?null:$tuteur[0]["tuteurRef"];
+            $listEtu[$i]["tuteurSelectionne"] = $tuteurName;
+
+            if(!empty($tuteur))
+                array_push($tuteursCandidats,$tuteur[0]);
+
             $listTuteur = $dbutils->convertArrayToChoices($tuteursCandidats,"tuteurRef","nom","prenom");
             $listTuteur["aucun"] = "aucun";
 
-            $tuteur = $queries->getTuteurEtud($conn, $listEtu[$i]["etudRef"], 2014);
-            $tuteur = empty($tuteur)?null:$tuteur[0]["tuteurRef"];
-            $listEtu[$i]["tuteurSelectionne"] = $tuteur;
-
             if(count($listTuteur)>1) {
-
 
                 $form->add($listEtu[$i]["alternanceCle"], 'choice', array(
                     'label' => false,
                     'choices' => $listTuteur,
-                    'data' => $tuteur,
+                    'data' => $tuteurName,
                     'expanded' => true,
                     'multiple' => false));
             }

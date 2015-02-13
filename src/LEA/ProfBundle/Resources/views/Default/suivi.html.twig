@@ -9,6 +9,28 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
+    {% javascripts '@LEAProfBundle/Resources/Js/choisir.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <div>
+        <br/>
+        <form action="{{  path('lea_prof_changeForm',{'name':name}) }}" method="post">
+            <span>Choisissez la formation : </span>
+            <select id="formation" name="formation" class="form-control">
+                <option value="{{ aucune }}">aucune</option>
+                {% for forma in listForm %}
+                    {% if forma.formationCle == formation %}
+                        <option value="{{ forma.formationCle }}" selected="selected">{{ forma.nom }}</option>
+                    {% else %}
+                        <option value="{{ forma.formationCle }}">{{ forma.nom }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+    <br/>
+
     <table class="edt" style="font-size:9pt">
         <thead>
             <tr class="entete">
@@ -26,7 +48,7 @@
                 <td>{{ etudiant.nom }}</td>
                 <td>{{ etudiant.prenom }}</td>
                 <td>{{ etudiant.nomFormation }}</td>
-                <td>{{ etudiant.ville }} / {{ etudiant.distance }}</td>
+                <td>{{ etudiant.ville }} / <a href="{{ etudiant.lienDistance }}">{{ etudiant.distance }}</a></td>
                 <td>{{ etudiant.nomEntreprise }}</td>
                 <td><button class="button" id="{{ etudiant.alternanceCle }}">Retirer</button></td>
             </tr>
