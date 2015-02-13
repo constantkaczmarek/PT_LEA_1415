@@ -22,8 +22,8 @@
             {% endfor %}
         </select>
     </form>
-
-    <table>
+    <br/>
+    <table border="1">
         <thead>
         <tr>
             <th>Nom OPCA</th>
@@ -34,7 +34,7 @@
         {% for res in result %}
             <tr>
                 <td>{{ res.opcaRef }}</td>
-                <td>{{ res.nb }}</td>
+                <td align="center">{{ res.nb }}</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -43,11 +43,12 @@
             <td>
                 Total ({{ totalOpca }} OPCAs)
             </td>
-            <td>
+            <td align="center">
                 {{ totalEtud }}
             </td>
         </tr>
         </tfoot>
     </table>
-
+    <br/>
+    <a href="{{ path('lea_resp_stats_index') }}"><button class="button">Retour</button></a>
 {% endblock %}

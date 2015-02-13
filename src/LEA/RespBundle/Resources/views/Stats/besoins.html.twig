@@ -22,8 +22,8 @@
             {% endfor %}
         </select>
     </form>
-
-    <table>
+    <br/>
+    <table border="1">
         <thead>
         <tr>
             <th>Formation</th>
@@ -35,8 +35,8 @@
         {% for res in result %}
             <tr>
                 <td>{{ res.formationRef }}</td>
-                <td>{{ res.nb }}</td>
-                <td>{{ res.nbSans }}</td>
+                <td align="center">{{ res.nb }}</td>
+                <td align="center">{{ res.nbSans }}</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -45,14 +45,15 @@
             <td>
                 Total
             </td>
-            <td>
+            <td align="center">
                 {{ totalEtudSansTuteur }}
             </td>
-            <td>
+            <td align="center">
                 {{ totalEtudSansTuteurNiEntreprise }}
             </td>
         </tr>
         </tfoot>
     </table>
-
+    <br/>
+    <a href="{{ path('lea_resp_stats_index') }}"><button class="button">Retour</button></a>
 {% endblock %}

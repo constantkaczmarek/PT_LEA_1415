@@ -28,12 +28,8 @@ class DefaultController extends Controller
         $formation = $queryEtu->doGetFormationForStudent($conn, $nameEtu, $year);
         $refFormationType = substr($formation,strlen($formation)-2,2);
 
-        // A DECOMMENTER EN VERSION FINALE, ET SUPPRIMER LES DEUX INITIALISATIONS A TRUE
         $missionSoutenance = (strcmp($formation, "M1MIAGEFA") !=0 && $refFormationType == "FA") ? true : false;
         $deuxiemeVisite = ($refFormationType == "FA") ? true : false;
-
-        $missionSoutenance = true;
-        $deuxiemeVisite = true;
 
         $tuteur = ($tuteur != null) ? $tuteur["prenom"] . " " . $tuteur["nom"] : "Aucun tuteur pour le moment";
 

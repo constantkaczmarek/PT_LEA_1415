@@ -40,7 +40,7 @@ class SoutenanceRapportController extends Controller
         $query = $this->get('queries_sout');
         $date = new \DateTime();
         $year = $date->format('Y');
-        $infos = $query->getDetailsSoutenanceEtu($conn,$nameEtu,2014);
+        $infos = $query->getDetailsSoutenanceEtu($conn,$nameEtu,$session->get('year'));
 
         return $this->render('LEAEtuBundle:Default:soutenanceRapport.html.twig',array(
             'name' => $nameEtu,

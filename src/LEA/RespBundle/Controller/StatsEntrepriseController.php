@@ -26,7 +26,7 @@ class StatsEntrepriseController extends Controller
         $formation = $session->get('formation');
 
         $stats = $this->get('stats');
-        $result = $stats->getEtudiantsParEntreprises($conn, $formation, 2014);
+        $result = $stats->getEtudiantsParEntreprises($conn, $formation, $session->get('year'));
 
         $totalEtud = 0;
 

@@ -26,7 +26,7 @@ class StatsOpcaController extends Controller
         $formation = $session->get('formation');
 
         $stats = $this->get('stats');
-        $result = $stats->getEtudiantsParOPCAs($conn, $formation, 2014);
+        $result = $stats->getEtudiantsParOPCAs($conn, $formation, $session->get('year'));
 
         $totalEtud = 0;
 

@@ -26,7 +26,7 @@ class StatsFormController extends Controller
         $formation = $session->get('formation');
 
         $stats = $this->get('stats');
-        $result = $stats->getEtudiantsParFormation($conn, $formation, 2014);
+        $result = $stats->getEtudiantsParFormation($conn, $formation, $session->get('year'));
 
         $totalEtud = 0;
         $totalEtudSansTuteur = 0;

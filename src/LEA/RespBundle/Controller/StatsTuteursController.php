@@ -26,7 +26,7 @@ class StatsTuteursController extends Controller
         $formation = $session->get('formation');
 
         $stats = $this->get('stats');
-        $result = $stats->getEncadrementTuteurEtudiants($conn, $formation, 2014);
+        $result = $stats->getEncadrementTuteurEtudiants($conn, $formation, $session->get('year'));
 
         $totalTuteurs = 0;
         $totalEtud = 0;
