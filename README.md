@@ -6,14 +6,13 @@ application that you can use as the skeleton for your new applications.
 
 Bienvenue sur notre projet technique de frameworkisation du livret electronique de suivi de stage et d'alternance.
 
-Ce document contient des informations sur comment installer symfony et commencer à utiliser notre projet. Pour une explication plus détaillée, veuillez vous référer à [Installation][1], chapitre d'installatin de la documentation Symfony.
+Ce document contient des informations sur comment installer symfony et commencer à utiliser notre projet. Pour une explication plus détaillée, veuillez vous référer au chapitre [Installation][1] de la documentation Symfony.
 
-This document contains information on how to download, install, and start
-using Symfony. For a more detailed explanation, see the [Installation][1]
-chapter of the Symfony Documentation.
+Ce docuùent contient des informations sur comment télécharger, installer et continuer notre projet sur symfony.
 
-1) Installing the Standard Edition
+1) Installer le projet
 ----------------------------------
+
 
 When it comes to installing the Symfony Standard Edition, you have the
 following options.
