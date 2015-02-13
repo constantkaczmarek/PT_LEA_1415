@@ -1,8 +1,5 @@
-PT_LEA_1415
+LEA : Livret Electronique de suivi pédagogique de stages et d'alternances 2014-2015
 ========================
-
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
 
 Bienvenue sur notre projet technique de frameworkisation du livret electronique de suivi de stage et d'alternance.
 
@@ -15,7 +12,7 @@ Ce document contient des informations sur comment télécharger, installer et co
 
 Pour installer le projet, la solution que nous préconisons est d'utiliser composer.
 
-### Utiliser Composer (*recommended*)
+### Utiliser Composer (*recommandé*)
 
 Comme Symfony utilise [Composer][2] pour gérer ses dépendances, il est vivement recommandé de l'utiliser pour installer le projet.
 
@@ -25,7 +22,6 @@ Si vous n'avez pas encore composer, utilisez les commandes suivantes pour l'inst
     sudo mv composer.phar /usr/local/bin/composer
 
 Composer va installer Symfony et toutes ses dépendances dans le dossier `path/to/install`.
-
 
 2) Checking your System Configuration
 -------------------------------------
