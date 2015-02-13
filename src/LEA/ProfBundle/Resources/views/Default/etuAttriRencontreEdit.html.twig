@@ -4,10 +4,79 @@
     {% include "::navbar.html.twig" %}
 {% endblock %}
 {% block body %}
-
-    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
     <form action="{{ path("lea_prof_etuRencontreEdit",{ 'name': name}) }}" method="post">
-        {{ form_widget(form) }}
-        <input type="submit" name="Enregistrer" value="Enregistrer"/>
+        <table align='center' style='border-width: 0px;border-style:solid;font-size:11px' width='95%'>
+            <tr class="entete">
+                <td>
+                    {{ infos.et_pn }}
+                </td>
+            </tr>
+            {{ form_start(form) }}
+
+
+            <tr>
+                <td style='border-width: 1px;border-style:solid' width='95%'>
+                    Date rencontre (aaaa-mm-jj) : {{ form_row(form.dateRencontre) }}<br/>
+                    Service/Projet : {{ form_row(form.service) }} <br/>
+                    (éventuellement client) : {{ form_row(form.client) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        Quels sont (ou seront) les missions confiées ?<br/>
+                        <div style='width:95%'>
+                            {{ form_row(form.missions,{ 'attr': {'cols': '70','rows':'5'}} ) }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        Dans quel environnement technique ?<br/>
+                        <div style='width:95%'>
+                            {{ form_row(form.environnementTechnique,{ 'attr': {'cols': '70','rows':'5'}} ) }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        Comment se passe l'intégration dans l'entreprise ?<br/>
+                        <div style='width:95%'>
+                            {{ form_row(form.integrationEntreprise,{ 'attr': {'cols': '70','rows':'5'}} ) }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        Mots clés ?<br/>
+                        <div style='width:95%'>
+                            {{ form_row(form.motscles,{ 'attr': {'cols': '70','rows':'1'}} ) }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style='border-width: 1px;border-style:solid' width='95%'>
+                        Validation du tuteur {{ form_row(form.signatureTuteur) }}(remarques éventuelles)<br/>
+                        <div style='width:95%'>
+                            {{ form_row(form.remarquesTuteur,{ 'attr': {'cols': '70','rows':'5'}} ) }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="Enregistrer" value="Enregistrer"/>
+                </td>
+            </tr>
+            {{ form_end(form) }}
+        </table>
     </form>
 {% endblock %}

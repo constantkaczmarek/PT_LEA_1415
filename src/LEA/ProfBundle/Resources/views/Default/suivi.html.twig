@@ -9,20 +9,20 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    <table class="table table-striped">
+    <table class="edt" style="font-size:9pt">
         <thead>
-            <tr>
+            <tr class="entete">
                 <td>Nom</td>
                 <td>Prénom</td>
                 <td>Formation</td>
                 <td>Ville/Kilométrage</td>
                 <td>Entreprise</td>
-                <td></td>
+                <td><div id="head"></div></td>
             </tr>
         </thead>
         <tbody>
         {% for etudiant in etudiants %}
-            <tr>
+            <tr class="{% if loop.index is divisibleby(2) %}TD{% else %}TP{% endif %}">
                 <td>{{ etudiant.nom }}</td>
                 <td>{{ etudiant.prenom }}</td>
                 <td>{{ etudiant.nomFormation }}</td>

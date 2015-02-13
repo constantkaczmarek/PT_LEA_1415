@@ -8,50 +8,69 @@
     {% if post %}
         <p>Informations de rencontre mises à jour!</p>
     {% endif %}
-    <b>L'ETUDIANT : {{ infos.et_pn }}</b><br/>
-    <table>
-        <tr>
-            <td>Date rencontre (aaaa-mm-jj)</td>
-            <td>{{ infos.dateRencontre }}</td>
+    <table align='center' style='border-width: 0px;border-style:solid;font-size:11px' width='95%'>
+        <tr class="entete">
+            <td>
+                {{ infos.et_pn }}
+            </td>
         </tr>
         <tr>
-            <td>Entreprise chosie</td>
-            <td>{{ infos.entreprise }}</td>
+            <td style="border-width: 1px; border-style:solid;" width="95%">
+                <b>Date rencontre (aaaa-mm-jj) : </b>{{ infos.dateRencontre }}<br/>
+                <b>Entreprise chosie : </b>{{ infos.entreprise }}<br/>
+                <b>Service/Projet : </b>{{ infos.service }}<br/>
+                <b>(éventuellement client) : </b>{{ infos.client }}<br/>
+            </td>
         </tr>
         <tr>
-            <td>Service/Projet</td>
-            <td>{{ infos.service }}</td>
-        </tr>
-            <td>Eventuellement client</td>
-            <td>{{ infos.client }}</td>
-        </tr>
-        <tr>
-            <td>Quels sont (ou seront) les missions confiées ?</td>
-            <td>{{ infos.missions }}</td>
-        </tr>
-        <tr>
-            <td>Dans quel environnement technique ?</td>
-            <td>{{ infos.environnementTechnique }}</td>
+            <td>
+                <div style="border-width: 1px; border-style:solid;" width="95%">
+                    <b>Quels sont (ou seront) les missions confiées ?</b><br/>
+                    <div width="95%">
+                        <p style="text-align:left; margin-top:0">{{ infos.missions }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Comment se passe l'intégration dans l'entreprise ?</td>
-            <td>{{ infos.integrationEntreprise }}</td>
+            <td>
+                <div style="border-width: 1px; border-style:solid;" width="95%">
+                    <b>Dans quel environnement technique ?</b><br/>
+                    <div width="95%">
+                        <p style="text-align:left; margin-top:0">{{ infos.environnementTechnique }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Validation de l'étudiant</td>
-            <td>{{ infos.signatureEtud }}</td>
-            </tr>
-        <tr>
-            <td>Remarques éventuelles</td>
-            <td>{{ infos.remarquesEtud }}</td>
+            <td>
+                <div style="border-width: 1px; border-style:solid;" width="95%">
+                    <b>Comment se passe l'intégration dans l'entreprise ?</b><br/>
+                    <div width="95%">
+                        <p style="text-align:left; margin-top:0">{{ infos.integrationEntreprise }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Validation du tuteur</td>
-            <td>{{ infos.signatureTuteur }}</td>
+            <td>
+                <div style="border-width: 1px; border-style:solid;" width="95%">
+                    <b>Validation de l'étudiant </b>{{ infos.signatureEtud }}. (remarques éventuelles)<br/>
+                    <div width="95%">
+                        <p style="text-align:left; margin-top:0">{{ infos.remarquesEtud }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
-            <td>Remarques éventuelles</td>
-            <td>{{ infos.remarquesTuteur }}</td>
+            <td>
+                <div style="border-width: 1px; border-style:solid;" width="95%">
+                    <b>Validation du tuteur </b>{{ infos.signatureTuteur }}. (remarques éventuelles)<br/>
+                    <div width="95%">
+                        <p style="text-align:left; margin-top:0">{{ infos.remarquesTuteur }}</p>
+                    </div>
+                </div>
+            </td>
         </tr>
     </table>
     <br>
